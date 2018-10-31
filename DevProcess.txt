@@ -1,0 +1,15 @@
+Clone GitHub Directory: 
+git clone https://github.com/davidosemwegie/grubite.git
+
+Create React Web App
+npx create-react-app grubite_web
+
+Create React Native Project
+react-native init grubite_mobile
+
+Create Backend/Server/API
+mkdir grubite_api
+cd grubite_api
+npm init to create the package.json file
+Npm -I express //install the express node package
+Npm I -g nodemon //installs nodemon which automatically restarts the server every time that there is a file change.
