@@ -41,8 +41,8 @@ app.get('/', (req, res)=>{
 app.post('/create_restaurant_owner', (req, res) => {
     console.log("trying to create a new user")
 
-    const email = req.body.create_email
-    const password = req.body.create_password
+    const email = req.body.email
+    const password = req.body.password
 
     const query = 'insert into RestaurantOwner (email, password) values (?, ?)'
 
