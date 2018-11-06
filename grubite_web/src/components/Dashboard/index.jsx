@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Sidebar from './Sidebar'
 
 export default class extends Component {
 
@@ -9,7 +10,7 @@ export default class extends Component {
     render() {
         return (
             <div>
-                This is the dashboard
+                <Sidebar />
             </div>
         );
     }

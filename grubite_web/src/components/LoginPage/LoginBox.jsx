@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './LoginBox.css'
 import {Panel, Form, FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+
 class LoginBox extends Component {
 
     onPress () {
@@ -28,10 +29,15 @@ class LoginBox extends Component {
                         <ControlLabel>Email</ControlLabel>{' '}
                         <FormControl type="password" placeholder="Password" />
                     </FormGroup>{' '}
+                    <div className="loginButtonContainer">
                     <Link to='/dashboard'>
-                            <Button bsStyle="primary">Log in</Button>
-                        </Link>
+                        <Button bsStyle="primary" className="loginButton primary">Log in</Button>
+                    </Link>
+                    </div>
                     </Form>
+                    <Link to="/dashboard">
+                        <p><b>Forgot your password?</b></p>
+                    </Link>
                     </Panel.Body>
                 </Panel>
                 <div>
