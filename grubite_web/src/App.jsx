@@ -6,6 +6,7 @@ import SignupPage from './components/SignupPage'
 import Dashboard from './components/Dashboard';
 //import Dashboard from './components/Dashboard'
 class App extends Component {
+  
   render() {
     return (
       <Router>

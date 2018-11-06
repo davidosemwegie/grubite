@@ -3,6 +3,11 @@ import Header from '../Header'
 import LoginBox from './LoginBox'
 
 export default class extends Component {
+
+    componentDidMount(){
+        document.title = "Login"
+    }
+    
     render() {
         return (
             <div>

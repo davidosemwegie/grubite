@@ -28,12 +28,17 @@ class LoginBox extends Component {
                         <ControlLabel>Email</ControlLabel>{' '}
                         <FormControl type="password" placeholder="Password" />
                     </FormGroup>{' '}
-                    <Link to=''>
+                    <Link to='/dashboard'>
                             <Button bsStyle="primary">Log in</Button>
                         </Link>
                     </Form>
                     </Panel.Body>
                 </Panel>
+                <div>
+                    <Link to="/dashboard">
+                        <p>Dont have an account ? <b>Sign up</b></p>
+                    </Link>
+                </div>
                 </div>
             </div>
         );
