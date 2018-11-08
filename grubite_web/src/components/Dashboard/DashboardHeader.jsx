@@ -13,7 +13,9 @@ export default class DashboardHeader extends Component {
                 </button>
                 </li>
                 <li className= "headerTitle dbHeaderListItem">{this.props.title}</li>
-                <li className="profilePicture dbHeaderListItem">&#9786;</li>
+                <li className="profilePictureContainer dbHeaderListItem">
+                    <button className="profilePicture">&#9786;</button>
+                </li>
             </ul>
             </nav>
         );

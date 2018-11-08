@@ -4,6 +4,7 @@ import axios from 'axios'
 import DashboardHeader from './DashboardHeader'
 import './Dashboard.css'
 import MenuBar from './MenuBar'
+import MenuTable from './MenuTable'
 
 export default class extends Component {
 
@@ -26,6 +27,15 @@ export default class extends Component {
 
     }
 
+    // closeMenu = () => {
+    //     if (this.state.displaySidebar === true) {
+    //         this.setState({
+    //             displaySidebar: false
+    //         })
+            
+    //     }
+    // }
+
     render() {
         //crated a variable called sidebar that is currently set to sidebar.
         let sidebar = null; 
@@ -45,9 +55,8 @@ export default class extends Component {
             <div className="dashboardPage">
                 {sidebar}
                 <DashboardHeader title="Menu" displayMethod={this.displaySidebar}/>
-                {/* <Sidebar /> */}
                 <MenuBar />
-                
+                <MenuTable />
             </div>
         );
     }

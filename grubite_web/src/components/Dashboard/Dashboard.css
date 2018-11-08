@@ -1,6 +1,7 @@
-/* .dashboardPage {
+.dashboardPage {
     background-color:#F2F2F2;
     height: 100%;
-    width: 100%;
-    font-family: "Helvetica Neue"
-} */
+    /* width: 100%; */
+    font-family: "Helvetica Neue";
+    min-height: 100vh;
+}
