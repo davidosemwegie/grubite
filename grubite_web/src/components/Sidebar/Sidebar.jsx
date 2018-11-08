@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link, Route} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import './Sidebar.css'
 
 export default class Sidebar extends Component {
@@ -10,13 +10,14 @@ export default class Sidebar extends Component {
                     <div className="sidebar-header">
                         <p>GRUBITE</p>
                     </div>
-
-                    <ul className="list-unstyled components">
+                    <ul className="sidebarList">
                         <li className="navItem">
-                            <Link to='/viewMenu'>
-                                <p>View Menu</p>
-                            </Link>
+                            <button onClick={this.props.displayMethod}>
+                                Close
+                            </button>
                         </li>
+                        <li className="navItem active"><p>View Menu</p></li>
+                        <li className="navItem"><p>Sign out</p></li>
                     </ul>
                 </nav>
             </div>

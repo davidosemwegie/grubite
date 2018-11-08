@@ -8,6 +8,22 @@ class LoginBox extends Component {
     onPress () {
         console.log("The button works")
     }
+
+    handler = (e) => {
+        // do some validation
+        this.refs.loginForm.submit();
+    };
+
+    state = {
+        email: ""
+    }
+    
+
+    handleChange = e => {
+        this.setState({email: e.target.value})
+        console.log(this.state.email)
+    }
+
     render() {
         return (
             <div>
@@ -20,28 +36,29 @@ class LoginBox extends Component {
                         <Panel.Title>Login</Panel.Title>
                     </Panel.Heading>
                     <Panel.Body>
-                    <Form action='#'>
-                    <FormGroup controlId="formInlineName">
-                        <ControlLabel>Name</ControlLabel>{' '}
-                        <FormControl type="email" placeholder="Please type in your email here..." />
-                    </FormGroup>{' '}
+                    <Form>
                     <FormGroup controlId="formInlineEmail">
+                        <ControlLabel>Name</ControlLabel>{' '}
+                        <FormControl type="email" name='email' placeholder="Please type in your email here..." onChange = {this.handleChange}/>
+                    </FormGroup>{' '}
+                    <FormGroup controlId="formInlinePassword">
                         <ControlLabel>Email</ControlLabel>{' '}
-                        <FormControl type="password" placeholder="Password" />
+                        <FormControl type="password" name="password" placeholder="Password" />
                     </FormGroup>{' '}
                     <div className="loginButtonContainer">
-                    <Link to='/dashboard'>
-                        <Button bsStyle="primary" className="loginButton primary">Log in</Button>
-                    </Link>
+                    {/* <Link to='/dashboard'>
+                        <Button bsStyle="primary" className="loginButton primary" type='submit'>Log in</Button>
+                    </Link> */}
+                    <Button bsStyle="primary" className="loginButton primary" type='submit'>Log in</Button>
                     </div>
                     </Form>
-                    <Link to="/dashboard">
+                    <Link to="/forgotPassword">
                         <p><b>Forgot your password?</b></p>
                     </Link>
                     </Panel.Body>
                 </Panel>
                 <div>
-                    <Link to="/dashboard">
+                    <Link to="/signup">
                         <p>Dont have an account ? <b>Sign up</b></p>
                     </Link>
                 </div>
