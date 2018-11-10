@@ -1,30 +1,62 @@
 import React, { Component } from 'react';
 import './LoginBox.css'
 import {Panel, Form, FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { BrowserRouter as Router,
+    Route,
+    Link,
+    Redirect, 
+    Switch} from 'react-router-dom';
+import axios from 'axios'
+import Dashboard from '../Dashboard';
 
 class LoginBox extends Component {
 
-    onPress () {
-        console.log("The button works")
+    constructor(props) {
+        super();
+
+        this.state = {
+            email: "",
+            password: "",
+            userInfo: [],
+            redirectToReffer: false,
+        }
+        
+        this.login = this.login.bind(this)
     }
 
-    handler = (e) => {
-        // do some validation
-        this.refs.loginForm.submit();
-    };
-
-    state = {
-        email: ""
-    }
     
-
-    handleChange = e => {
+    emailChange = e => {
         this.setState({email: e.target.value})
-        console.log(this.state.email)
+    }
+
+    passwordChange = e => {
+        this.setState({password: e.target.value})
+    }
+
+    login(e) {
+
+        const {email, password, userInfo} = this.state;
+        e.preventDefault();
+        var user
+        axios.post('http://localhost:3001/user/login', {
+            email: email,
+            password: password
+            })
+        .then(function (response) {
+            //user = response
+            console.log(response.data.result)
+            })
+        .catch(function (error) {
+            console.log(error);
+        });
+
+        this.setState({userInfo: user})
+
+        console.log(userInfo)
     }
 
     render() {
+
         return (
             <div>
                 <div>
@@ -36,14 +68,14 @@ class LoginBox extends Component {
                         <Panel.Title>Login</Panel.Title>
                     </Panel.Heading>
                     <Panel.Body>
-                    <Form>
+                    <Form onSubmit={this.login}>
                     <FormGroup controlId="formInlineEmail">
-                        <ControlLabel>Name</ControlLabel>{' '}
-                        <FormControl type="email" name='email' placeholder="Please type in your email here..." onChange = {this.handleChange}/>
+                        <ControlLabel>Email</ControlLabel>{' '}
+                        <FormControl type="email" name='email' placeholder="Please type in your email here..." onChange = {this.emailChange}/>
                     </FormGroup>{' '}
                     <FormGroup controlId="formInlinePassword">
-                        <ControlLabel>Email</ControlLabel>{' '}
-                        <FormControl type="password" name="password" placeholder="Password" />
+                        <ControlLabel>Password</ControlLabel>{' '}
+                        <FormControl type="password" name="password" placeholder="Password" onChange = {this.passwordChange}/>
                     </FormGroup>{' '}
                     <div className="loginButtonContainer">
                     {/* <Link to='/dashboard'>
