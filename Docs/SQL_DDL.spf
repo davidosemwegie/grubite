@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>GrubiteDB</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>-8643887972876155508</string>
+			<key>name</key>
+			<string>local</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8</string>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGOTpYJHZlcnNpb25YJG9iamVjdHNZJGFy
+			Y2hpdmVyVCR0b3ASAAGGoK0HCBUWFxgZHSQoLDE2VSRudWxs0wkK
+			CwwQFFdOUy5rZXlzWk5TLm9iamVjdHNWJGNsYXNzow0OD4ACgAOA
+			BKMREhOABYAGgAiADFR0eXBlVHJvd3NUa2V5c18QJlNlbGVjdGlv
+			bkRldGFpbFR5cGVQcmltYXJ5S2V5ZWREZXRhaWxz0wkKCxobHKCg
+			gAfSHh8gIVokY2xhc3NuYW1lWCRjbGFzc2VzXxATTlNNdXRhYmxl
+			RGljdGlvbmFyeaMgIiNcTlNEaWN0aW9uYXJ5WE5TT2JqZWN00goL
+			JSehJoAJgAvSCykqK1lOUy5zdHJpbmeAClN1aWTSHh8tLl8QD05T
+			TXV0YWJsZVN0cmluZ6MtLzBYTlNTdHJpbmdYTlNPYmplY3TSHh8y
+			M15OU011dGFibGVBcnJheaMyNDVXTlNBcnJheVhOU09iamVjdNIe
+			HyI3oiI4WE5TT2JqZWN0XxAPTlNLZXllZEFyY2hpdmVy0Ts8VGRh
+			dGGAAQAIABEAGgAjAC0AMgA3AEUASwBSAFoAZQBsAHAAcgB0AHYA
+			egB8AH4AgACCAIcAjACRALoAwQDCAMMAxQDKANUA3gD0APgBBQEO
+			ARMBFQEXARkBHgEoASoBLgEzAUUBSQFSAVsBYAFvAXMBewGEAYkB
+			jAGVAacBqgGvAAAAAAAAAgEAAAAAAAAAPQAAAAAAAAAAAAAAAAAA
+			AbE=
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {748, 473}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>create table Restaurant(
+rid int PRIMARY KEY AUTO_INCREMENT,
+roid int,
+stressAddress varchar(250),
+province char(2),
+city varchar(100),
+postalCode VARCHAR(7),
+foreign key (roid) references RestaurantOwner(roid)
+	on delete cascade
+);
+
+create table MenuCategory(
+mcid int PRIMARY KEY AUTO_INCREMENT,
+categoryName varchar(40)
+);
+
+create table Tag(
+tagId int PRIMARY KEY AUTO_INCREMENT,
+tagName varchar(100)
+);
+
+create table FoodItem (
+foodId int PRIMARY KEY AUTO_INCREMENT,
+foodName varchar(100),
+price double,
+description varchar(250),
+rid INT,
+mcid int,
+foreign key (rid) references Restaurant (rid)
+	on delete cascade
+	on update cascade,
+foreign key (mcid) references MenuCategory (mcid)
+	on delete cascade
+	on update cascade
+);
+
+create table FoodTag(
+foodId int,
+tagId int,
+primary key (foodId, tagId),
+foreign key (foodId) references FoodItem (foodId)
+	on delete cascade
+	on update cascade,
+foreign key (tagId) references Tag (tagId)
+	on delete cascade
+	on update cascade
+);
+
+create table User (
+uid int PRIMARY KEY AUTO_INCREMENT,
+username varchar(100),
+email varchar(100),
+password varchar(250),
+firstName varchar(100),
+lastName varchar(100),
+birthday date
+);
+
+create table Review (
+rvid int PRIMARY KEY AUTO_INCREMENT,
+uid int, 
+rvDescription varchar(150),
+rating int,
+foodId int, 
+foreign key (uid) references User (uid)
+	on delete cascade
+	on update cascade,
+foreign key (foodId) references FoodItem (foodId)
+	on delete cascade
+	on update cascade
+);
+
+create table Favourite (
+uid int,
+foodId int,
+primary key (uid, foodId),
+foreign key (foodId) references FoodItem (foodId)
+	on delete cascade
+	on update cascade,
+foreign key (uid) references User (uid)
+	on delete cascade
+	on update cascade
+)
+
+
+
+
+
+
+
+
+
+
+</string>
+			<key>table</key>
+			<string>User</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>200</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>create table Favourite (
+uid int,
+foodId int,
+primary key (uid, foodId),
+foreign key (foodId) references FoodItem (foodId)
+	on delete cascade
+	on update cascade,
+foreign key (uid) references User (uid)
+	on delete cascade
+	on update cascade
+)</string>
+		<string>create table Review (
+rvid int PRIMARY KEY AUTO_INCREMENT,
+uid int, 
+rvDescription varchar(150),
+rating int,
+foodId int, 
+foreign key (uid) references User (uid)
+	on delete cascade
+	on update cascade,
+foreign key (foodId) references FoodItem (foodId)
+	on delete cascade
+	on update cascade
+)</string>
+		<string>create table Review (
+rvid int PRIMARY KEY AUTO_INCREMENT,
+uid int, 
+rvDescription varchar(150),
+rating int,
+fid int, 
+foreign key (uid) references User (uid)
+	on delete cascade
+	on update cascade,
+foreign key (fid) references FoodItem (fid)
+	on delete cascade
+	on update cascade
+)</string>
+		<string>create table User(
+uid int PRIMARY KEY AUTO_INCREMENT,
+username varchar(100),
+email varchar(100),
+password varchar(250),
+firstName varchar(100),
+lastName varchar(100),
+birthday date
+)</string>
+		<string>create table FoodTag(
+foodId int,
+tagId int,
+primary key (foodId, tagId),
+foreign key (foodId) references FoodItem (foodId)
+	on delete cascade
+	on update cascade,
+foreign key (tagId) references Tag (tagId)
+	on delete cascade
+	on update cascade
+)</string>
+		<string>create table FoodTag(
+foodId int ,
+tagId int PRIMARY KEY,
+primary key (foodId, tagId),
+foreign key (foodId) references FoodItem (foodId)
+	on delete cascade
+	on update cascade,
+foreign key (tagId) references Tag (tagId)
+	on delete cascade
+	on update cascade
+)</string>
+		<string>create table FoodTag(
+foodId int ,
+tagId int PRIMARY KEY,
+primary key (foodId, tagId)
+foreign key (foodId) references FoodItem (foodId)
+	on delete cascade
+	on update cascade,
+foreign key (tagId) references Tag (tagId)
+	on delete cascade
+	on update cascade
+)</string>
+		<string>create table FoodTag(
+foodId int PRIMARY KEY,
+tagId int PRIMARY KEY,
+foreign key (foodId) references FoodItem (foodId)
+	on delete cascade
+	on update cascade,
+foreign key (tagId) references Tag (tagId)
+	on delete cascade
+	on update cascade
+)</string>
+		<string>create table FoodTag(
+foodId int PRIMARY KEY,
+tagId int PRIMARY KEY,
+foreign key (foodId) references FoodItem (foodId)
+	on delete cascade
+	on update cascade
+foreign key (tagId) references Tag (tagId)
+	on delete cascade
+	on update cascade
+)</string>
+		<string>create table FoodTag(
+foodId int PARTIAL PRIMARY KEY,
+tagId int PARTIAL PRIMARY KEY,
+foreign key (foodId) references FoodItem (foodId)
+	on delete cascade
+	on update cascade
+foreign key (tagId) references Tag (tagId)
+	on delete cascade
+	on update cascade
+)</string>
+		<string>create table FoodItem (
+foodId int PRIMARY KEY AUTO_INCREMENT,
+foodName varchar(100),
+price double,
+description varchar(250),
+rid INT,
+mcid int,
+foreign key (rid) references Restaurant (rid)
+	on delete cascade
+	on update cascade,
+foreign key (mcid) references MenuCategory (mcid)
+	on delete cascade
+	on update cascade
+)</string>
+		<string>create table FoodItem (
+foodId int PRIMARY KEY AUTO_INCREMENT,
+foodName varchar(100),
+price double,
+description varchar(250),
+rid INT,
+mcid int,
+foreign key (rid) references Restaurant (rid)
+	on delete cascade
+	on update cascade
+foreign key (mcid) references MenuCategory (mcid)
+	on delete cascade
+	on update cascade
+)</string>
+		<string>create table Tag(
+tagId int PRIMARY KEY AUTO_INCREMENT,
+tagName varchar(100)
+)</string>
+		<string>create table tag(
+tagId int PRIMARY KEY AUTO_INCREMENT,
+tagName varchar(100)
+)</string>
+		<string>create table MenuCategory(
+mcid int PRIMARY KEY AUTO_INCREMENT,
+categoryName varchar(40)
+)</string>
+		<string>create table Restaurant(
+rid int PRIMARY KEY AUTO_INCREMENT,
+roid int,
+stressAddress varchar(250),
+province char(2),
+city varchar(100),
+postalCode VARCHAR(7),
+foreign key (roid) references RestaurantOwner(roid)
+	on delete cascade
+)</string>
+		<string>create table Restaurant(
+roid int PRIMARY KEY AUTO_INCREMENT,
+stressAddress varchar(250),
+province char(2),
+city varchar(100),
+postalCode VARCHAR(7),
+foreign key (roid) references RestaurantOwner(roid)
+	on delete cascade
+)</string>
+		<string>create table Restaurant(
+roid int PRIMARY KEY AUTO_INCREMENT,
+stressAddress varchar(250),
+province char(2),
+city varchar(100),
+postalCode VARCHAR(7)
+foreign key (roid) references `RestaurantOwner`(roid)
+	on delete cascade
+)</string>
+		<string>insert into RestaurantOwner (email, password) values ('david@gmail.com', 'david')</string>
+		<string>insert into RestaurantOwner values ('david@gmail.com', 'david')</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>5.6.35</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>
