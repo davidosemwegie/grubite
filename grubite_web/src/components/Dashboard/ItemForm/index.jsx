@@ -9,6 +9,7 @@ import {Panel,
         HelpBlock,
         InputGroup} from 'react-bootstrap'
 import './ItemForm.css'
+import {test} from '../../../backend/api'
 
 function FieldGroup({ id, label, help, ...props }) {
     return (
@@ -21,6 +22,17 @@ function FieldGroup({ id, label, help, ...props }) {
   }
 
 class index extends Component {
+
+    constructor() {
+        super();
+
+        this.addItem = this.addItem.bind(this)
+    }
+
+    addItem() {
+        test()
+    }
+
     render() {
         return (
             <div id='modalBackground'>
@@ -40,8 +52,8 @@ class index extends Component {
                     </FormGroup>
                     <FormGroup>
                         <ControlLabel>Select</ControlLabel>
-                        <FormControl componentClass="select" placeholder="Select Menu Category">
-                            <option value="" disabled selected>Select Menu Category</option>
+                        <FormControl componentClass="select">
+                            <option value="" disabled>Select Menu Category</option>
                             <option value="1">Appetizer</option>
                             <option value="2">Main</option>
                             <option value="3">Dessert</option>
@@ -52,7 +64,7 @@ class index extends Component {
                     <FieldGroup label="Description" type="textarea" placeholder="Enter Food Description" rows="3"/>
                     <FieldGroup type="file" label="File" help="Upload an Image of the menu item"/>
                     <div id="buttonContainer">
-                        <Button id="addItemSubmitButton" bsStyle="primary" className="loginButton primary">Add Food Item</Button>
+                        <Button onClick={this.addItem} id="addItemSubmitButton" bsStyle="primary" className="loginButton primary">Add Food Item</Button>
                     </div>
                     </Form>
                 </div>

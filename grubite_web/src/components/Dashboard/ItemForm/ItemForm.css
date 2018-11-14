@@ -1,14 +1,16 @@
 #modalBackground {
     background-color:rgba(0, 0, 0, 0.85);
     width: 100%;
-    min-height: 100vh;
+    /* top: 0;
+    bottom: 0; */
+    height: 90.5vh;
     position: absolute;
 }
 
 #exitButtonContainer {
     float: right;
     right: 0;
-    padding: 1em; 
+    /* padding: 1em;  */
 }
 
 #exitButton {
@@ -23,7 +25,7 @@
     margin: auto;
     margin-top: 2em; 
     padding: 2em;
-    width: 75em;
+    width: 60%;
     height: auto;
     background-color: white;
     border-radius: 10px;
