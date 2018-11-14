@@ -10,6 +10,7 @@ import {Panel, Form, FormGroup, ControlLabel, FormControl, Button} from 'react-b
 //import LoginBox from './components/LoginPage/LoginBox'
 import SignupPage from './components/SignupPage'
 import Dashboard from './components/Dashboard';
+import ItemForm from './components/Dashboard/ItemForm'
 
 
   //fake authenication method
@@ -121,7 +122,9 @@ class App extends Component {
       <Router>
         <div>
         <Route path='/login' component={LoginBox}/>
-        <PrivateRoute path='/dashboard' component={Dashboard}/>
+        {/* <PrivateRoute path='/dashboard' component={Dashboard}/> */}
+        <Route path='/dashboard' component={Dashboard}/>
+        <Route path='/addItem' component={ItemForm}/>
         </div>
       </Router>
     );

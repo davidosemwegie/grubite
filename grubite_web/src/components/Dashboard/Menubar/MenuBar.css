@@ -12,10 +12,19 @@
     margin-right: 2em;
 }
 
-.menubarList li p {
+/* .menubarList li button {
     font-size: 2.5em;
     font-weight: bold;
-}
+    background: none;
+    border: none;
+} */
+
+/* .menubarList li p {
+    font-size: 2.5em;
+    font-weight: bold;
+    background: none;
+    border: none;
+} */
 
 .addItemButton {
     font-size: 2.5em;

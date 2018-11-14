@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import './Sidebar.css'
 
 export default class Sidebar extends Component {
@@ -17,7 +17,9 @@ export default class Sidebar extends Component {
                             </button>
                         </li>
                         <li className="navItem active"><p>View Menu</p></li>
-                        <li className="navItem"><p>Sign out</p></li>
+                        <li className="navItem">
+                            <Link to="/login"><p>Sign Out</p></Link>
+                        </li>
                     </ul>
                 </nav>
             </div>

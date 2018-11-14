@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import Sidebar from '../Sidebar/Sidebar'
-//import axios from 'axios'
 import DashboardHeader from './DashboardHeader'
 import './Dashboard.css'
-import MenuBar from './MenuBar'
+import MenuBar from './Menubar/MenuBar'
 import MenuTable from './MenuTable'
 
 export default class extends Component {
@@ -26,15 +25,7 @@ export default class extends Component {
         })
 
     }
-
-    // closeMenu = () => {
-    //     if (this.state.displaySidebar === true) {
-    //         this.setState({
-    //             displaySidebar: false
-    //         })
-            
-    //     }
-    // }
+2
 
     render() {
         //crated a variable called sidebar that is currently set to sidebar.

@@ -1,0 +1,44 @@
+#modalBackground {
+    background-color:rgba(0, 0, 0, 0.85);
+    width: 100%;
+    min-height: 100vh;
+    position: absolute;
+}
+
+#exitButtonContainer {
+    float: right;
+    right: 0;
+    padding: 1em; 
+}
+
+#exitButton {
+    background: none;
+    border: none;
+    color: black;
+    font-size: 2.5em;
+    font-weight: bolder;
+}
+
+#formContainer {
+    margin: auto;
+    margin-top: 2em; 
+    padding: 2em;
+    width: 75em;
+    height: auto;
+    background-color: white;
+    border-radius: 10px;
+}
+
+#formHeader {
+    text-align: center;
+    font-weight: bolder;
+}
+
+#buttonContainer {
+    margin: auto;
+    width: 10em;
+}
+
+#addItemSubmitButton {
+    width: 100%;
+}
