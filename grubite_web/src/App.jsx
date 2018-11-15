@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios'
+import './components/LoginPage/LoginBox.css'
 import { BrowserRouter as Router,
   Route,
   Link,
@@ -125,6 +126,7 @@ class App extends Component {
         {/* <PrivateRoute path='/dashboard' component={Dashboard}/> */}
         <Route path='/dashboard' component={Dashboard}/>
         <Route path='/addItem' component={ItemForm}/>
+        <Route path='/signup' component={SignupPage}/>
         </div>
       </Router>
     );

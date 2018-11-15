@@ -10,6 +10,7 @@ export default class extends Component {
     constructor(){
         super();
         this.state ={users: []};
+        document.title = "Dashboard"
     }
 
     //set the state of the display sidebar to false

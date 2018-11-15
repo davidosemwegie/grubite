@@ -59,7 +59,7 @@ class LoginBox extends Component {
 
         return (
             <div>
-                <div>
+                <div >
                 <h1 className="AccessText">Please Log In Access your Grubite Restaurant Portal</h1>
                 </div>
                 <div className="LoginBox">
