@@ -19,6 +19,18 @@ router.get('/', (req, res, next)=>{
     })
 })
 
+//Restaurant Owner Sign 
+router.post('/signup', (req, res, next) => {
+    var query = "insert into RestaurantOwner (email, password) values (?, ?)"
+    var email = req.body.email
+    var password = req.body.password
+    con.query(query, [email, password], (err, rows, fields) => {
+        res.json({
+            message: "User was addded successfully"
+        })
+    })
+})
+
 //Loging in a user
 router.post('/login', (req, res, next)=>{
     const email = req.body.email //grab the email from the header

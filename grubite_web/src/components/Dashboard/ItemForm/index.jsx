@@ -1,25 +1,12 @@
 import React, { Component } from 'react';
-import {Panel,
-        Form,
+import {Form,
         FormGroup,
         ControlLabel,
         FormControl,
         Button,
-        Modal,
-        HelpBlock,
         InputGroup} from 'react-bootstrap'
 import './ItemForm.css'
-import {test} from '../../../backend/api'
-
-function FieldGroup({ id, label, help, ...props }) {
-    return (
-      <FormGroup controlId={id}>
-        <ControlLabel>{label}</ControlLabel>
-        <FormControl {...props} />
-        {help && <HelpBlock>{help}</HelpBlock>}
-      </FormGroup>
-    );
-  }
+import FieldGroup from '../../common/FieldGroup'
 
 class index extends Component {
 
@@ -38,14 +25,14 @@ class index extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
     }
 
-    //Method is called when an input variable has been changed.
+    //This is the method that is called when an input value is changed
     handleInputChange(event) {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-    
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
         this.setState({
-          [name]: value
+        [name]: value
         });
     }
 
@@ -53,7 +40,7 @@ class index extends Component {
         The addItem() method going to submit the form data to the database
     */
     addItem() {
-        const { foodName, price } = this.state
+        //const { foodName, price } = this.state
 
     }
 
@@ -105,6 +92,7 @@ class index extends Component {
                     <FieldGroup
                         label="Description"
                         type="textarea"
+                        onChange={this.handleInputChange}
                         placeholder="Enter Food Description"
                         rows="3"
                     />

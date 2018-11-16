@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import axios from 'axios'
 import './components/LoginPage/LoginBox.css'
 import { BrowserRouter as Router,
   Route,
   Link,
-  Redirect, 
-  Switch} from 'react-router-dom';
+  Redirect} from 'react-router-dom';
 import {Panel, Form, FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap'
 //import LoginBox from './components/LoginPage/LoginBox'
 import SignupPage from './components/SignupPage'
@@ -106,16 +104,16 @@ passwordChange = e => {
   }
 }
 
-const PrivateRoute = ({component: Component, ...rest}) => (
-  <Route {...rest} render={(props)=> (
-    fakeAuth.isAuthenticated === true 
-      ? <Component {...props} />
-      : <Redirect to={{
-        pathname: "/login",
-        state: { from: props.location}
-      }}/>
-  )}/>
-)
+// const PrivateRoute = ({component: Component, ...rest}) => (
+//   <Route {...rest} render={(props)=> (
+//     fakeAuth.isAuthenticated === true 
+//       ? <Component {...props} />
+//       : <Redirect to={{
+//         pathname: "/login",
+//         state: { from: props.location}
+//       }}/>
+//   )}/>
+// )
 
 class App extends Component {
   render() {
