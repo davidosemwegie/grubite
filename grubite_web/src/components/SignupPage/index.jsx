@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import {Panel, Form, Button} from 'react-bootstrap'
-// import {
-//     Link
-// } from 'react-router-dom'
+import {
+    Redirect
+} from 'react-router-dom'
 import FieldGroup from '../common/FieldGroup'
 import {createRestaurantOwner} from '../../backend/api'
+
+
 
 
 export default class extends Component {
@@ -18,6 +20,7 @@ export default class extends Component {
             email: null,
             password: null,
             confirmPassword: null,
+            succeessfulSignup: false
         }
 
         this.createUser = this.createUser.bind(this)
@@ -35,20 +38,35 @@ export default class extends Component {
         });
     }
 
-    createUser () {
+    createUser(event) {
+        event.preventDefault();
         //get variables from the state
         const {email, password, confirmPassword} = this.state
-
-
+        //check if the password and confirmPassword varibables have the same values
         if (password !== confirmPassword) {
+            //true: set the error state variable to say "Passwords do not match"
             this.setState({error: "Passwords Do not match"})
         } else {
+            //call the reate Restaurant Owner method
             this.setState({error: null})
+            //this.setState({succeessfulSignup: createRestaurantOwner(email, password)})
             createRestaurantOwner(email, password)
+            .then(res => this.setState({succeessfulSignup: res.success}))
+            .catch(error => console.log(error))
         }
     }
     
+
     render() {
+        
+        const {succeessfulSignup} = this.state
+
+        if (succeessfulSignup) {
+            return (
+                <Redirect to='/login'/>
+            )
+        }
+
         return (
             <div>
                 <div >
@@ -61,7 +79,7 @@ export default class extends Component {
                     </Panel.Heading>
                     <Panel.Body>
                     <p>{this.state.error}</p>
-                    <Form>
+                    <Form onSubmit={this.createUser}>
                         <FieldGroup 
                         label = "Email"
                         type = "email"
@@ -89,7 +107,7 @@ export default class extends Component {
                         placeholder="Please type in the name of your restaurant here..."
                         /> */}
                     <div className="loginButtonContainer">
-                    <Button bsStyle="primary" className="loginButton primary" onClick={this.createUser}>Sign up</Button>
+                    <Button bsStyle="primary" className="loginButton primary" type='submit'>Sign up</Button>
                     </div>
                     </Form>
                     </Panel.Body>

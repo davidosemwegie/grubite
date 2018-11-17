@@ -26,7 +26,8 @@ router.post('/signup', (req, res, next) => {
     var password = req.body.password
     con.query(query, [email, password], (err, rows, fields) => {
         res.json({
-            message: "User was addded successfully"
+            message: "User was addded successfully",
+            success: true
         })
     })
 })
@@ -38,7 +39,7 @@ router.post('/login', (req, res, next)=>{
 
     var user = null; //sets the user object to null
 
-    var query = "select email from RestaurantOwner where email = ? and password = ?"
+    var query = "select roid, email from RestaurantOwner where email = ? and password = ?"
     con.query(query, [email, password], (error, result, field) => {
         if (error) {
             //if we get an error, log the error in the console
@@ -54,12 +55,16 @@ router.post('/login', (req, res, next)=>{
             // })
 
             //JWT method to sign in the user
-            const token = jwt.sign({email: result}, process.env.JWT_KEY,{expiresIn:  "1h"});
+            //const token = jwt.sign({email: result}, process.env.JWT_KEY,{expiresIn:  "1h"});
  
             //return res.json(result)
-            return res.status(200).json({
-                result: result,
-                token: token
+            // return res.status(200).json({
+            //     result: result,
+            //     token: token
+            // })
+
+            return res.json({
+                result
             })
         }  
     })

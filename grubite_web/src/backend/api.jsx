@@ -1,14 +1,10 @@
 /*
 The purpose for this file is to create helper functions that the proram will use to access api
 */
-// export function test() {
-//     console.log("the api function works")
-// }
 import axios from 'axios'
 
 export function createRestaurantOwner(email, password) {
-    console.log(`${email} and ${password}`)
-
+    //setting the data that is going to be passed to the user
     const data = {
         email,
         password
@@ -16,14 +12,32 @@ export function createRestaurantOwner(email, password) {
 
     const url = "http://localhost:3001/user/signup"
 
-    axios.post(url, {
+    return new Promise((resolve, reject) => {
+        axios.post(url, data)
+            .then(function (response) {
+                resolve(response.data)
+            })
+            .catch(function (error) {
+                reject(error)
+        });
+    })
+}
+
+export function login(email, password) {
+    const data = {
         email,
         password
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    }
+
+    const url = "http://localhost:3001/user/login"
+
+    return new Promise((resolve, reject) => {
+        axios.post(url, data)
+            .then(function (response) {
+                resolve(response.data)
+            })
+            .catch(function (error) {
+                reject(error)
+        });
+    })
 }
