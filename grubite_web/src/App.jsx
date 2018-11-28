@@ -9,6 +9,7 @@ import { BrowserRouter as Router,
 import LoginBox from './components/LoginPage/LoginBox'
 import SignupPage from './components/SignupPage'
 import Dashboard from './components/Dashboard';
+import ItemForm from './components/Dashboard/ItemForm'
 
 
   // //fake authenication method
@@ -123,6 +124,7 @@ class App extends Component {
         {/* <PrivateRoute path='/dashboard' component={Dashboard}/> */}
         <Route path='/dashboard' component={Dashboard}/>
         <Route path='/signup' component={SignupPage}/>
+        <Route path='/addItem' component={ItemForm}/>
         </div>
       </Router>
     );

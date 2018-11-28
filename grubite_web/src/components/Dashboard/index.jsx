@@ -4,6 +4,9 @@ import DashboardHeader from './DashboardHeader'
 import './Dashboard.css'
 import MenuBar from './Menubar/MenuBar'
 import MenuTable from './MenuTable'
+import {checkLogin} from '../../backend/api';
+import {Redirect} from 'react-router-dom'
+
 
 export default class extends Component {
 
@@ -43,8 +46,16 @@ export default class extends Component {
             </div>
             )
        }
+
+       let redirect = null;
+       if (!checkLogin()) {
+           redirect = (
+               <Redirect to="/login"/>
+           )
+       }
         return (
-            <div className="dashboardPage">
+            <div className="dashboardPage"> 
+                {/* {redirect} */}
                 {sidebar}
                 <DashboardHeader title="Menu" displayMethod={this.displaySidebar}/>
                 <MenuBar />

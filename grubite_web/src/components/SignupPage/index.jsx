@@ -7,8 +7,6 @@ import FieldGroup from '../common/FieldGroup'
 import {createRestaurantOwner} from '../../backend/api'
 
 
-
-
 export default class extends Component {
     
     constructor(){
@@ -20,6 +18,11 @@ export default class extends Component {
             email: null,
             password: null,
             confirmPassword: null,
+            restaurantName: null,
+            stressAddress: null,
+            province: null,
+            city: null,
+            postalCode: null,
             succeessfulSignup: false
         }
 
@@ -41,7 +44,16 @@ export default class extends Component {
     createUser(event) {
         event.preventDefault();
         //get variables from the state
-        const {email, password, confirmPassword} = this.state
+        const {
+            email, 
+            password,
+            confirmPassword,
+            restaurantName,
+            stressAddress,
+            province,
+            city,
+            postalCode
+            } = this.state
         //check if the password and confirmPassword varibables have the same values
         if (password !== confirmPassword) {
             //true: set the error state variable to say "Passwords do not match"
@@ -50,7 +62,14 @@ export default class extends Component {
             //call the reate Restaurant Owner method
             this.setState({error: null})
             //this.setState({succeessfulSignup: createRestaurantOwner(email, password)})
-            createRestaurantOwner(email, password)
+            createRestaurantOwner(
+                email, 
+                password,
+                restaurantName,
+                stressAddress,
+                province,
+                city,
+                postalCode)
             .then(res => this.setState({succeessfulSignup: res.success}))
             .catch(error => console.log(error))
         }
@@ -63,7 +82,7 @@ export default class extends Component {
 
         if (succeessfulSignup) {
             return (
-                <Redirect to='/login'/>
+                <Redirect to='/dashboard'/>
             )
         }
 
@@ -104,7 +123,37 @@ export default class extends Component {
                         {/* <FieldGroup 
                         label = "Restaurant Name"
                         type = "text"
-                        placeholder="Please type in the name of your restaurant here..."
+                        name = "restaurantName"
+                        placeholder="Please type in your Restaurant name here..."
+                        onChange={this.handleInputChange}
+                        />
+                        <FieldGroup 
+                        label = "Street Address"
+                        type = "text"
+                        name = "stressAddress"
+                        placeholder="Please type in the street address here..."
+                        onChange={this.handleInputChange}
+                        />
+                        <FieldGroup 
+                        label = "Province"
+                        type = "text"
+                        name = "province"
+                        placeholder="Please type in your province here..."
+                        onChange={this.handleInputChange}
+                        />
+                        <FieldGroup 
+                        label = "City"
+                        type = "text"
+                        name = "city"
+                        placeholder="Please type in your city here..."
+                        onChange={this.handleInputChange}
+                        />
+                        <FieldGroup 
+                        label = "Postal Code"
+                        type = "text"
+                        name = "postalCode"
+                        placeholder="Please type in your postal Code here..."
+                        onChange={this.handleInputChange}
                         /> */}
                     <div className="loginButtonContainer">
                     <Button bsStyle="primary" className="loginButton primary" type='submit'>Sign up</Button>

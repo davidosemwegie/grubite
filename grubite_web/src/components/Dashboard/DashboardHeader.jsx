@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './DashboardHeader.css';
 
+//const api = require("../../backend/api")
 export default class DashboardHeader extends Component {
     render() {
         return (

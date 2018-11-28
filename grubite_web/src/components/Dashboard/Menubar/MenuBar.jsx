@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './MenuBar.css';
 import MenubarButton from './MenubarButton'
 import ItemForm from '../ItemForm'
+import axios from 'axios'
+
+const data = require('../../../backend/data.json')
 
 let addItemForm = null;
 
@@ -11,11 +14,24 @@ class MenuBar extends Component {
         super();
 
         this.state = {
-            showForm: false
+            showForm: false,
+            uid: null
         }
 
         this.setShowForm = this.setShowForm.bind(this)
     }
+
+    // componentWillMount() {
+    //     axios.get('../../../backend/data.json') // JSON File Path
+    //       .then( response => {
+    //         this.setState({
+    //         uid: response.id
+    //       });
+    //     })
+    //     .catch(function (error) {
+    //       console.log(error);
+    //     });
+    // }
 
     //This is the method that set the state.showForm variable
     setShowForm() {
@@ -50,11 +66,6 @@ class MenuBar extends Component {
                     <li className="menubarListItem"><MenubarButton key='4' label="Drinks"/></li>
                     <li className="menubarListItem">
                         <MenubarButton onClick={this.setShowForm} label="&#43;" />
-                        {/* <button 
-                        onClick={this.showform}
-                        className="addItemButton">
-                            &#43;
-                        </button> */}
                     </li>
                     <li className="menubarListItem searchbar">
                         <input className="menuSearchbar" type="text" placeholder="Search For Menu Items"/>

@@ -5,9 +5,10 @@ import { BrowserRouter as Router,
     Route,
     Link,
     Redirect} from 'react-router-dom';
-import {login} from '../../backend/api'
+import {login, checkLogin} from '../../backend/api'
 
 class LoginBox extends Component {
+    
 
     constructor(props) {
         super();
@@ -15,13 +16,14 @@ class LoginBox extends Component {
         this.state = {
             email: "",
             password: "",
-            userInfo: []
+            userInfo: [],
+            redirect: null,
+            LoginMessage: null
         }
         
         this.login = this.login.bind(this)
         this.handleInputChange = this.handleInputChange.bind(this)
     }
-
 
        //This is the method that is called when an input value is changed
     handleInputChange(event) {
@@ -34,24 +36,66 @@ class LoginBox extends Component {
     }
 
     login(e) {
-        e.preventDefault();
         const {email, password, userInfo} = this.state
+        e.preventDefault();
 
-        login(email, password)
-        .then(res => this.setState({userInfo: res.result[0]}))
-        .catch(error => console.log(error))
+        // login(email, password)
+        //     .then(res => this.changeState(res))
+        //     .catch(error => console.log(error))
+        
+        // var count;
+        // login(email, password)
+        //     .then(res => res)
+        //     .then(function (res) {
+        //         count = Object.keys(res).length
+        //         //console.log(count)
+        //         if (count === 1) {
+        //             window.sessionStorage.setItem('loggedIn', 1 )
+        //         } else {
+        //             window.sessionStorage.setItem('loggedIn', 2 )
+        //         }
+        //     })
+        //     .catch(error => console.log(error))
 
-        console.log(userInfo)
-        //localStorage.setItem('roid', userInfo)
+        // var loginState = window.sessionStorage.getItem('loggedIn')
 
-        //console.log(localStorage.getItem('roid'))
+        // console.log(loginState)
+
+        // if (loginState === 1) {
+        //     this.setState({LoginMessage: "Incorrect Login Information"})
+        // } else if (loginState === 2) {
+        //     this.setState({LoginMessage: "User has been authenicated"})
+        //     console.log("User has been authenicated")
+        // } else if (loginState === 0) {
+        //     this.setState({LoginMessage: null})
+        // }
+        
+        //set the session varibale for the user Id.    
+        //window.sessionStorage.setItem('uid', this.state.userInfo)  
+        
+        //this.setState({redirect: <Redirect to="/dashboard"/>})
+
+        //console.log(this.getLengthOfState())
     }
 
-    render() {
+    changeUserInfoState (a) {
+        this.setState({userInfo: a})
+    }
 
+    // changeErrorState(a) {
+    //     this.setState({errorLoginMessage})
+    // }
+
+    // getLengthOfState(){
+    //     return Object.keys(this.state.userInfo)
+    // }
+
+    render() {
+        window.sessionStorage.setItem('loggedIn', 0 )
         return (
             <div>
-                <div >
+                {this.state.redirect}
+                <div>
                 <h1 className="AccessText">Please Log In Access your Grubite Restaurant Portal</h1>
                 </div>
                 <div className="LoginBox">
@@ -61,6 +105,7 @@ class LoginBox extends Component {
                     </Panel.Heading>
                     <Panel.Body>
                     <Form onSubmit={this.login}>
+                    <p>{this.state.LoginMessage}</p>
                     <FormGroup controlId="formInlineEmail">
                         <ControlLabel>Email</ControlLabel>{' '}
                         <FormControl type="email" name='email' placeholder="Please type in your email here..." onChange = {this.handleInputChange}/>

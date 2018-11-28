@@ -4,9 +4,11 @@ import {Form,
         ControlLabel,
         FormControl,
         Button,
-        InputGroup} from 'react-bootstrap'
+        InputGroup,
+        Checkbox} from 'react-bootstrap'
 import './ItemForm.css'
 import FieldGroup from '../../common/FieldGroup'
+import {restaurantInfo} from '../../../backend/api'
 
 class index extends Component {
 
@@ -17,7 +19,10 @@ class index extends Component {
         //state variables
         this.state = {
             foodName: "",
-            price: ""
+            price: "",
+            description: "",
+            mcid: "",
+            tags: ""
         }
 
         //Initializing the functions that are going to be used in this class
@@ -41,6 +46,11 @@ class index extends Component {
     */
     addItem() {
         //const { foodName, price } = this.state
+        let rid = restaurantInfo().rid
+
+        const {foodName, price, description, mcid, tags } = this.state
+
+        console.log(`${tags}`)
 
     }
 
@@ -74,8 +84,8 @@ class index extends Component {
                         </InputGroup>
                     </FormGroup>
                     <FormGroup>
-                        <ControlLabel>Select</ControlLabel>
-                        <FormControl componentClass="select" onChange={this.handleInputChange}>
+                        <ControlLabel>Menu Category</ControlLabel>
+                        <FormControl componentClass="select" onChange={this.handleInputChange} name='mcid'>
                             <option value="" disabled>Select Menu Category</option>
                             <option value="1">Appetizer</option>
                             <option value="2">Main</option>
@@ -83,15 +93,21 @@ class index extends Component {
                             <option value="4">Drink</option>
                         </FormControl>
                     </FormGroup>
-                    <FieldGroup
-                        label="Food Name"
-                        type="text"
-                        onChange={this.handleInputChange}
-                        placeholder="Enter Food Name"
-                    />
+                    <FormGroup>
+                        <ControlLabel>Tags</ControlLabel>
+                        <FormControl componentClass="select" multiple onChange={this.handleInputChange} name='tags'>
+                            <option value="" disabled>Select Tag</option>
+                            <option value="1">Vegan</option>
+                            <option value="2">Gluten-Free</option>
+                            <option value="3">Dairy-Free</option>
+                            <option value="4">Nut-Free</option>
+                            <option value="5">Egg-Free</option>
+                        </FormControl>
+                    </FormGroup>
                     <FieldGroup
                         label="Description"
                         type="textarea"
+                        name="description"
                         onChange={this.handleInputChange}
                         placeholder="Enter Food Description"
                         rows="3"
