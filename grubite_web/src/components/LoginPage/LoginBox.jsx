@@ -9,8 +9,8 @@ import {Panel,
         Button} from 'react-bootstrap'
 
 import {Link, Redirect} from 'react-router-dom'
-
 import {checkIfLoggedIn} from '../../backend/functions'
+import ErrorMessage from '../common/ErrorMessage/ErrorMessage'
 
 class LoginBox extends Component {
 
@@ -92,7 +92,7 @@ class LoginBox extends Component {
                         <Panel.Title>Login</Panel.Title>
                     </Panel.Heading>
                     <Panel.Body>
-                        <p>{this.state.errorMessage}</p>
+                        <ErrorMessage>{this.state.errorMessage}</ErrorMessage>
                     <Form onSubmit={this.login}>
                     <FormGroup controlId="formInlineEmail">
                         <ControlLabel>Email</ControlLabel>{' '}

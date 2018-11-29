@@ -4,6 +4,7 @@ import {
     Redirect
 } from 'react-router-dom'
 import FieldGroup from '../common/FieldGroup'
+import ErrorMessage from '../common/ErrorMessage/ErrorMessage'
 
 
 export default class extends Component {
@@ -22,10 +23,12 @@ export default class extends Component {
             province: null,
             city: null,
             postalCode: null,
-            succeessfulSignup: false
+            succeessfulSignup: false,
+            passwordMismatchMessage: ""
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.createRestaurantOwner = this.createRestaurantOwner.bind(this)
     }
     
     //This is the method that is called when an input value is changed
@@ -39,10 +42,20 @@ export default class extends Component {
         });
     }
 
-    createRestaurantOwner() {
+    createRestaurantOwner(e) {
+        e.preventDefault();
+
         const {email, password, confirmPassword, restaurantName} = this.state
 
-        
+        if (password !== confirmPassword) {
+            this.setState({passwordMismatchMessage: "Your passwords do not match"})
+        }
+
+        const ownerInformation = {
+            email,
+            password, 
+            restaurantName
+        }
     }
 
 
@@ -66,7 +79,7 @@ export default class extends Component {
                     </Panel.Heading>
                     <Panel.Body>
                     <p>{this.state.error}</p>
-                    <Form>
+                    <Form onSubmit={this.createRestaurantOwner}>
                         <FieldGroup 
                         label = "Restaurant Name"
                         type = "text"
@@ -130,6 +143,7 @@ export default class extends Component {
                         placeholder="Please type in your postal Code here..."
                         onChange={this.handleInputChange}
                         /> */}
+                        <ErrorMessage>{this.state.passwordMismatchMessage}</ErrorMessage>
                     <div className="loginButtonContainer">
                     <Button bsStyle="primary" className="loginButton primary" type='submit'>Sign up</Button>
                     </div>
