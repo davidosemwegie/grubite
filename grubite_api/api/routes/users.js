@@ -32,19 +32,22 @@ router.get('/getmaxid', (req, res) => {
 })
 
 //Restaurant Owner Sign 
-router.post('/signup', (req, res, next) => {
+router.post('/createOwner', (req, res, next) => {
     
     //Add Owner to the Database. 
-    var query = "insert into RestaurantOwner (email, password) values (?, ?)"
+    var query = "insert into Restaurant (email, password, rName) values (?, ?, ?)"
     var email = req.body.email
     var password = req.body.password
-    con.query(query, [email, password], (err, rows, fields) => {
-        res.end
-    })
-    res.json({
-        id: maxId,
-        message: "User was addded successfully",
-        success: true
+    var restaurantName = req.body.restaurantName
+    con.query(query, [email, password, restaurantName], (error, rows, fields) => {
+        if (error) {
+            //if we get an error, log the error in the console
+            return res.send(error)   
+        } else {
+            return res.json({
+                rows
+            })
+        } 
     })
 })
 
@@ -64,16 +67,17 @@ router.post('/addRestaurant', (req, res) => {
         })
     })
 })
+
 //Logging in a user
 router.post('/login', (req, res, next)=>{
     const email = req.body.email //grab the email from the header
     const password = req.body.password //grab the password from the header
 
-    var query = "select roid, email, restaurantName from Restaurant where email = ? and password = ?"
+    var query = "select roid, email, rName from Restaurant where email = ? and password = ?"
     con.query(query, [email, password], (error, result, field) => {
         if (error) {
             //if we get an error, log the error in the console
-            return res.send(err)   
+            return res.send(error)   
         } else {
             return res.json({
                 result
@@ -82,6 +86,7 @@ router.post('/login', (req, res, next)=>{
     })
 })
 
+//get a list of all the users
 router.get('/', (req, res) => {
     var query = "select * from Restaurant"
 

@@ -63,7 +63,7 @@ class LoginBox extends Component {
                 //check if the retured array actually has any values
                 if (typeof(userInfo) !== 'undefined') {
                     const id = userInfo.roid
-                    const rName = userInfo.restaurantName
+                    const rName = userInfo.rName
 
                     sessionStorage.setItem('id', id)
                     sessionStorage.setItem('rName', rName)
