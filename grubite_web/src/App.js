@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 //import needed components
 import LoginPage from './components/LoginPage'
+import Dashboard from './components/Dashboard'
 
 
 class App extends Component {
@@ -10,7 +11,10 @@ class App extends Component {
     return (
       <div>
         <Router>
-          <Route path="/login" component={LoginPage} />  
+          <div>
+            <Route path="/login" component={LoginPage} /> 
+            <Route exact path="/" component={Dashboard}/> 
+          </div>
         </Router>
       </div>
     );
