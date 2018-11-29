@@ -24,9 +24,9 @@ app.use((req, res, next)=>{
 //     next();
 //   });
 
-const userRoute = require('./api/routes/user')
+const userRoute = require('./api/routes/users')
 
-app.use('/user', userRoute)
+app.use('/users', userRoute)
 
 app.use((req, res, next) => {
     const error = new Error('Not Found');

@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
+import {checkIfLoggedIn} from '../../backend/functions';
+import {Redirect} from 'react-router-dom'
 
 class index extends Component {
     render() {
+        if (!checkIfLoggedIn()) {
+            return(
+                <Redirect to='/login'/>
+            )
+        }
         return (
             <div>
-                This is the dashboard page
+                {sessionStorage.getItem('rName')}
             </div>
         );
     }

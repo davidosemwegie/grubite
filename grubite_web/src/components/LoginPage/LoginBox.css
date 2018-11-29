@@ -1,0 +1,14 @@
+.LoginBox {
+    width: 40%;
+    margin: auto;
+    padding: 3em
+}
+
+.loginButtonContainer {
+    margin: auto;
+    width: 30%;
+}
+
+.loginButton {
+    width: 100%;
+}

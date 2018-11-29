@@ -66,37 +66,19 @@ router.post('/addRestaurant', (req, res) => {
 
 
 })
-//Loging in a user
+//Logging in a user
 router.post('/login', (req, res, next)=>{
     const email = req.body.email //grab the email from the header
     const password = req.body.password //grab the password from the header
 
-    var user = null; //sets the user object to null
+    //res.send(`${email} and ${password}`);
 
-    var query = "select roid, email from RestaurantOwner where email = ? and password = ?"
+    var query = "select roid, email, restaurantName from Restaurant where email = ? and password = ?"
     con.query(query, [email, password], (error, result, field) => {
         if (error) {
             //if we get an error, log the error in the console
-            console.log("error ocurred",error)
-            return res.status(401).json({
-                message: "Authenication Failed"
-            })
-        } else if (result) {
-            //if the query returns only 1 item then set the user object to the object that was returned.
-            //user = res.json(result)
-            // return res.status(200).json({
-            //     message: "Auth Success"
-            // })
-
-            //JWT method to sign in the user
-            //const token = jwt.sign({email: result}, process.env.JWT_KEY,{expiresIn:  "1h"});
- 
-            //return res.json(result)
-            // return res.status(200).json({
-            //     result: result,
-            //     token: token
-            // })
-
+            return res.send(err)   
+        } else {
             return res.json({
                 result
             })
@@ -104,8 +86,19 @@ router.post('/login', (req, res, next)=>{
     })
 })
 
-// router.get('/getResturantData', (req, res) => {
-//     const s
-// })
+router.get('/', (req, res) => {
+    var query = "select * from Restaurant"
+
+    con.query(query, (error, result)=> {
+        if (error) {
+            return res.send(error)
+        } else {
+            return res.json({
+                data: result
+            })
+        }
+    })
+})
+
 
 module.exports = router
