@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import {Panel, Form, Button} from 'react-bootstrap'
+import axios from 'axios'
 import {
     Redirect
 } from 'react-router-dom'
+import {checkIfLoggedIn} from '../../backend/functions'
 import FieldGroup from '../common/FieldGroup'
 import ErrorMessage from '../common/ErrorMessage/ErrorMessage'
 
@@ -24,7 +26,10 @@ export default class extends Component {
             city: null,
             postalCode: null,
             succeessfulSignup: false,
-            passwordMismatchMessage: ""
+            passwordMismatchMessage: "",
+            errorMessage: "",
+            id: "",
+            returnedData: ""
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -49,22 +54,45 @@ export default class extends Component {
 
         if (password !== confirmPassword) {
             this.setState({passwordMismatchMessage: "Your passwords do not match"})
-        }
+        } else {
+            this.setState({passwordMismatchMessage: ""})
+            const ownerInformation = {
+                email,
+                password, 
+                restaurantName
+            }
 
-        const ownerInformation = {
-            email,
-            password, 
-            restaurantName
+            const url = "http://localhost:3001/users/createOwner"
+
+            axios.post(url, ownerInformation)
+                .then(res => {
+
+                    this.setState({returnedData: res.data.rows})
+
+                    const {returnedData} = this.state
+
+                    if (typeof(returnedData) !== 'undefined') {
+                        const id = returnedData.insertId
+                        const rName = restaurantName
+
+                        sessionStorage.setItem('id', id)
+                        sessionStorage.setItem('rName', rName)
+
+                        this.setState({errorMessage: ""})
+                        
+                    } else {
+                        this.setState({errorMessage: "Something went wrong, Please try again later"})
+                    }
+                })
         }
     }
 
 
     render() {
-        const {succeessfulSignup} = this.state
 
-        if (succeessfulSignup) {
-            return (
-                <Redirect to='/login'/>
+        if (checkIfLoggedIn()) {
+            return(
+                <Redirect to='/'/>
             )
         }
 
@@ -144,6 +172,7 @@ export default class extends Component {
                         onChange={this.handleInputChange}
                         /> */}
                         <ErrorMessage>{this.state.passwordMismatchMessage}</ErrorMessage>
+                        <ErrorMessage>{this.state.errorMessage}</ErrorMessage>
                     <div className="loginButtonContainer">
                     <Button bsStyle="primary" className="loginButton primary" type='submit'>Sign up</Button>
                     </div>
