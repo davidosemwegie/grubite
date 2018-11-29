@@ -63,15 +63,11 @@ router.post('/addRestaurant', (req, res) => {
             maxId: rows[0].maxid
         })
     })
-
-
 })
 //Logging in a user
 router.post('/login', (req, res, next)=>{
     const email = req.body.email //grab the email from the header
     const password = req.body.password //grab the password from the header
-
-    //res.send(`${email} and ${password}`);
 
     var query = "select roid, email, restaurantName from Restaurant where email = ? and password = ?"
     con.query(query, [email, password], (error, result, field) => {

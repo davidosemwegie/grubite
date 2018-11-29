@@ -5,6 +5,11 @@ import '../common/Common.css'
 import LoginBox from './LoginBox'
 
 class index extends Component {
+    constructor () {
+        super();
+        document.title = "Login"
+    }
+
     render() {
         return (
             <div>

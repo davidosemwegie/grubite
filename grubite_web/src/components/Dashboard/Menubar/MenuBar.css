@@ -1,0 +1,43 @@
+.menubarList{
+    list-style-type: none;
+    margin: 0;
+    padding: 1.5em;
+    overflow: hidden;
+}
+
+.menubarListItem {
+    display: block;
+    float: left;
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+/* .menubarList li button {
+    font-size: 2.5em;
+    font-weight: bold;
+    background: none;
+    border: none;
+} */
+
+/* .menubarList li p {
+    font-size: 2.5em;
+    font-weight: bold;
+    background: none;
+    border: none;
+} */
+
+.addItemButton {
+    font-size: 2.5em;
+    background: none;
+    border: none; 
+}
+
+.menuSearchbar[type=text] {
+    width: 20em;
+    padding: 1em;
+}
+
+.searchbar {
+    float: right;
+    right: 0;
+}

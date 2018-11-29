@@ -2,16 +2,62 @@ import React, { Component } from 'react';
 import {checkIfLoggedIn} from '../../backend/functions';
 import {Redirect} from 'react-router-dom'
 
+//importing the components that are needed
+import DashboardHeader from './DashboardHeader/DashboardHeader'
+import Sidebar from './Sidebar/Sidebar'
+
 class index extends Component {
+    constructor(){
+        super();
+        this.state ={
+            displaySidebar: false //display sidebar state varibale
+        }
+        document.title = "Dashboard"
+
+        this.signout = this.signout.bind(this)
+    }
+
+    
+    /*when this function is called is sets the 
+    displaySidebar state variable to the opposite of what it currently was*/
+    displaySidebar = () => {
+        this.setState({
+            displaySidebar: !this.state.displaySidebar
+        })
+    }
+
+    signout () {
+        sessionStorage.clear();
+        this.setState({displaySidebar: false})
+
+    }
+
     render() {
         if (!checkIfLoggedIn()) {
             return(
                 <Redirect to='/login'/>
             )
         }
+
+        //crated a variable called sidebar that is currently set to sidebar.
+        let sidebar = null; 
+
+        /*This is to check what the displaySidebar varibale is.
+        if it's false then the <Sidebar /> isn't rendered.
+        if it's true then the <Sidebat /> is rendered.
+        */
+        if ( this.state.displaySidebar ) {
+            sidebar = (
+            <div>
+                 <Sidebar displayMethod={this.displaySidebar} signout={this.signout}/>
+            </div>
+            )
+       }
+
         return (
             <div>
-                {sessionStorage.getItem('rName')}
+                {sidebar}
+                <DashboardHeader title="Menu" displayMethod={this.displaySidebar}/>
             </div>
         );
     }
