@@ -68,10 +68,14 @@ export default class extends Component {
                 .then(res => {
 
                     this.setState({returnedData: res.data.rows})
+                    const message = res.data.message
 
                     const {returnedData} = this.state
 
-                    if (typeof(returnedData) !== 'undefined') {
+                    if (typeof(message) !== 'undefined'){
+                        this.setState({errorMessage: message})
+                    } else if (typeof(returnedData) !== 'undefined') {
+
                         const id = returnedData.insertId
                         const rName = restaurantName
 

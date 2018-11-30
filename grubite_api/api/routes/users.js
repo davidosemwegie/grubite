@@ -35,19 +35,33 @@ router.get('/getmaxid', (req, res) => {
 router.post('/createOwner', (req, res, next) => {
     
     //Add Owner to the Database. 
-    var query = "insert into Restaurant (email, password, rName) values (?, ?, ?)"
+    var insertUserQuery = "insert into Restaurant (email, password, rName) values (?, ?, ?)"
     var email = req.body.email
     var password = req.body.password
     var restaurantName = req.body.restaurantName
-    con.query(query, [email, password, restaurantName], (error, rows, fields) => {
+
+    var checkQuery = 'select * from Restaurant where email = ?'
+
+    con.query(checkQuery, [email], (error, rows, fields) => {
         if (error) {
             //if we get an error, log the error in the console
             return res.send(error)   
-        } else {
-            return res.json({
-                rows
+        } else if (rows.length > 0) {
+            res.json({
+                message: "A user with that email already exists!"
             })
-        } 
+        } else {
+            con.query(insertUserQuery, [email, password, restaurantName], (error, rows, fields) => {
+                if (error) {
+                    //if we get an error, log the error in the console
+                    return res.send(error)   
+                } else {
+                    return res.json({
+                        rows
+                    })
+                } 
+            })
+        }
     })
 })
 
@@ -87,7 +101,7 @@ router.post('/login', (req, res, next)=>{
 })
 
 //get a list of all the users
-router.get('/', (req, res) => {
+router.get('/all', (req, res) => {
     var query = "select * from Restaurant"
 
     con.query(query, (error, result)=> {

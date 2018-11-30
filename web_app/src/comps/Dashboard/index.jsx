@@ -29,7 +29,6 @@ export default class extends Component {
         })
 
     }
-2
 
     render() {
         //crated a variable called sidebar that is currently set to sidebar.
