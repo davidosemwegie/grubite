@@ -8,7 +8,6 @@ import {Form,
         Checkbox} from 'react-bootstrap'
 import './ItemForm.css'
 import FieldGroup from '../../common/FieldGroup'
-import {restaurantInfo} from '../../../backend/api'
 
 class index extends Component {
 
@@ -46,11 +45,11 @@ class index extends Component {
     */
     addItem() {
         //const { foodName, price } = this.state
-        let rid = restaurantInfo().rid
+        // let rid = restaurantInfo().rid
 
-        const {foodName, price, description, mcid, tags } = this.state
+        // const {foodName, price, description, mcid, tags } = this.state
 
-        console.log(`${tags}`)
+        // console.log(`${tags}`)
 
     }
 

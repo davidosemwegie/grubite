@@ -55,10 +55,9 @@ class LoginBox extends Component {
         //request to the server
         axios.post(url, userInfo)
             .then(res => {
-                this.setState({userInfo: res.data.result[0]})
+                this.setState({userInfo: res.data})
 
                 const {userInfo} = this.state
-
                 
                 //check if the retured array actually has any values
                 if (typeof(userInfo) !== 'undefined') {

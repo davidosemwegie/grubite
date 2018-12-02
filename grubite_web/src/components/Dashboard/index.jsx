@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import {checkIfLoggedIn} from '../../backend/functions';
 import {Redirect} from 'react-router-dom'
+import './Dashboard.css'
 
 //importing the components that are needed
 import DashboardHeader from './DashboardHeader/DashboardHeader'
 import Sidebar from './Sidebar/Sidebar'
+import MenuTable from './MenuTable/MenuTable'
 
 class index extends Component {
     constructor(){
@@ -55,9 +57,10 @@ class index extends Component {
        }
 
         return (
-            <div>
+            <div id="dashbard_bg">
                 {sidebar}
                 <DashboardHeader title="Menu" displayMethod={this.displaySidebar}/>
+                <MenuTable />
             </div>
         );
     }
