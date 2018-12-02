@@ -3,15 +3,10 @@ import './MenubarButton.css'
 
 const MenubarButton = (props) => {
 
-    // function setTable(key) {
-    //     console.log(key)
-    // }
+    
 
     return (
-        <button
-        onClick={props.onClick}
-        id="menuButton"
-        >
+        <button onClick={props.onClick} id="menuButton" category={props.category} className={props.className}>
             {props.label}
         </button>
     );

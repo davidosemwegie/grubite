@@ -161,6 +161,10 @@ router.post('/login', (req, res, next)=>{
             });
         }
     })
+
+    //get the password
+
+    //check if it matches
 })
 
 //get a list of all the users

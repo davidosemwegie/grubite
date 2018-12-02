@@ -5,6 +5,6 @@
     border: none;
 }
 
-/* #menuButton: {
-    color: red;
-} */
+.selected {
+    text-decoration: underline
+}

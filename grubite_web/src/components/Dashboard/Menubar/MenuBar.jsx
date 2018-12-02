@@ -14,10 +14,12 @@ class MenuBar extends Component {
 
         this.state = {
             showForm: false,
-            uid: null
+            uid: null,
+            selected: false
         }
 
         this.setShowForm = this.setShowForm.bind(this)
+        this.select = this.select.bind(this)
     }
 
     //This is the method that set the state.showForm variable
@@ -40,6 +42,12 @@ class MenuBar extends Component {
         }
     }
 
+    select () {
+        ///https://stackoverflow.com/questions/42630473/react-toggle-class-onclick
+        const currentState = this.state.selected;
+        this.setState({selected: !currentState}) 
+    }
+
     render() {
         
         this.displayForm()
@@ -47,10 +55,11 @@ class MenuBar extends Component {
             <div className='menubar'>
             {addItemForm}
                 <ul className="menubarList">
-                    <li className="menubarListItem"><MenubarButton label="Appetizers"/></li>
-                    <li className="menubarListItem"><MenubarButton label="Mains"/></li>
-                    <li className="menubarListItem"><MenubarButton label="Desserts"/></li>
-                    <li className="menubarListItem"><MenubarButton label="Drinks"/></li>
+                    <li className="menubarListItem"><MenubarButton calegory={null} label="All" onClick={this.props.onClick}/></li>
+                    <li className="menubarListItem"><MenubarButton category="1" label="Appetizers" onClick={this.props.onClick}/></li>
+                    <li className="menubarListItem"><MenubarButton category="2" label="Mains" onClick={this.props.onClick}/></li>
+                    <li className="menubarListItem"><MenubarButton category="3" label="Desserts" onClick={this.props.onClick}/></li>
+                    <li className="menubarListItem"><MenubarButton category="4" label="Drinks" onClick={this.props.onClick}/></li>
                     <li className="menubarListItem">
                         <MenubarButton onClick={this.setShowForm} label="&#43;" />
                     </li>

@@ -24,9 +24,16 @@ app.use((req, res, next)=>{
 //     next();
 //   });
 
+/* USER ROUTER */
 const userRoute = require('./api/routes/users')
 
 app.use('/users', userRoute)
+
+/* MENU ROUTER */
+
+const menuRouter = require('./api/routes/menu')
+
+app.use('/menu', menuRouter)
 
 app.use((req, res, next) => {
     const error = new Error('Not Found');
