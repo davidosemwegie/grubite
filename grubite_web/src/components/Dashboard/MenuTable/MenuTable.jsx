@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import ReactTable from "react-table";
+import 'react-table/react-table.css'
 import './MenuTable.css'
 import {Table} from 'react-bootstrap'
 import MenuBar from '../Menubar/MenuBar'
 import SubBar from '../SubBar/SubBar'
 
+const roid = sessionStorage.getItem('roid')
+
 
 export default class MenuTable extends Component {
+    
 
     constructor() {
         super();
@@ -16,23 +21,55 @@ export default class MenuTable extends Component {
             Menu: [],
             mcid: null,
             showSubBar: false,
-            subCategories: []
+            subCategories: [],
+            searchValue: null
         }
 
         this.setCategory = this.setCategory.bind(this)
         this.loadMenu = this.loadMenu.bind(this)
         this.showSubCategories = this.showSubCategories.bind(this)
         this.loadSubCategories = this.loadSubCategories.bind(this)
+        this.handleSearchInputChange = this.handleSearchInputChange.bind(this)
+    }
+
+     //This is the function that is going to be called when a value is changed
+     handleSearchInputChange(event) {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;    
+        this.setState({
+            [name]: value
+        });
+
+        const {searchValue} = this.state
+
+        let url = ""
+
+        if (searchValue === null) {
+            url = `http://localhost:3001/menu/getMenuItems/${roid}`
+        } else {
+            url = `http://localhost:3001/menu/search/${roid}/${searchValue}`
+        }
+
+        axios.get(url)
+            .then(res => {
+                this.setState({Menu: res.data.rows})
+                
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    componentDidMount(){
+        this.loadMenu()
     }
 
     loadMenu(){
         const {mcid} = this.state
 
-        const roid = sessionStorage.getItem('roid')
+        //const roid = sessionStorage.getItem('roid')
         let url = ''
-        // const allFoodItems = `http://localhost:3001/menu/getMenuItems/${roid}`
-        // const categoryFoodItems = `http://localhost:3001/menu/getMenuItems/${roid}/${mcid}`
-        //|| typeof(mcid) === 'undefined'
 
         if (mcid === null ){
             url = `http://localhost:3001/menu/getMenuItems/${roid}`
@@ -51,9 +88,6 @@ export default class MenuTable extends Component {
 
     }
 
-    componentDidMount(){
-        this.loadMenu()
-    }
 
     setCategory(e) {
         //get the category attribute from the button
@@ -67,7 +101,7 @@ export default class MenuTable extends Component {
     }
 
     loadSubCategories(){
-        const roid = sessionStorage.getItem('roid')
+        //const roid = sessionStorage.getItem('roid')
         const mcid = this.state.mcid
         const url = `http://localhost:3001/menu/getSubCategories/${roid}/${mcid}`
 
@@ -94,10 +128,28 @@ export default class MenuTable extends Component {
 
         return (
             <div>
-                <MenuBar onClick={this.setCategory}/>
+                <MenuBar onClick={this.setCategory} onChange={this.handleSearchInputChange}/>
                 {subBar}
                 <div className="menuTableContainer">
-                <Table responsive>
+                <ReactTable
+                data={Menu}
+                columns = {[
+                    {
+                        Header: "Name",
+                        accessor: "foodName"
+                    },
+                    {
+                        Header: "Description",
+                        accessor: "description"
+                    },
+                    {
+                        Header: "Price",
+                        accessor: "price"
+                    },
+                ]}
+                defaultPageSize={10}
+                />
+                {/* <Table responsive>
                     <thead>
                         <tr>
                         <th>Name</th>
@@ -116,7 +168,7 @@ export default class MenuTable extends Component {
                             ))
                         }
                     </tbody>
-                </Table>
+                </Table> */}
                 </div>
             </div>
         );
