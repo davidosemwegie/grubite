@@ -1,0 +1,12 @@
+.subBarButton {
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.5em;
+    font-weight: bolder;
+    background-color: white;
+    padding: 0.25em 0.5em;
+    border-radius: 12px;
+    box-shadow: 5px 5px 10px #00000020;
+}

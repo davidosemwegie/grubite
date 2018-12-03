@@ -14,17 +14,11 @@
 .sub-barListItem {
     display: block;
     float: left;
-    margin-left: 1em;
+    margin-left: 1.5em;
     margin-right: 1em;
-    font-size: 1.5em;
-    font-weight: bolder;
-    background-color: white;
-    padding: 0.25em 0.5em;
-    border-radius: 12px;
-    box-shadow: 5px 5px 10px #00000020;
 }
 
-.addSubButton {
+/* .addSubButton {
     border: none;
     text-align: center;
     text-decoration: none;
@@ -35,4 +29,4 @@
     padding: 0.5em 1.5em 0.5em 1.5em;
     margin: 0.5em 1.5em 1em 2em;
     box-shadow: 5px 5px 10px #00000020;
-}
+} */

@@ -1,0 +1,22 @@
+/* .addItemButton {
+    color: white;
+    text-align: center;
+    font-weight: bolder;
+    background-color: #469663;
+    padding: 0.25em 0.68em;
+    border-radius: 50%;
+    box-shadow: 5px 5px 10px #00000020;
+} */
+
+.addItemButton {
+    font-size: 1.5em;
+    color: white;
+    text-align: center;
+    font-weight: bolder;
+    background-color: #469663;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    width: 10em;
+    border-radius: 50px;
+    box-shadow: 5px 5px 10px #00000020;
+}

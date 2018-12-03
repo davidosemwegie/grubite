@@ -22,7 +22,8 @@ class LoginBox extends Component {
             password: "",
             userInfo: {},
             redirect: null,
-            errorMessage: ""
+            errorMessage: "",
+            roid: null
             
         }
         
@@ -47,7 +48,7 @@ class LoginBox extends Component {
 
         const userInfo = {
             email,
-            password
+            password,
         }
 
         const url = `http://localhost:3001/users/login`
@@ -64,8 +65,12 @@ class LoginBox extends Component {
                     const id = userInfo.roid
                     const rName = userInfo.rName
 
+                    this.setState({id})
+
+
                     sessionStorage.setItem('roid', id)
                     sessionStorage.setItem('rName', rName)
+
 
                     this.setState({errorMessage: ""})
                 } else {
@@ -78,7 +83,12 @@ class LoginBox extends Component {
 
         if (checkIfLoggedIn()) {
             return(
-                <Redirect to='/'/>
+                <Redirect to={{
+                    pathname: '/',
+                    state: {
+                        roid: this.state.id
+                    }
+                }}/>
             )
         }
            

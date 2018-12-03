@@ -37,7 +37,13 @@
     padding: 1em;
 }
 
-.searchbar {
+/* .searchbar {
     float: right;
     right: 0;
+} */
+
+.addButton {
+    float: right;
+    right: 1em;
 }
+

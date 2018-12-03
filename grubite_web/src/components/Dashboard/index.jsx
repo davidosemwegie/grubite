@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {checkIfLoggedIn} from '../../backend/functions';
-import {Redirect} from 'react-router-dom'
+import { checkIfLoggedIn } from '../../backend/functions';
+import { Redirect } from 'react-router-dom'
 import './Dashboard.css'
 
 //importing the components that are needed
@@ -8,10 +8,11 @@ import DashboardHeader from './DashboardHeader/DashboardHeader'
 import Sidebar from './Sidebar/Sidebar'
 import MenuTable from './MenuTable/MenuTable'
 
+
 class index extends Component {
-    constructor(){
+    constructor() {
         super();
-        this.state ={
+        this.state = {
             displaySidebar: false //display sidebar state varibale
         }
         document.title = "Dashboard"
@@ -19,7 +20,18 @@ class index extends Component {
         this.signout = this.signout.bind(this)
     }
 
-    
+    // componentDidMount = () => {
+    //     const user = this.props.location.state
+        
+    //     if (typeof(user.roid) !== 'undefined') {
+    //         sessionStorage.setItem('roid', user.roid)
+    //     }
+
+        
+    // };
+
+
+
     /*when this function is called is sets the 
     displaySidebar state variable to the opposite of what it currently was*/
     displaySidebar = () => {
@@ -28,38 +40,38 @@ class index extends Component {
         })
     }
 
-    signout () {
+    signout() {
         sessionStorage.clear();
-        this.setState({displaySidebar: false})
+        this.setState({ displaySidebar: false })
 
     }
 
     render() {
         if (!checkIfLoggedIn()) {
-            return(
-                <Redirect to='/login'/>
+            return (
+                <Redirect to='/login' />
             )
         }
 
         //crated a variable called sidebar that is currently set to sidebar.
-        let sidebar = null; 
+        let sidebar = null;
 
         /*This is to check what the displaySidebar varibale is.
         if it's false then the <Sidebar /> isn't rendered.
         if it's true then the <Sidebat /> is rendered.
         */
-        if ( this.state.displaySidebar ) {
+        if (this.state.displaySidebar) {
             sidebar = (
-            <div>
-                 <Sidebar displayMethod={this.displaySidebar} signout={this.signout}/>
-            </div>
+                <div>
+                    <Sidebar displayMethod={this.displaySidebar} signout={this.signout} />
+                </div>
             )
-       }
+        }
 
         return (
             <div id="dashbard_bg">
                 {sidebar}
-                <DashboardHeader title="Menu" displayMethod={this.displaySidebar}/>
+                <DashboardHeader title="Menu" displayMethod={this.displaySidebar} />
                 <MenuTable />
             </div>
         );

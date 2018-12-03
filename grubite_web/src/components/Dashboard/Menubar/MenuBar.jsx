@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './MenuBar.css';
 import MenubarButton from './MenubarButton'
 import ItemForm from '../ItemForm'
+import AddItemButton from '../MenuTable/AddItemButton'
 
 
 
@@ -9,7 +10,7 @@ let addItemForm = null;
 
 class MenuBar extends Component {
 
-    constructor(){
+    constructor() {
         super();
 
         this.state = {
@@ -24,17 +25,17 @@ class MenuBar extends Component {
 
     //This is the method that set the state.showForm variable
     setShowForm() {
-        const {showForm} = this.state
-        this.setState({showForm: !showForm})
+        const { showForm } = this.state
+        this.setState({ showForm: !showForm })
     }
 
     displayForm() {
-        const {showForm} = this.state
-        
+        const { showForm } = this.state
+
         if (showForm) {
             addItemForm = (
                 <div>
-                    <ItemForm exitMethod={this.setShowForm}/>
+                    <ItemForm exitMethod={this.setShowForm} />
                 </div>
             )
         } else {
@@ -42,30 +43,33 @@ class MenuBar extends Component {
         }
     }
 
-    select () {
+    select() {
         ///https://stackoverflow.com/questions/42630473/react-toggle-class-onclick
         const currentState = this.state.selected;
-        this.setState({selected: !currentState}) 
+        this.setState({ selected: !currentState })
     }
 
     render() {
-        
+
         this.displayForm()
         return (
             <div className='menubar'>
-            {addItemForm}
+                {addItemForm}
                 <ul className="menubarList">
-                    <li className="menubarListItem"><MenubarButton calegory={null} label="All" onClick={this.props.onClick}/></li>
-                    <li className="menubarListItem"><MenubarButton category="1" label="Appetizers" onClick={this.props.onClick}/></li>
-                    <li className="menubarListItem"><MenubarButton category="2" label="Mains" onClick={this.props.onClick}/></li>
-                    <li className="menubarListItem"><MenubarButton category="3" label="Desserts" onClick={this.props.onClick}/></li>
-                    <li className="menubarListItem"><MenubarButton category="4" label="Drinks" onClick={this.props.onClick}/></li>
+                    <li className="menubarListItem"><MenubarButton calegory={null} label="All" onClick={this.props.onClick} /></li>
+                    <li className="menubarListItem"><MenubarButton category="1" label="Appetizers" onClick={this.props.onClick} /></li>
+                    <li className="menubarListItem"><MenubarButton category="2" label="Mains" onClick={this.props.onClick} /></li>
+                    <li className="menubarListItem"><MenubarButton category="3" label="Desserts" onClick={this.props.onClick} /></li>
+                    <li className="menubarListItem"><MenubarButton category="4" label="Drinks" onClick={this.props.onClick} /></li>
                     <li className="menubarListItem">
-                        <MenubarButton onClick={this.setShowForm} label="&#43;" />
+                        <div className="addButton">
+                            <AddItemButton onClick={this.setShowForm} />
+                        </div>
+
                     </li>
-                    <li className="menubarListItem searchbar">
+                    {/* <li className="menubarListItem searchbar">
                         <input name="searchValue" className="menuSearchbar" type="text" placeholder="Search For Menu Items" onChange={this.props.onChange}/>
-                    </li>
+                    </li> */}
                 </ul>
             </div>
         );

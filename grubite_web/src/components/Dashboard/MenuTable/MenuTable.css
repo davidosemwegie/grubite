@@ -5,3 +5,8 @@
     margin-left: 3em;
     box-shadow: 5px 5px 10px #00000020;
 }
+
+.addItemButtonContainer {
+    width: 15em;
+    float: right;
+}
