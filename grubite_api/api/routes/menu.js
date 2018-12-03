@@ -57,4 +57,22 @@ router.get('/getMenuItems/:roid/:mcid', (req, res, next) => {
     })
 })
 
+router.get('/getSubCategories/:roid/:mcid/', (req, res, next) => {
+    const roid = req.params.roid
+    const mcid = req.params.mcid
+
+    const query = "select * from SubCategory where roid = ? and mcid = ?"
+
+    con.query(query, [roid, mcid], (error, rows, fields) => {
+        if (error) {
+            //if we get an error, log the error in the console
+            return res.send(error)   
+        } else {
+            return res.json({
+                rows
+            })
+        } 
+    })
+})
+
 module.exports = router

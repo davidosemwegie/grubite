@@ -64,7 +64,7 @@ class LoginBox extends Component {
                     const id = userInfo.roid
                     const rName = userInfo.rName
 
-                    sessionStorage.setItem('id', id)
+                    sessionStorage.setItem('roid', id)
                     sessionStorage.setItem('rName', rName)
 
                     this.setState({errorMessage: ""})

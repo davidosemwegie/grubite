@@ -4,8 +4,7 @@ import {Form,
         ControlLabel,
         FormControl,
         Button,
-        InputGroup,
-        Checkbox} from 'react-bootstrap'
+        InputGroup} from 'react-bootstrap'
 import './ItemForm.css'
 import FieldGroup from '../../common/FieldGroup'
 

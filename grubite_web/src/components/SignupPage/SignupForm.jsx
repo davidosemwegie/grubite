@@ -79,7 +79,7 @@ export default class extends Component {
                         const id = returnedData.insertId
                         const rName = restaurantName
 
-                        sessionStorage.setItem('id', id)
+                        sessionStorage.setItem('roid', id)
                         sessionStorage.setItem('rName', rName)
 
                         this.setState({errorMessage: ""})
