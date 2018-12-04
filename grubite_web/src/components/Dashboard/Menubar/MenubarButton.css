@@ -5,6 +5,14 @@
     border: none;
 }
 
-.selected {
-    text-decoration: underline
+/* #menuButton:focus{
+    text-decoration: underline;
+} */
+
+/* .selected:focus{
+    text-decoration: underline;
+} */
+
+.selectedCategory {
+    text-decoration: underline;
 }

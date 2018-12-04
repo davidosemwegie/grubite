@@ -3,7 +3,7 @@ import './SubBarButton.css'
 
 const SubBarButton = (props) => {
     return(
-        <button className='subBarButton'>
+        <button {...props}>
             {props.children}
         </button>
     )

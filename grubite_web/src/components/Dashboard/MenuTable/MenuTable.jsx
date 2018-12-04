@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom'
 import axios from 'axios'
 import './MenuTable.css'
 import MenuBar from '../Menubar/MenuBar'
@@ -22,7 +23,7 @@ export default class MenuTable extends Component {
             showSubBar: false,
             subCategories: [],
             searchValue: null,
-            justLoggedIn: false
+            justLoggedIn: false,
         }
 
         this.setCategory = this.setCategory.bind(this)
@@ -31,6 +32,7 @@ export default class MenuTable extends Component {
         this.loadSubCategories = this.loadSubCategories.bind(this)
         this.handleSearchInputChange = this.handleSearchInputChange.bind(this)
         this.componentDidMount = this.componentDidMount.bind(this)
+        this.setUpCategory = this.setUpCategory.bind(this)
     }
 
     //This is the function that is going to be called when a value is changed
@@ -41,30 +43,9 @@ export default class MenuTable extends Component {
         this.setState({
             [name]: value
         });
-
-
-
-        // const { searchValue } = this.state
-
-        // let url = ""
-
-        // if (searchValue === null) {
-        //     url = `http://localhost:3001/menu/getMenuItems/${roid}`
-        // } else {
-        //     url = `http://localhost:3001/menu/search/${roid}/${searchValue}`
-        // }
-
-        // axios.get(url)
-        //     .then(res => {
-        //         this.setState({ Menu: res.data.rows })
-
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error);
-        //     });
     }
 
-    
+
 
     loadMenu() {
         const { mcid } = this.state
@@ -95,8 +76,6 @@ export default class MenuTable extends Component {
         axios.get(`http://localhost:3001/menu/getMenuItems/${roid}`)
             .then(res => {
                 this.setState({ Menu: res.data.rows })
-                this.showSubCategories()
-
             })
             .catch(function (error) {
                 console.log(error);
@@ -110,11 +89,25 @@ export default class MenuTable extends Component {
         //get the category attribute from the button
         const mcid = e.target.getAttribute('category')
 
+        if (e.target.className === "") {
+            e.target.setAttribute('class', 'selected')
+        } else {
+            e.target.setAttribute('class', "")
+        }
+
         this.setState({ mcid }, this.loadMenu)
     }
 
-    showSubCategories() {
+    showSubCategories(e) {
         this.setState({ showSubBar: true }, this.loadSubCategories())
+    }
+
+    setUpCategory(e) {
+
+        console.log(ReactDOM.findDOMNode())
+
+        console.log('sub button clicked')
+        e.target.setAttribute('class', 'subBarButton active')
     }
 
     loadSubCategories() {
@@ -140,12 +133,12 @@ export default class MenuTable extends Component {
         let subBar = null
 
         if (showSubBar && mcid !== null) {
-            subBar = <SubBar category={mcid} subCategories={subCategories} />
+            subBar = <SubBar category={mcid} subCategories={subCategories} setSubCategory={this.setUpCategory} />
         }
 
         return (
             <div>
-                <MenuBar onClick={this.setCategory} onChange={this.handleSearchInputChange} />
+                <MenuBar setCategory={this.setCategory} onChange={this.handleSearchInputChange} />
                 {subBar}
                 <div className="menuTableContainer">
                     <div className='addItemButtonContainer'>

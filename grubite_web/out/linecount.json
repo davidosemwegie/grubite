@@ -1,0 +1,300 @@
+{
+    "extension": "linecount",
+    "version": "0.1.7",
+    "workspace": "/Users/david/Desktop/grubite/grubite_web",
+    "linecount": [
+        {
+            "version": "0.1.7",
+            "counttime": "2018-12-02 22:27:53",
+            "filesum": 47,
+            "codesum": 24741,
+            "commentsum": 316,
+            "blanksum": 1892,
+            "filelist": [
+                {
+                    "blank": 5,
+                    "code": 18,
+                    "comment": 1,
+                    "filename": ".gitignore"
+                },
+                {
+                    "blank": 0,
+                    "code": 14810,
+                    "comment": 0,
+                    "filename": "package-lock.json"
+                },
+                {
+                    "blank": 1,
+                    "code": 30,
+                    "comment": 0,
+                    "filename": "package.json"
+                },
+                {
+                    "filename": "public/favicon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 4,
+                    "code": 19,
+                    "comment": 25,
+                    "filename": "public/index.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "public/manifest.json"
+                },
+                {
+                    "blank": 19,
+                    "code": 25,
+                    "comment": 6,
+                    "filename": "README.md"
+                },
+                {
+                    "blank": 4,
+                    "code": 28,
+                    "comment": 0,
+                    "filename": "src/App.css"
+                },
+                {
+                    "blank": 4,
+                    "code": 21,
+                    "comment": 1,
+                    "filename": "src/App.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src/App.test.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 14,
+                    "comment": 1,
+                    "filename": "src/backend/functions.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src/components/common/Common.css"
+                },
+                {
+                    "blank": 1,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src/components/common/ErrorMessage/ErrorMessage.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 8,
+                    "comment": 1,
+                    "filename": "src/components/common/ErrorMessage/ErrorMessage.jsx"
+                },
+                {
+                    "blank": 5,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "src/components/common/FieldGroup.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 1,
+                    "filename": "src/components/Dashboard/Dashboard.css"
+                },
+                {
+                    "blank": 9,
+                    "code": 41,
+                    "comment": 0,
+                    "filename": "src/components/Dashboard/DashboardHeader/DashboardHeader.css"
+                },
+                {
+                    "blank": 1,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "src/components/Dashboard/DashboardHeader/DashboardHeader.jsx"
+                },
+                {
+                    "blank": 18,
+                    "code": 49,
+                    "comment": 15,
+                    "filename": "src/components/Dashboard/index.jsx"
+                },
+                {
+                    "blank": 14,
+                    "code": 100,
+                    "comment": 15,
+                    "filename": "src/components/Dashboard/ItemForm/index.jsx"
+                },
+                {
+                    "blank": 7,
+                    "code": 40,
+                    "comment": 3,
+                    "filename": "src/components/Dashboard/ItemForm/ItemForm.css"
+                },
+                {
+                    "blank": 8,
+                    "code": 25,
+                    "comment": 16,
+                    "filename": "src/components/Dashboard/Menubar/MenuBar.css"
+                },
+                {
+                    "blank": 16,
+                    "code": 60,
+                    "comment": 4,
+                    "filename": "src/components/Dashboard/Menubar/MenuBar.jsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/components/Dashboard/Menubar/MenubarButton.css"
+                },
+                {
+                    "blank": 5,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src/components/Dashboard/Menubar/MenubarButton.jsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 12,
+                    "comment": 9,
+                    "filename": "src/components/Dashboard/MenuTable/AddItemButton.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 10,
+                    "comment": 1,
+                    "filename": "src/components/Dashboard/MenuTable/AddItemButton.jsx"
+                },
+                {
+                    "blank": 5,
+                    "code": 403,
+                    "comment": 30,
+                    "filename": "src/components/Dashboard/MenuTable/datatables.css"
+                },
+                {
+                    "blank": 1,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src/components/Dashboard/MenuTable/MenuTable.css"
+                },
+                {
+                    "blank": 41,
+                    "code": 103,
+                    "comment": 59,
+                    "filename": "src/components/Dashboard/MenuTable/MenuTable.jsx"
+                },
+                {
+                    "blank": 5,
+                    "code": 35,
+                    "comment": 0,
+                    "filename": "src/components/Dashboard/MenuTable/Table.jsx"
+                },
+                {
+                    "blank": 8,
+                    "code": 41,
+                    "comment": 1,
+                    "filename": "src/components/Dashboard/Sidebar/Sidebar.css"
+                },
+                {
+                    "blank": 3,
+                    "code": 26,
+                    "comment": 3,
+                    "filename": "src/components/Dashboard/Sidebar/Sidebar.jsx"
+                },
+                {
+                    "blank": 4,
+                    "code": 15,
+                    "comment": 13,
+                    "filename": "src/components/Dashboard/SubBar/SubBar.css"
+                },
+                {
+                    "blank": 4,
+                    "code": 28,
+                    "comment": 11,
+                    "filename": "src/components/Dashboard/SubBar/SubBar.jsx"
+                },
+                {
+                    "blank": 0,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src/components/Dashboard/SubBar/SubBarButton.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src/components/Dashboard/SubBar/SubBarButton.jsx"
+                },
+                {
+                    "blank": 4,
+                    "code": 18,
+                    "comment": 1,
+                    "filename": "src/components/LoginPage/index.jsx"
+                },
+                {
+                    "blank": 2,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src/components/LoginPage/LoginBox.css"
+                },
+                {
+                    "blank": 24,
+                    "code": 107,
+                    "comment": 4,
+                    "filename": "src/components/LoginPage/LoginBox.jsx"
+                },
+                {
+                    "blank": 3,
+                    "code": 14,
+                    "comment": 1,
+                    "filename": "src/components/SignupPage/index.jsx"
+                },
+                {
+                    "blank": 25,
+                    "code": 132,
+                    "comment": 35,
+                    "filename": "src/components/SignupPage/SignupForm.jsx"
+                },
+                {
+                    "blank": 1,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "src/index.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 7,
+                    "comment": 3,
+                    "filename": "src/index.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src/logo.svg"
+                },
+                {
+                    "blank": 15,
+                    "code": 89,
+                    "comment": 31,
+                    "filename": "src/serviceWorker.js"
+                },
+                {
+                    "blank": 1612,
+                    "code": 8251,
+                    "comment": 25,
+                    "filename": "yarn.lock"
+                }
+            ]
+        }
+    ]
+}
