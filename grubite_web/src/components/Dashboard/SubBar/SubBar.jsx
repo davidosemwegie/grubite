@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './SubBar.css'
-import { isEmpty } from '../../../backend/functions'
 import SubBarButton from './SubBarButton'
 
 class SubBar extends Component {

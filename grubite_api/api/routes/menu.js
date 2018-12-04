@@ -96,41 +96,41 @@ router.get('/getMenuItems/:roid/:mcid/:subCategoryId', (req, res, next) => {
     })
 })
 
-// router.get('/search/:roid/:value', (req, res, next) => {
-//     const roid = req.params.roid
-//     const value = req.params.value
+router.get('/search/:roid/:value', (req, res, next) => {
+    const roid = req.params.roid
+    const value = req.params.value
 
-//     let query = ""
+    let query = ""
 
-//     if (value === null) {
-//         query = "select * from FoodItem where roid = ?"
+    if (value === null || value === "") {
+        query = "select * from FoodItem where roid = ?"
 
-//         con.query(query, [roid], (error, rows, fields) => {
-//             if (error) {
-//                 //if we get an error, log the error in the console
-//                 return res.send(error)   
-//             } else {
-//                 return res.json({
-//                     rows
-//                 })
-//             } 
-//         })
-//     } else {
-//         query = "select * from FoodItem where roid = ? and foodName like ? "
+        con.query(query, [roid], (error, rows, fields) => {
+            if (error) {
+                //if we get an error, log the error in the console
+                return res.send(error)   
+            } else {
+                return res.json({
+                    rows
+                })
+            } 
+        })
+    } else {
+        query = "select * from FoodItem where roid = ? and foodName like ? "
 
-//         const search = `%${value}%` 
+        const search = `%${value}%` 
 
-//         con.query(query, [roid, search], (error, rows, fields) => {
-//             if (error) {
-//                 //if we get an error, log the error in the console
-//                 return res.send(error)   
-//             } else {
-//                 return res.json({
-//                     rows
-//                 })
-//             } 
-//         })
-//     }
-// })
+        con.query(query, [roid, search], (error, rows, fields) => {
+            if (error) {
+                //if we get an error, log the error in the console
+                return res.send(error)   
+            } else {
+                return res.json({
+                    rows
+                })
+            } 
+        })
+    }
+})
 
 module.exports = router

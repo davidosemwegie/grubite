@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
 import BootstrapTable from 'react-bootstrap-table-next';
-import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
+import filterFactory from 'react-bootstrap-table2-filter';
 import { isEmpty } from '../../../backend/functions'
 import './Table.css'
 
@@ -10,13 +10,13 @@ import './Table.css'
 const columns = [
     {
         dataField: 'foodId',
-        text: "Food Id"
+        text: "Food Id",
+        hidden: true
     },
     {
         dataField: 'foodName',
         text: 'Food Item',
-        sort: true,
-        filter: textFilter()
+        sort: true
     },
     {
         dataField: 'description',

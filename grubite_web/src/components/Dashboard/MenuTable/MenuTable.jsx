@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom'
 import axios from 'axios'
 import './MenuTable.css'
 import MenuBar from '../Menubar/MenuBar'
 import SubBar from '../SubBar/SubBar'
-import { Table as zTable } from 'react-bootstrap'
+// import { Table as zTable } from 'react-bootstrap'
 import Table from './Table'
 
 const roid = sessionStorage.getItem('roid')
@@ -22,7 +21,8 @@ export default class MenuTable extends Component {
             mcid: null,
             showSubBar: false,
             subCategories: [],
-            subCategoryId: null
+            subCategoryId: null,
+            searchValue : ""
         }
 
         this.setCategory = this.setCategory.bind(this)
@@ -32,9 +32,48 @@ export default class MenuTable extends Component {
         this.handleSearchInputChange = this.handleSearchInputChange.bind(this)
         this.componentDidMount = this.componentDidMount.bind(this)
         this.setUpCategory = this.setUpCategory.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+        this.search = this.search.bind(this)
     }
 
     //This is the function that is going to be called when a value is changed
+
+    handleChange(event){
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+
+        //https://www.google.ca/search?q=state+is+one+character+begind&oq=state+is+one+character+begind&aqs=chrome..69i57j33.7407j1j1&sourceid=chrome&ie=UTF-8
+
+        this.setState({
+            searchValue: value
+        }, () => {
+            const {searchValue} = this.state
+            console.log(searchValue)
+            this.search(searchValue)
+        });
+
+    }
+
+    search(value) {
+        let url = ""
+
+        if (value === null || value === "") {
+           url = `http://localhost:3001/menu/getMenuItems/${roid}`
+       } else {
+           url = `http://localhost:3001/menu/search/${roid}/${value}`
+       }
+       
+        axios.get(url)
+           .then(res => {
+               this.setState({Menu: res.data.rows})
+           })
+           .catch(function (error) {
+               console.log(error);
+           });
+
+    }
+
     handleSearchInputChange(event) {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -42,7 +81,27 @@ export default class MenuTable extends Component {
         this.setState({
             [name]: value
         });
+
+        const {searchValue} = this.state
+         let url = ""
+         if (searchValue === null) {
+            url = `http://localhost:3001/menu/getMenuItems/${roid}`
+        } else {
+            url = `http://localhost:3001/menu/search/${roid}/${searchValue}`
+        }
+        
+         axios.get(url)
+            .then(res => {
+                this.setState({Menu: res.data.rows})
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        //console.log(searchValue)
     }
+
+
 
 
 
@@ -54,7 +113,7 @@ export default class MenuTable extends Component {
 
         if (mcid === null) {
             url = `http://localhost:3001/menu/getMenuItems/${roid}`
-        } if (subCategoryId == null) {
+        } else if (subCategoryId == null) {
             url = `http://localhost:3001/menu/getMenuItems/${roid}/${mcid}`
         } else {
             url = `http://localhost:3001/menu/getMenuItems/${roid}/${mcid}/${subCategoryId}`
@@ -88,7 +147,9 @@ export default class MenuTable extends Component {
 
     setCategory(e) {
         //get the category attribute from the button
-        const mcid = e.target.getAttribute('category')
+        let mcid = e.target.getAttribute('category')
+
+        console.log(mcid)
 
         this.setState({ mcid }, this.loadMenu)
     }
@@ -98,9 +159,7 @@ export default class MenuTable extends Component {
     }
 
     setUpCategory(e) {
-
-        this.setState({subCategoryId: e.target.getAttribute('subcategoryid')}, this.loadMenu)
-
+        this.setState({ subCategoryId: e.target.getAttribute('subcategoryid') }, this.loadMenu)
     }
 
     loadSubCategories() {
@@ -131,7 +190,7 @@ export default class MenuTable extends Component {
 
         return (
             <div>
-                <MenuBar setCategory={this.setCategory} onChange={this.handleSearchInputChange} />
+                <MenuBar setCategory={this.setCategory} onChange={this.handleChange} />
                 {subBar}
                 <div className="menuTableContainer">
                     <div className='addItemButtonContainer'>

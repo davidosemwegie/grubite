@@ -65,9 +65,9 @@ class MenuBar extends Component {
                         </div>
 
                     </li>
-                    {/* <li className="menubarListItem searchbar">
+                    <li className="menubarListItem searchbar">
                         <input name="searchValue" className="menuSearchbar" type="text" placeholder="Search For Menu Items" onChange={this.props.onChange}/>
-                    </li> */}
+                    </li>
                 </ul>
             </div>
         );
