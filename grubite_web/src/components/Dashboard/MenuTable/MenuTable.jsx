@@ -22,8 +22,7 @@ export default class MenuTable extends Component {
             mcid: null,
             showSubBar: false,
             subCategories: [],
-            searchValue: null,
-            justLoggedIn: false,
+            subCategoryId: null
         }
 
         this.setCategory = this.setCategory.bind(this)
@@ -48,15 +47,17 @@ export default class MenuTable extends Component {
 
 
     loadMenu() {
-        const { mcid } = this.state
+        const { mcid, subCategoryId } = this.state
 
         //const roid = sessionStorage.getItem('roid')
         let url = ''
 
         if (mcid === null) {
             url = `http://localhost:3001/menu/getMenuItems/${roid}`
-        } else {
+        } if (subCategoryId == null) {
             url = `http://localhost:3001/menu/getMenuItems/${roid}/${mcid}`
+        } else {
+            url = `http://localhost:3001/menu/getMenuItems/${roid}/${mcid}/${subCategoryId}`
         }
 
         axios.get(url)
@@ -89,12 +90,6 @@ export default class MenuTable extends Component {
         //get the category attribute from the button
         const mcid = e.target.getAttribute('category')
 
-        if (e.target.className === "") {
-            e.target.setAttribute('class', 'selected')
-        } else {
-            e.target.setAttribute('class', "")
-        }
-
         this.setState({ mcid }, this.loadMenu)
     }
 
@@ -104,10 +99,8 @@ export default class MenuTable extends Component {
 
     setUpCategory(e) {
 
-        console.log(ReactDOM.findDOMNode())
+        this.setState({subCategoryId: e.target.getAttribute('subcategoryid')}, this.loadMenu)
 
-        console.log('sub button clicked')
-        e.target.setAttribute('class', 'subBarButton active')
     }
 
     loadSubCategories() {

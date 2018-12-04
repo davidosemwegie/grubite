@@ -3,7 +3,7 @@ import './SubBarButton.css'
 
 const SubBarButton = (props) => {
     return(
-        <button {...props}>
+        <button {...props} subcategoryid={props.subcategoryid}>
             {props.children}
         </button>
     )

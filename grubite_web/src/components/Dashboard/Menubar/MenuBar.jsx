@@ -30,8 +30,6 @@ class MenuBar extends Component {
         this.setState({ showForm: !showForm })
     }
 
-
-
     displayForm() {
         const { showForm } = this.state
 
@@ -51,10 +49,6 @@ class MenuBar extends Component {
     }
 
     render() {
-
-        //Style of the active menu category 
-        const activeStyle = { color: 'red' };
-        
         this.displayForm()
         return (
             <div className='menubar'>

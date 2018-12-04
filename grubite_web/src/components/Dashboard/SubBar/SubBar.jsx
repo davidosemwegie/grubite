@@ -15,8 +15,9 @@ class SubBar extends Component {
         this.select = this.select.bind(this)
     }
 
-    select(index, e){
-        this.setState({activeIndex: index})
+    select(index, e) {
+        ///https://stackoverflow.com/questions/44695985/toggle-class-on-menu-items-with-reactjs
+        this.setState({ activeIndex: index })
     }
 
     render() {
@@ -25,12 +26,20 @@ class SubBar extends Component {
         return (
             <div className="subMenuContainer">
                 <ul className="sub-barList">
+                    <li onClick={this.select.bind(this, 0)} className="sub-barListItem">
+                        <SubBarButton
+                            className={this.state.activeIndex === 0 ? 'subBarButton active' : "subBarButton"}
+                            onClick={this.props.setSubCategory}>
+                            All
+                        </SubBarButton>
+                    </li>
                     {
                         subCategories.map((sub) => (
                             <li onClick={this.select.bind(this, sub.subCategoryId)} className="sub-barListItem" key={sub.subCategoryId}>
-                                <SubBarButton 
-                                className={this.state.activeIndex===sub.subCategoryId ? 'subBarButton active': "subBarButton"}
-                                onClick={this.props.setSubCategory}>
+                                <SubBarButton
+                                    subcategoryid = {sub.subCategoryId}
+                                    className={this.state.activeIndex === sub.subCategoryId ? 'subBarButton active' : "subBarButton"}
+                                    onClick={this.props.setSubCategory}>
                                     {sub.subCategoryName}
                                 </SubBarButton>
                             </li>
