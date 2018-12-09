@@ -12,12 +12,12 @@ const roid = sessionStorage.getItem('roid')
 export default class MenuTable extends Component {
 
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             selectedCategory: null,
-            Menu: [],
+            Menu: JSON.parse(sessionStorage.getItem('menu')),
             mcid: null,
             showSubBar: false,
             subCategories: [],

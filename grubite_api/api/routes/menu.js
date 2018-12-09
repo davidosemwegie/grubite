@@ -116,11 +116,11 @@ router.get('/search/:roid/:value', (req, res, next) => {
             } 
         })
     } else {
-        query = "select * from FoodItem where roid = ? and foodName like ? "
+        query = "select * from FoodItem where roid = ? and foodName like ? or description like ? or price like ? "
 
         const search = `%${value}%` 
 
-        con.query(query, [roid, search], (error, rows, fields) => {
+        con.query(query, [roid, search, search, search], (error, rows, fields) => {
             if (error) {
                 //if we get an error, log the error in the console
                 return res.send(error)   

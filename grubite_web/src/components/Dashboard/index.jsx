@@ -10,25 +10,28 @@ import MenuTable from './MenuTable/MenuTable'
 
 
 class index extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            displaySidebar: false //display sidebar state varibale
+            displaySidebar: false, //display sidebar state varibale
+            Menu: []
         }
         document.title = "Dashboard"
 
         this.signout = this.signout.bind(this)
     }
 
-    // componentDidMount = () => {
-    //     const user = this.props.location.state
+    componentDidMount = () => {
+        // const user = this.props.location.state
         
-    //     if (typeof(user.roid) !== 'undefined') {
-    //         sessionStorage.setItem('roid', user.roid)
-    //     }
+        // if (typeof(user.roid) !== 'undefined') {
+        //     sessionStorage.setItem('roid', user.roid)
+        // }
+
+        //this.setState({Menu: this.props.location.state.Menu})
 
         
-    // };
+    };
 
 
 
@@ -72,7 +75,7 @@ class index extends Component {
             <div id="dashbard_bg">
                 {sidebar}
                 <DashboardHeader title="Menu" displayMethod={this.displaySidebar} />
-                <MenuTable />
+                <MenuTable  />
             </div>
         );
     }

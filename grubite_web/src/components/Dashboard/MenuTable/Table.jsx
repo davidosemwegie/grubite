@@ -36,14 +36,13 @@ class Table extends Component {
 
         if (isEmpty(this.props.data)) {
             return (
-                <p className="emptyFoodTableText">There are no food Items in this category</p>
+                <p className="emptyFoodTableText">Sorry there are no food items available</p>
             )
             //empty = (<p className="emptyFoodTableText">There are no food Items in this category</p>) 
         } else {
             return (
                 <div>
                     <BootstrapTable keyField='foodId' data={this.props.data} columns={columns} filter={filterFactory()} />
-                    {empty}
                 </div>
             )
         }
