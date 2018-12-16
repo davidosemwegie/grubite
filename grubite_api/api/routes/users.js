@@ -14,10 +14,14 @@ const saltRounds = 10;
 
 //list out all of the users
 router.get('/', (req, res, next)=>{
-    var query = "select * from RestaurantOwner"
+    var query = "select * from Restaurant"
     con.query(query, (err, rows, fields) => {
         res.json(rows)
     })
+})
+
+router.get('/test', (req, res) => {
+    res.send("Hello World. I am testing the google cloud platform thing LOL.")
 })
 
 router.get('/getmaxid', (req, res) => {
