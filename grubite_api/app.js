@@ -35,6 +35,10 @@ const menuRouter = require('./api/routes/menu')
 
 app.use('/menu', menuRouter)
 
+/* MOBILE ROUTER */
+const mobileUserRouter = require('./api/routes/Mobile/user')
+app.use('/mobile/user', mobileUserRouter)
+
 app.use((req, res, next) => {
     const error = new Error('Not Found');
     error.status = 404
