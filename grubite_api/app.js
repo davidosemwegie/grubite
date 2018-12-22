@@ -39,6 +39,9 @@ app.use('/menu', menuRouter)
 const mobileUserRouter = require('./api/routes/Mobile/user')
 app.use('/mobile/user', mobileUserRouter)
 
+const mobileRestaurantRouter = require('./api/routes/Mobile/restaurants')
+app.use('/mobile/restaurants', mobileRestaurantRouter)
+
 app.use((req, res, next) => {
     const error = new Error('Not Found');
     error.status = 404

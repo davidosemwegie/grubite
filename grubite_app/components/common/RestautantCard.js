@@ -33,11 +33,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         marginBottom: 20,
         height: 100,
-        width: 350,
+        width: 370,
         padding: 10,
         borderRadius: 2,
         backgroundColor: "white",
-        shadowOffset: { width: 0, height: 5 },
+        shadowOffset: { width: 3, height: 3 },
         shadowColor: 'black',
         shadowOpacity: 0.2,
         elevation: 5

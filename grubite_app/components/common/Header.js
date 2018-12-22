@@ -29,6 +29,6 @@ export default Header;
 const styles = StyleSheet.create({
     container: {
         height: 140,
-        backgroundColor: "white"
+        backgroundColor: "#F7F7F7",
     }
 });

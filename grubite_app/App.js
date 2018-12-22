@@ -36,8 +36,8 @@ const AuthStackNavigator = createStackNavigator({
   })
 
 const DiscoverStackNavigator = createStackNavigator({
-  Discover: Discover,
-  SearchScreen: SearchScreen
+  SearchScreen: SearchScreen,
+  Discover: Discover
 },
 {
   headerMode: 'none',
