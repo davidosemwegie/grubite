@@ -16,6 +16,7 @@ class RestaurantList extends Component {
                     renderItem={({ item }) =>
                         // <Text style={styles.item}>{item.key}</Text>
                         <RestaurantCard
+                            key={item.roid}
                             RestaurantName={item.rName}
                             address={item.streetAddress}
                             rating={item.rating}

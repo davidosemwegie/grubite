@@ -1,10 +1,19 @@
 const mysql = require('mysql')
 
+// const pool = mysql.createPool({
+//     connectionLimit: 10,
+//     host: 'localhost',
+//     user: 'root',
+//     password: 'root',
+//     database: 'GrubiteDB',
+//     port: 3306  
+// })
+
 const pool = mysql.createPool({
     connectionLimit: 10,
-    host: 'localhost',
+    host: '138.197.169.152',
     user: 'root',
-    password: 'root',
+    password: 'Ronaldinho123!',
     database: 'GrubiteDB',
     port: 3306  
 })

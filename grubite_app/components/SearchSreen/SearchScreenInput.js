@@ -21,7 +21,7 @@ export default SearchScreenInput;
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 80,
+        marginTop: 90,
         marginHorizontal: 10,
         marginLeft: 20,
         width: 350,
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     input: {
         // borderBottomWidth: 2,
         // borderBottomColor: "black",
-        fontSize: 30,
+        fontSize: 25,
         fontWeight: '800',
     }
 });
