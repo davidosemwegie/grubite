@@ -5,7 +5,7 @@ import {
     StyleSheet,
     SafeAreaView
 } from "react-native";
-
+import Colours from '../constants/Colours'
 import RestaurantCard from '../components/common/RestautantCard'
 import Header from '../components/common/Header'
 import PageTitle from '../components/common/PageTitle'
@@ -38,6 +38,6 @@ const styles = StyleSheet.create({
         flex: 1,
         // alignItems: 'center',
         // justifyContent: 'center',
-        backgroundColor: "#F7F7F7",
+        backgroundColor: Colours.bgColor,
     }
 });

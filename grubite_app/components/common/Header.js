@@ -6,6 +6,7 @@ import {
     Platform,
     StatusBar
 } from "react-native";
+import Colours from '../../constants/Colours'
 
 const Header = (props) => {
 
@@ -29,6 +30,6 @@ export default Header;
 const styles = StyleSheet.create({
     container: {
         height: 140,
-        backgroundColor: "#F7F7F7",
+        backgroundColor: Colours.bgColor
     }
 });

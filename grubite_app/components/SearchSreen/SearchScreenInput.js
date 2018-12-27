@@ -3,17 +3,24 @@ import {
     View,
     Text,
     StyleSheet,
-    TextInput
+    TextInput,
+    TouchableOpacity
 } from "react-native";
 
 const SearchScreenInput = (props) => {
+
+    cancelButton = () => {
+        alert("Cancel Button clicked")
+    }
+
     return (
         <View style={styles.container}>
             <TextInput
                 {...props}
                 style={styles.input}
-                placeholder="Try 'Barcelos'"
-                placeholderTextColor="rgba(0,0,0,0.5)" />
+                placeholder="Try 'Shake N' Wing"
+                placeholderTextColor="rgba(0,0,0,0.5)"
+            />
         </View>
     );
 }
@@ -21,10 +28,11 @@ export default SearchScreenInput;
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 90,
+        marginTop: 10,
         marginHorizontal: 10,
         marginLeft: 20,
-        width: 350,
+        width: 280,
+        flexDirection: 'column',
     },
     input: {
         // borderBottomWidth: 2,

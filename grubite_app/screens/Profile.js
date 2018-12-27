@@ -6,6 +6,7 @@ import {
     Button,
     AsyncStorage
 } from "react-native";
+import Colours from '../constants/Colours'
 import Header from '../components/common/Header'
 import PageTitle from '../components/common/PageTitle'
 
@@ -77,6 +78,6 @@ export default Profile;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#F7F7F7",
+        backgroundColor: Colours.bgColor,
     }
 });

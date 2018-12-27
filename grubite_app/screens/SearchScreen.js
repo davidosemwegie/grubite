@@ -4,13 +4,17 @@ import {
     Text,
     StyleSheet,
     Keyboard,
-    ScrollView
+    ScrollView,
+    TouchableOpacity, 
+    SafeAreaView
 } from "react-native";
+import Colours from '../constants/Colours'
 import { api_url } from '../backend/functions'
 import Header from '../components/common/Header'
 import SearchScreenInput from '../components/SearchSreen/SearchScreenInput'
 import RestaurantList from '../components/SearchSreen/RestaurantList'
 import axios from "axios";
+import Icon from 'react-native-vector-icons/AntDesign'
 
 class SearchScreen extends Component {
 
@@ -24,6 +28,7 @@ class SearchScreen extends Component {
     }
 
     componentDidMount() {
+
         let url = `${api_url}/mobile/restaurants/`
 
         axios.get(url)
@@ -31,13 +36,15 @@ class SearchScreen extends Component {
                 //console.log(res.data)
 
                 if (typeof (res.data) !== 'undefined') {
-                    this.setState({menu: res.data})
+                    this.setState({ menu: res.data })
                     console.log(this.state.menu)
                 }
             })
+
+
     }
 
-    search(search){
+    search(search) {
         let url = ""
 
         if (search === null || search === "") {
@@ -51,13 +58,11 @@ class SearchScreen extends Component {
                 //console.log(res.data)
 
                 if (typeof (res.data) !== 'undefined') {
-                    this.setState({menu: res.data})
+                    this.setState({ menu: res.data })
                     console.log(this.state.menu)
                 }
             })
     }
-
-    
 
     handleChangeText = (search) => {
         this.setState({ search }, () => {
@@ -66,17 +71,32 @@ class SearchScreen extends Component {
         })
     }
 
-
-
     render() {
+
+        const { container, header, exitButton } = styles
+
         return (
-            <View style={styles.container}>
-                <Header>
-                    <SearchScreenInput
-                        value={this.state.search}
-                        onChangeText={this.handleChangeText}
-                    />
-                </Header>
+            <View style={container}>
+                <View style={header}>
+                    <Header>
+                        <SafeAreaView style={exitButton}>
+                            <TouchableOpacity onPress={() => { this.props.navigation.navigate("Discover") }}>
+                                <Icon
+                                    name="close"
+                                    size={30}
+                                />
+                            </TouchableOpacity>
+                        </SafeAreaView>
+                        <SearchScreenInput
+                            value={this.state.search}
+                            onChangeText={this.handleChangeText}
+                            onSubmitEditing={Keyboard.dismiss}
+                            autoFocus={true}
+                            keyboardAppearance="light"
+                        />
+                        {/* <Button title="Cancel"/> */}
+                    </Header>
+                </View>
                 <ScrollView>
                     <RestaurantList data={this.state.menu} />
                 </ScrollView>
@@ -88,9 +108,12 @@ export default SearchScreen;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#F7F7F7",
+        backgroundColor: Colours.bgColor,
         flex: 1,
-        // alignItems: 'center',
-        // justifyContent: 'center'
+    },
+    exitButton: {
+        width: 50,
+        margin: 10
+        // backgroundColor: 'red'
     }
 });

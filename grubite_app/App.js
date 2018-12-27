@@ -18,13 +18,15 @@ import WelcomeScreen from './screens/WelcomeScreen'
 import LoginScreen from './screens/LoginScreen'
 import SignupScreen from './screens/SignupScreen'
 import SearchScreen from './screens/SearchScreen'
+import MenuScreen from './screens/MenuScreen'
 
 
 import Colour from './constants/Colours'
 import { black } from 'ansi-colors';
 
+
 const AuthStackNavigator = createStackNavigator({
-  //Welcome: WelcomeScreen,
+  Welcome: WelcomeScreen,
   LogIn: LoginScreen,
   SignUp: SignupScreen
 },
@@ -33,18 +35,32 @@ const AuthStackNavigator = createStackNavigator({
     navigationOptions: {
       headerVisible: false,
     }
-  })
+})
 
-const DiscoverStackNavigator = createStackNavigator({
-  SearchScreen: SearchScreen,
-  Discover: Discover
-},
+const MenuStackNavigator = createStackNavigator({
+  Search: SearchScreen,
+  Menu: MenuScreen
+}, 
 {
   headerMode: 'none',
-  navigationOptions: {
-    headerVisible: false,
-  }
+    navigationOptions: {
+      headerVisible: false,
+    }
 })
+
+const DiscoverStackNavigator = createStackNavigator({
+  Search: {
+    screen: MenuScreen
+  },
+  Discover: Discover
+},
+  {
+    mode: 'modal',
+    headerMode: 'none',
+    navigationOptions: {
+      headerVisible: false,
+    }
+  })
 
 const MainNavigation = createBottomTabNavigator({
   Discover: {
@@ -109,5 +125,6 @@ const switchNavigator = createSwitchNavigator({
 })
 
 export default AppContainer = createAppContainer(switchNavigator)
+
 
 

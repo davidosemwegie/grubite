@@ -5,47 +5,89 @@ import {
     StyleSheet,
     TouchableOpacity
 } from "react-native";
-import { Rating } from 'react-native-elements';
+// import { Rating } from 'react-native-elements';
+import { Rating, AirbnbRating } from 'react-native-ratings';
+import Colours from "../../constants/Colours";
+import { withNavigation } from 'react-navigation';
 
 const RestaurantCard = (props) => {
 
-    const { container, name, address, rating } = styles
+    const { container, name, address, rating, bottomRow } = styles
 
     return (
+        // <TouchableOpacity onPress={props.onPress}>
+        //     <View style={container}>
+        //         <Text style={name}>{props.RestaurantName}</Text>
+        //         <Text>{props.address}</Text>
+        //         <Rating
+        //             type="star"
+        //             startingValue={props.rating}
+        //             imageSize={20}
+        //             readonly={true}
+        //             ratingBackgroundColor='#F7F7F7'
+        //         />
+        //     </View>
+        // </TouchableOpacity>
         <TouchableOpacity onPress={props.onPress}>
             <View style={container}>
                 <Text style={name}>{props.RestaurantName}</Text>
-                <Text>{props.address}</Text>
-                <Rating
-                    type="star"
-                    startingValue={props.rating}
-                    imageSize={20}
-                    readonly={true}
-                />
+                <View style={bottomRow}>
+                    <Text style={address}>{props.address}</Text>
+                    <Rating
+                        type="star"
+                        startingValue={props.rating}
+                        imageSize={20}
+                        // readonly={true}
+                        ratingColor='#3498db'
+                        ratingBackgroundColor='#c8c7c8'
+                    />
+                </View>
             </View>
         </TouchableOpacity>
     );
 }
-export default RestaurantCard;
+export default withNavigation(RestaurantCard);
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         marginBottom: 20,
-        height: 100,
-        width: 370,
+        height: 80,
+        width: 380,
         padding: 10,
-        borderRadius: 2,
-        backgroundColor: "white",
-        shadowOffset: { width: 3, height: 3 },
-        shadowColor: 'black',
-        shadowOpacity: 0.2,
+        borderRadius: 10,
+        backgroundColor: "#FFFFFF",
+        // borderColor: 'rgba(253,121,168,0.2)',
+        // borderColor: 'rgba(0,0,0,0.1)',
+        // borderWidth: 1,
+        // shadowOffset: { width: 0, height: 3 },
+        // shadowColor: 'rgb(0,0,0)',
+        // shadowOpacity: 0.16,
+        // shadowRadius: 0.2,
         elevation: 5
+    },
+    // container: {
+    //     justifyContent: 'space-around',
+    //     height: 100,
+    //     width: 400,
+    //     // padding: 10,
+    //     // marginTop: 20,
+    //     // marginBottom: 20,
+    //     borderBottomWidth: 1,
+    //     borderBottomColor: 'rgba(0,0,0,0.1)',
+    // },
+    bottomRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     },
     name: {
         fontSize: 16,
-        color: "#454F63",
+        // color: "#454F63",
+        color: 'rgba(0,0,0,0.7)',
         // color:"#fd79a8",
         fontWeight: '700',
+    },
+    address: {
+        fontSize: 12
     }
 });

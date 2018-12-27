@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodejs server.js",
-    "deploy": "gloud app deploy"
+    "start": "nodemon server.js",
+    "deploy": "gcloud app deploy"
   },
   "author": "",
   "license": "ISC",

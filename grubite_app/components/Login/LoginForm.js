@@ -79,6 +79,7 @@ class LoginForm extends Component {
                         value={this.state.email}
                         placeholder="Email"
                         onChangeText={(email) => this.setState({ email })}
+                        keyboardType = "email-address"
                     />
                     <AuthInput
                         icon="lock"
