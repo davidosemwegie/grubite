@@ -49,10 +49,10 @@ const MenuStackNavigator = createStackNavigator({
 })
 
 const DiscoverStackNavigator = createStackNavigator({
+  Discover: Discover,
   Search: {
-    screen: MenuScreen
-  },
-  Discover: Discover
+    screen: MenuStackNavigator
+  }
 },
   {
     mode: 'modal',

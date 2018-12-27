@@ -96,4 +96,88 @@ router.post('/signup', (req, res) => {
     });
 })
 
+/* SAVE A FOOD ITEM */
+router.post('/save', (req, res) => {
+    const uid = req.body.uid
+    const foodId = req.body.foodId
+    const query = "insert into Saved (uid, foodId) values (?,?)"
+
+    con.query(query, [uid, foodId], (error, rows) => {
+        if (error) {
+            return res.send(error)
+        } else {
+            return res.json({
+                rows
+            })
+        }
+    })
+})
+
+/* GET FOOD ITEM (THIS METHOD ALSO CHECKS TO SEE IF THE FOOD ITEM HAS BEEN SAVED OR NOT) */
+router.get('/menu/:roid/:uid', (req, res) => {
+    uid = req.params.uid
+    roid = req.params.roid
+    const query = `select foodId, foodName, price, description,
+    case when exists (select foodId from Saved where FoodItem.foodId = Saved.foodId and uid = ?) 
+                        then 1
+                        else 0
+                        end as saved
+    from FoodItem 
+    where roid = ?;`
+
+    con.query(query, [uid, roid], (error, rows) => {
+        if (error) {
+            return res.send(error)
+        } else {
+            return res.json({
+                rows
+            })
+        }
+    })
+})
+
+/* SEARCH MENU ITEMS WITH USER ID */
+router.get('/menu/:roid/:uid/:value', (req, res) => {
+    uid = req.params.uid
+    roid = req.params.roid
+    value = req.params.value
+    const search = `%${value}%` 
+    const query = `select foodId, foodName, price, description,
+    case when exists (select foodId from Saved where FoodItem.foodId = Saved.foodId and uid = ?) 
+                        then 1
+                        else 0
+                        end as saved
+    from FoodItem 
+    where roid = ? and foodName like ?;`
+
+    con.query(query, [uid, roid, search], (error, rows) => {
+        if (error) {
+            return res.send(error)
+        } else {
+            return res.json({
+                rows
+            })
+        }
+    })
+})
+
+/* GET SAVED FOOD ITEMS FOR USER */
+router.get('/saved/:uid', (req, res) => {
+    const uid = req.params.uid
+
+    const query = `select S.foodId, foodName, price, rName 
+                    from Saved as S, FoodItem as F, Restaurant as R
+                    where S.foodId = F.foodId and F.roid = R.roid and S.uid = ?`
+
+    con.query(query, [uid], (error, rows) => {
+        if (error) {
+            return res.send(error)
+        } else {
+            return res.json({
+                rows
+            })
+        }
+    })
+})
+
 module.exports = router
