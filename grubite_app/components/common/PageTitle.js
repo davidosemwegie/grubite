@@ -20,7 +20,7 @@ const PageTitle = (props) => {
     const {container, title} = styles
     return(
         <View>
-            <Text style={title}>{props.children}</Text>
+            <Text style={title} allowFontScaling={false}>{props.children}</Text>
         </View>
         
     )
@@ -33,5 +33,6 @@ const styles = StyleSheet.create({
         marginLeft: 15,
         fontSize: 40,
         fontWeight: 'bold',
+        color: 'rgb(0,0,0)'
     }
 });

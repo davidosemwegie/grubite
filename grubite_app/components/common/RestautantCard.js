@@ -28,8 +28,8 @@ const RestaurantCard = (props) => {
         //         />
         //     </View>
         // </TouchableOpacity>
-        <TouchableOpacity onPress={props.onPress}>
-            <View style={container}>
+        <TouchableOpacity onPress={props.onPress} style={container}>
+            <View>
                 <Text style={name}>{props.RestaurantName}</Text>
                 <View style={bottomRow}>
                     <Text style={address}>{props.address}</Text>
@@ -49,22 +49,47 @@ const RestaurantCard = (props) => {
 export default withNavigation(RestaurantCard);
 
 const styles = StyleSheet.create({
+    // container: {
+    //     justifyContent: 'space-around',
+    //     marginBottom: 30,
+    //     height: 80,
+    //     flex: 1,
+    //     // width: 380,
+    //     padding: 10,
+    //     borderRadius: 10,
+    //     backgroundColor: "#FFFFFF",
+    //     // borderColor: 'rgba(253,121,168,0.2)',
+    //     // borderColor: 'rgba(0,0,0,0.1)',
+    //     // borderWidth: 1,
+    //     // shadowOffset: { width: 0, height: 3 },
+    //     // shadowColor: 'rgb(0,0,0)',
+    //     // shadowOpacity: 0.16,
+    //     // shadowRadius: 0.2,
+    //     shadowColor: '#000',
+    //     shadowOffset: { width: 0, height: 2 },
+    //     shadowOpacity: 0.2,
+    //     shadowRadius: 2,
+    //     elevation: 5
+    // },
     container: {
+        flex: 1,
         justifyContent: 'space-around',
         marginBottom: 20,
-        height: 80,
-        width: 380,
         padding: 10,
+        marginTop: 10,
+        marginHorizontal: 10,
+        //marginLeft: 20,
+        height: 80,
+        //width: 380,
+        borderWidth: 2,
+        borderColor: "white",
+        backgroundColor: "white",
         borderRadius: 10,
-        backgroundColor: "#FFFFFF",
-        // borderColor: 'rgba(253,121,168,0.2)',
-        // borderColor: 'rgba(0,0,0,0.1)',
-        // borderWidth: 1,
-        // shadowOffset: { width: 0, height: 3 },
-        // shadowColor: 'rgb(0,0,0)',
-        // shadowOpacity: 0.16,
-        // shadowRadius: 0.2,
-        elevation: 5
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 2,
+        elevation: 5,
     },
     // container: {
     //     justifyContent: 'space-around',

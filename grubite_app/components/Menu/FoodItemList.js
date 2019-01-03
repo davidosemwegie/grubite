@@ -7,16 +7,24 @@ import {
     AsyncStorage
 } from "react-native";
 import FoodItemCard from './FoodItemCard'
-import {api_url} from '../../backend/functions'
+import { api_url } from '../../backend/functions'
 import axios from 'axios'
+import FoodItemPage from './FoodItemPage'
 
-const FoodItemList = (props) => {
+class FoodItemList extends Component {
 
 
     // saveButtonPressed = async (foodId) => {
     //     alert(foodId)
     //     props.reload()
     // }
+
+    constructor() {
+        super();
+        this.state = {
+            showButton: false
+        };
+    }
 
     saveButtonPressed = async (foodId) => {
 
@@ -33,36 +41,44 @@ const FoodItemList = (props) => {
                 }
 
                 axios.post(url, data)
-                .then(res => {
-                    console.log(res.data)
-                })
-                .catch(error => {
-                    console.error(error)
-                })
+                    .then(res => {
+                        console.log(res.data)
+                    })
+                    .catch(error => {
+                        console.error(error)
+                    })
             }
         } catch (error) {
             console.log(error)
         }
 
-        props.reload()
+        this.props.reload()
 
     }
 
+    showFoodItemPage = (foodId) => {
+        return (
+            <FoodItemPage foodId={foodId} />
+        )
+    }
+
+render() {
     return (
         <View style={styles.container}>
             <FlatList
-                data={props.data}
+                data={this.props.data}
                 renderItem={({ item }) =>
                     <FoodItemCard
-                        {...props}
+                        {...this.props}
                         foodId={item.foodId}
                         foodName={item.foodName}
                         price={item.price}
                         description={item.description}
                         saved={item.saved}
-                        id = {item.foodId}
+                        id={item.foodId}
                         saveButton={() => this.saveButtonPressed(item.foodId)}
-                        //parentUpdate = {this.saveButtonPressed}
+                        onPress={() => this.showFoodItemPage(item.foodId)}
+                    //parentUpdate = {this.saveButtonPressed}
                     //saveButton = {this.saveButton}
                     />
                 }
@@ -72,12 +88,13 @@ const FoodItemList = (props) => {
     );
 
 }
+}
 export default FoodItemList;
 
 const styles = StyleSheet.create({
     container: {
-        margin: 10,
-        flex: 1,
+        //margin: 10,
+        flex: 2.5,
         // alignItems: 'center',
         // justifyContent: 'center',
         // backgroundColor: 'red'

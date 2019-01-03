@@ -35,32 +35,34 @@ const AuthStackNavigator = createStackNavigator({
     navigationOptions: {
       headerVisible: false,
     }
-})
+  })
 
 const MenuStackNavigator = createStackNavigator({
-  Search: SearchScreen,
+  //Search: SearchScreen,
   Menu: MenuScreen
-}, 
-{
-  headerMode: 'none',
-    navigationOptions: {
-      headerVisible: false,
-    }
-})
-
-const DiscoverStackNavigator = createStackNavigator({
-  Discover: Discover,
-  Search: {
-    screen: MenuStackNavigator
-  }
 },
   {
-    mode: 'modal',
     headerMode: 'none',
     navigationOptions: {
       headerVisible: false,
     }
   })
+
+const DiscoverStackNavigator = createStackNavigator({
+  Discover: Discover,
+  Menu: MenuScreen
+  // Search: {
+  //   screen: MenuStackNavigator
+  // }
+},
+  {
+    //mode: 'modal',
+    headerMode: 'none',
+    navigationOptions: {
+      headerVisible: false,
+    }
+  }
+  )
 
 const MainNavigation = createBottomTabNavigator({
   Discover: {
@@ -102,8 +104,9 @@ const MainNavigation = createBottomTabNavigator({
 }, {
     tabBarOptions: {
       activeTintColor: Colour.tintColour,
+      allowFontScaling: false,
       labelStyle: {
-        fontSize: 12,
+        fontSize: 15,
         fontWeight: 'bold',
       },
       style: {

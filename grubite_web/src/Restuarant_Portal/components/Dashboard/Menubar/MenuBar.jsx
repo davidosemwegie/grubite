@@ -63,7 +63,6 @@ class MenuBar extends Component {
                         <div className="addButton">
                             <AddItemButton onClick={this.setShowForm} />
                         </div>
-
                     </li>
                     <li className="menubarListItem searchbar">
                         <input name="searchValue" className="menuSearchbar" type="text" placeholder="Search For Menu Items" onChange={this.props.onChange}/>

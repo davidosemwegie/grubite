@@ -103,9 +103,6 @@ export default class MenuTable extends Component {
     }
 
 
-
-
-
     loadMenu() {
         const { mcid, subCategoryId } = this.state
 

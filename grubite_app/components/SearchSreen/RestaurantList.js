@@ -14,6 +14,7 @@ const RestaurantList = (props) => {
     return (
         <View style={container}>
             <FlatList
+                //style={{flex: 0.5}}
                 data={props.data}
                 renderItem={({ item }) =>
                     // <Text style={styles.item}>{item.key}</Text>
@@ -37,8 +38,9 @@ export default withNavigation(RestaurantList);
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        alignItems: 'center',
+        //backgroundColor: 'blue',
+        flex: 10,
+        flexDirection: 'row',
         padding: 10,
     }
 });

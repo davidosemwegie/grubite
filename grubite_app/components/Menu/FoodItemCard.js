@@ -53,7 +53,9 @@ const FoodItemCard = (props) => {
     const { container, name, price, description } = styles
 
     return (
-        <View style={container}>
+        <TouchableOpacity 
+        onPress={props.onPress}
+        style={container}>
             <Text style={name}>{props.foodName}</Text>
             {}
             <TouchableOpacity 
@@ -67,14 +69,14 @@ const FoodItemCard = (props) => {
             </TouchableOpacity>
             <Text style={price}>{props.price}</Text>
             <Text style={description}>{props.description}</Text>
-        </View>
+        </TouchableOpacity>
     );
 }
 export default FoodItemCard;
 
 const styles = StyleSheet.create({
     container: {
-        marginBottom: 20,
+        marginBottom: 10,
         // height: 100,
         flex: 1,
         padding: 10,
