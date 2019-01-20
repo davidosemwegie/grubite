@@ -19,6 +19,7 @@ class LoginForm extends Component {
     constructor() {
         super()
 
+        //Initializing the state.
         this.state = {
             email: "",
             password: "",

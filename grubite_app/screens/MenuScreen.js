@@ -23,6 +23,7 @@ class MenuScreen extends Component {
         super()
 
         this.state = {
+            search: "",
             searchValue: "",
             menu: [],
             uid: "",
@@ -32,8 +33,6 @@ class MenuScreen extends Component {
     }
 
     componentDidMount = async () => {
-
-        // const { rid } = this.state
 
         const rName = this.props.navigation.getParam('RestaurantName', `David's Kitchen`)
         const roid = this.props.navigation.getParam('rid', '181')
@@ -52,7 +51,6 @@ class MenuScreen extends Component {
 
             axios.get(url)
                 .then(res => {
-                    //console.log(res.data)
 
                     if (typeof (res.data.rows) !== 'undefined') {
                         this.setState({ menu: res.data.rows })
@@ -95,10 +93,13 @@ class MenuScreen extends Component {
 
     handleChangeText = (searchValue) => {
         this.setState({ searchValue }, () => {
+            //console.log(searchValue)
             const { searchValue } = this.state
             this.search(searchValue)
         })
     }
+
+
 
     reload = () => {
         // this.setState({ menu: this.state.menu });
@@ -142,7 +143,33 @@ class MenuScreen extends Component {
     ]
 
     setCategory = (selectedCategory) => {
-        this.setState({ selectedCategory })
+        this.setState({ selectedCategory }, () => {
+
+            const mcid = this.state.selectedCategory;
+
+            const { uid } = this.state
+
+            const roid = this.props.navigation.getParam('rid', '181')
+
+            let url = ""
+
+            if (mcid == 0) {
+                url = `${api_url}/menu/getMenuItems/${roid}`
+            } else {
+                url = `${api_url}/menu/getMenuItems/${roid}/${mcid}`
+            }
+
+            axios.get(url)
+                .then(res => {
+                    if (typeof (res.data.rows) !== 'undefined') {
+                        this.setState({ menu: res.data.rows })
+                        console.log(this.state.menu)
+                    }
+                })
+                .catch(error => { console.log(error) })
+
+
+        })
     }
 
     render() {
@@ -166,10 +193,10 @@ class MenuScreen extends Component {
                     <View style={textBox}>
                         <TextInput
                             //{...props}
-                            value={this.state.search}
+                            value={this.state.searchValue}
                             style={textInput}
                             placeholder="Search here"
-                            onChangeText={() => this.handleChangeText}
+                            onChangeText={this.handleChangeText}
                         />
                     </View>
                     <FlatList
@@ -218,11 +245,11 @@ const styles = StyleSheet.create({
     category: {
         fontSize: 20,
         color: "rgba(0,0,0,0.5)",
-        fontWeight: '800',
+        fontWeight: '700',
     },
     activeCategory: {
         color: Colours.tintColour,
-        fontWeight: '800',
+        fontWeight: '700',
         fontSize: 20,
         textDecorationLine: 'underline',
     },

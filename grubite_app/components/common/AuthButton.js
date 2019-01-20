@@ -1,3 +1,5 @@
+/* AUTHENTICATION BUTTON STYLE */
+
 import React, { Component } from "react";
 import {
     View,
