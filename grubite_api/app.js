@@ -24,6 +24,9 @@ app.use((req, res, next)=>{
 //     next();
 //   });
 
+/* SERVE IMAGES */
+app.use('/images',express.static('images'))
+
 /* USER ROUTER */
 const userRoute = require('./api/routes/users')
 

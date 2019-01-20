@@ -37,7 +37,7 @@ const RestaurantCard = (props) => {
                         type="star"
                         startingValue={props.rating}
                         imageSize={20}
-                        // readonly={true}
+                        readonly={true}
                         ratingColor='#3498db'
                         ratingBackgroundColor='#c8c7c8'
                     />

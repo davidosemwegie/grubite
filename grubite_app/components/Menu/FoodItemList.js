@@ -67,9 +67,13 @@ render() {
         <View style={styles.container}>
             <FlatList
                 data={this.props.data}
+                style = {{
+                    flex: 0.7
+                }}
                 renderItem={({ item }) =>
                     <FoodItemCard
                         {...this.props}
+                        image = {`${api_url}/images/${item.image}`}
                         foodId={item.foodId}
                         foodName={item.foodName}
                         price={item.price}
@@ -95,8 +99,8 @@ const styles = StyleSheet.create({
     container: {
         //margin: 10,
         flex: 2.5,
-        // alignItems: 'center',
-        // justifyContent: 'center',
+        alignItems: 'center',
+        //justifyContent: 'center',
         // backgroundColor: 'red'
     }
 });

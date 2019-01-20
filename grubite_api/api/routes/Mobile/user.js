@@ -117,7 +117,7 @@ router.post('/save', (req, res) => {
 router.get('/menu/:roid/:uid', (req, res) => {
     uid = req.params.uid
     roid = req.params.roid
-    const query = `select foodId, foodName, price, description,
+    const query = `select foodId, foodName, price, image, description,
     case when exists (select foodId from Saved where FoodItem.foodId = Saved.foodId and uid = ?) 
                         then 1
                         else 0
