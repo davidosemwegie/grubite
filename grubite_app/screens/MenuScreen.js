@@ -28,7 +28,8 @@ class MenuScreen extends Component {
             menu: [],
             uid: "",
             rName: "",
-            selectedCategory: 0
+            selectedCategory: 0,
+            subCategories: []
         }
     }
 
@@ -157,19 +158,32 @@ class MenuScreen extends Component {
                 url = `${api_url}/menu/getMenuItems/${roid}`
             } else {
                 url = `${api_url}/menu/getMenuItems/${roid}/${mcid}`
+                this.setSubCategory(roid, mcid)
             }
 
             axios.get(url)
                 .then(res => {
                     if (typeof (res.data.rows) !== 'undefined') {
                         this.setState({ menu: res.data.rows })
-                        console.log(this.state.menu)
                     }
                 })
                 .catch(error => { console.log(error) })
 
 
         })
+    }
+
+    setSubCategory = (roid, mcid) => {
+        let url = `${api_url}/menu/getSubCategories/${roid}/${mcid}/`
+
+        axios.get(url)
+                .then(res => {
+                    if (typeof (res.data.rows) !== 'undefined') {
+                        this.setState({ subCategories: res.data.rows })
+                        console.log(this.state.subCategories)
+                    }
+                })
+                .catch(error => { console.log(error) })
     }
 
     render() {
