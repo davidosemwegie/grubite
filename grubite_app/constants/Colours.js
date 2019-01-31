@@ -4,7 +4,8 @@ const mainPink = '#FEA8C6'
 const bgColor = "#F7F7F7";
 
 /* PINK COLOR PALETTE */
-const tintColour = '#fd79a8';
+//const tintColour = '#fd79a8';
+const tintColour = '#082B5A';
 //const mainColour = '#FEA8C6'
 
 /* GREEN COLOR PALETTE */

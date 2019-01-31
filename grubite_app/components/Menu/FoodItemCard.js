@@ -107,7 +107,12 @@ const styles = StyleSheet.create({
         backgroundColor: "#FFFFFF",
         // backgroundColor: "salmon",
         flexDirection: 'row',
-        width: 400
+        width: 400,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1.5 },
+        shadowOpacity: 0.1,
+        shadowRadius: 1,
+        elevation: 2,
     },
     name: {
         fontSize: 18,
@@ -129,11 +134,11 @@ const styles = StyleSheet.create({
     imageContainer: {
         flex: 1,
         padding: 10,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.2,
-        shadowRadius: 2,
-        elevation: 5,
+        // shadowColor: '#000',
+        // shadowOffset: { width: 0, height: 3 },
+        // shadowOpacity: 0.2,
+        // shadowRadius: 2,
+        // elevation: 5,
     },
     textContainer: {
         flex: 3.5,

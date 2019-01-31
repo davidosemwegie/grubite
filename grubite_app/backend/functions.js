@@ -4,8 +4,8 @@
 //export const api_url="https://serious-firefox-13.localtunnel.me"
 
 
-//export const api_url="https://grubite-api.appspot.com"
+export const api_url="https://grubite-api.appspot.com"
 
 //export const api_url="http://867e873a.ngrok.io"
 
-export const api_url = "http://1e99a139.ngrok.io"
+//export const api_url = "http://1e99a139.ngrok.io"

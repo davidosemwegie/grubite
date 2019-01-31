@@ -16,6 +16,7 @@ import FoodItemList from '../components/Menu/FoodItemList'
 import { api_url } from '../backend/functions'
 import axios from 'axios'
 import Icon from 'react-native-vector-icons/Ionicons'
+import { withNavigation } from 'react-navigation';
 
 class MenuScreen extends Component {
 
@@ -29,7 +30,8 @@ class MenuScreen extends Component {
             uid: "",
             rName: "",
             selectedCategory: 0,
-            subCategories: []
+            subCategories: [],
+            showSubCategories: false
         }
     }
 
@@ -177,13 +179,20 @@ class MenuScreen extends Component {
         let url = `${api_url}/menu/getSubCategories/${roid}/${mcid}/`
 
         axios.get(url)
-                .then(res => {
-                    if (typeof (res.data.rows) !== 'undefined') {
-                        this.setState({ subCategories: res.data.rows })
-                        console.log(this.state.subCategories)
+            .then(res => {
+                if (typeof (res.data.rows) !== 'undefined') {
+                    this.setState({ 
+                        subCategories: res.data.rows
+                     })
+                    console.log(this.state.subCategories)
+
+                    if (this.state.subCategories.length > 0) {
+                        this.setState({showSubCategories: true})
+                        //console.log(this.state.subCategories.length)
                     }
-                })
-                .catch(error => { console.log(error) })
+                }
+            })
+            .catch(error => { console.log(error) })
     }
 
     render() {
@@ -201,6 +210,42 @@ class MenuScreen extends Component {
         const rName = navigation.getParam('RestaurantName', 'No Restaurant Name')
         // const rid = navigation.getParam('rid', '0')
 
+        let SubRows = null
+
+        if (this.state.showSubCategories) {
+            SubRows = () => {
+                return (
+                    <FlatList
+                        contentContainerStyle={{
+                            //flex: 1,
+                            alignItems: "center",
+                            flexDirection: 'row',
+                            justifyContent: 'flex-start'
+                        }}
+                        // scrollEnabled={false}
+                        style={categories}
+                        automaticallyAdjustContentInsets={true}
+                        showsHorizontalScrollIndicator={false}
+                        horizontal={true}
+                        data={this.state.subCategories}
+                        renderItem={({ item }) =>
+                            <TouchableOpacity
+                                style={categoryButton}
+                                //onPress={() => this.setCategory(item.mcid)}
+                                >
+                                <Text
+                                    allowFontScaling={false}
+                                    style={this.state.selectedCategory == item.mcid ? activeCategory : category}
+                                >{item.subCategoryName}</Text>
+                            </TouchableOpacity>
+                        }
+                        keyExtractor={(item) => item.subCategoryId.toString()}
+                    />
+                )
+            }
+        } else {
+            SubRows = () => null
+        }
         return (
             <View style={styles.container}>
                 <MenuScreenHeader name={this.state.rName}>
@@ -215,13 +260,15 @@ class MenuScreen extends Component {
                     </View>
                     <FlatList
                         contentContainerStyle={{
-                            flex: 1,
+                            //flex: 1,
                             alignItems: "center",
                             flexDirection: 'row',
-                            justifyContent: 'space-around'
+                            justifyContent: 'flex-start'
                         }}
-                        scrollEnabled={false}
+                        // scrollEnabled={false}
                         style={categories}
+                        automaticallyAdjustContentInsets={true}
+                        showsHorizontalScrollIndicator={false}
                         horizontal={true}
                         data={this.categories}
                         renderItem={({ item }) =>
@@ -236,9 +283,8 @@ class MenuScreen extends Component {
                             </TouchableOpacity>
                         }
                         keyExtractor={(item) => item.mcid.toString()}
-                    //ItemSeparatorComponent={() => <View style={splitter}></View>}
-                    //ItemSeparatorComponent={() => <Text style={splitter}>|</Text>}
                     />
+                    <SubRows />
                 </MenuScreenHeader>
                 <FoodItemList
                     reload={() => this.reload()}
@@ -248,7 +294,7 @@ class MenuScreen extends Component {
         );
     }
 }
-export default MenuScreen;
+export default withNavigation(MenuScreen);
 
 const styles = StyleSheet.create({
     container: {
@@ -260,12 +306,29 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: "rgba(0,0,0,0.5)",
         fontWeight: '700',
+        // padding: 10,
+        // borderRadius: 20,
+        // borderWidth: 1,
+        // marginHorizontal: 5,
+        // shadowColor: '#000',
+        // shadowOffset: { width: 0, height: 3 },
+        // shadowOpacity: 0.2,
+        // shadowRadius: 2,
+        // elevation: 5,
+        // backgroundColor: 'white'
     },
     activeCategory: {
         color: Colours.tintColour,
         fontWeight: '700',
         fontSize: 20,
-        textDecorationLine: 'underline',
+        // backgroundColor: Colours.tintColour,
+        // padding: 10,
+        // marginHorizontal: 5,
+        // shadowColor: '#000',
+        // shadowOffset: { width: 0, height: 3 },
+        // shadowOpacity: 0.2,
+        // shadowRadius: 2,
+        // elevation: 5
     },
     splitter: {
         // padding: 0,
@@ -276,8 +339,10 @@ const styles = StyleSheet.create({
     },
     categories: {
         //height: 50,
-        // backgroundColor: 'red',
-        // flex: 4
+        //backgroundColor: 'red',
+        //marginHorizontal: -30,
+        // paddingVertical: 0,
+        //flex: 4
     },
     textBox: {
         flex: 1,
@@ -297,17 +362,29 @@ const styles = StyleSheet.create({
         fontSize: 15,
         padding: 10
     },
-    // categoryButton: {
-    //     backgroundColor: 'white',
-    //     padding: 10,
-    //     borderRadius: 10,
-    //     margin: 5,
-    //     shadowColor: '#000',
-    //     shadowOffset: { width: 0, height: 3 },
-    //     shadowOpacity: 0.2,
-    //     shadowRadius: 2,
-    //     elevation: 5
-    // },
+    categoryButton: {
+        backgroundColor: 'white',
+        padding: 10,
+        borderRadius: 10,
+        marginHorizontal: 5,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.2,
+        shadowRadius: 2,
+        elevation: 5,
+        //borderRadius: 10,
+    },
+    activeCategoryButton: {
+        backgroundColor: Colours.tintColour,
+        padding: 10,
+        borderRadius: 10,
+        marginHorizontal: 5,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.2,
+        shadowRadius: 2,
+        elevation: 5,
+    },
     headerContainer: {
         //backgroundColor: 'red',
         flex: 1,

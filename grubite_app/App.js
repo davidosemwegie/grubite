@@ -19,6 +19,7 @@ import LoginScreen from './screens/LoginScreen'
 import SignupScreen from './screens/SignupScreen'
 import SearchScreen from './screens/SearchScreen'
 import MenuScreen from './screens/MenuScreen'
+import FoodItemScreen from './screens/FoodItemScreen'
 
 
 import Colour from './constants/Colours'
@@ -37,20 +38,44 @@ const AuthStackNavigator = createStackNavigator({
     }
   })
 
+const FoodScreenStackNavigator = createStackNavigator({
+  FoodScreen: {
+    screen: FoodItemScreen,
+    navigationOptions: {
+      tabBarVisible: false,
+    }
+  }
+}, {
+  tabBarOptions: {
+    visible: false
+  }
+})
+
 const MenuStackNavigator = createStackNavigator({
   //Search: SearchScreen,
-  Menu: MenuScreen
+  //Menu: MenuScreen,
+  FoodItemScreen: FoodScreenStackNavigator
 },
   {
     headerMode: 'none',
-    navigationOptions: {
-      headerVisible: false,
-    }
   })
+
+
+// const MenuStackNavigator = createStackNavigator({
+//   Menu: MenuScreen,
+//   FoodItemScreen: FoodItemScreen
+// })
 
 const DiscoverStackNavigator = createStackNavigator({
   //Discover: Discover,
-  Menu: MenuScreen
+  Menu: MenuStackNavigator,
+  //FoodScreen: FoodScreenStackNavigator,
+  // FoodItemScreen: {
+  //   screen: FoodItemScreen,
+  //   navigationOptions: {
+  //     headerVisible: true,
+  //   }
+  // }
   // Search: {
   //   screen: MenuStackNavigator
   // }
@@ -62,7 +87,7 @@ const DiscoverStackNavigator = createStackNavigator({
       headerVisible: false,
     }
   }
-  )
+)
 
 const MainNavigation = createBottomTabNavigator({
   Discover: {
