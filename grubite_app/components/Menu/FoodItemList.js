@@ -83,11 +83,12 @@ class FoodItemList extends Component {
                             id={item.foodId}
                             saveButton={() => this.saveButtonPressed(item.foodId)}
                             //onPress={() => this.showFoodItemPage(item.foodId)}
-                            onPress={() => this.props.navigation.push('FoodItemScreen', {
+                            onPress={() => this.props.navigation.navigate('FoodScreen', {
                                 foodId: item.foodId,
                                 foodName: item.foodName,
                                 price: item.price,
-                                description: item.description
+                                description: item.description,
+                                foodImage: `${api_url}/images/${item.image}`
                             })}
                         //parentUpdate = {this.saveButtonPressed}
                         //saveButton = {this.saveButton}
@@ -104,7 +105,7 @@ export default withNavigation(FoodItemList);
 const styles = StyleSheet.create({
     container: {
         //margin: 10,
-        flex: 1.75,
+        flex: 1,
         alignItems: 'center',
         //justifyContent: 'center',
         // backgroundColor: 'red'

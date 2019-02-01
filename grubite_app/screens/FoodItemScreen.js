@@ -8,8 +8,15 @@ import {
 } from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons'
 import { withNavigation } from 'react-navigation';
-
+import Colours from '../constants/Colours'
 import BackButton from '../components/common/BackButton'
+
+
+import FoodImageContainer from '../components/FoodScreen/FoodImageContainer'
+import FoodDetailContainer from '../components/FoodScreen/FoodDetailContainer'
+import ReviewContainer from '../components/FoodScreen/ReviewContainer'
+import ActionsContainer from '../components/FoodScreen/ActionsContainer'
+
 
 class FoodItemScreen extends Component {
 
@@ -18,12 +25,12 @@ class FoodItemScreen extends Component {
 
         this.state = {
             foodName: '',
-            foodId: null
+            foodImage: ''
         }
     }
 
     componentDidMount = () => {
-        console.log(this.props.navigation.getParam('foodId', '3'))
+        console.log(this.props.navigation.getParam('image', '3'))
     }
 
     static navigationOptions = ({ navigation }) => {
@@ -49,10 +56,25 @@ class FoodItemScreen extends Component {
         };
     };
 
+    componentDidMount = () => {
+        this.setState(
+            {
+                foodName: this.props.navigation.getParam('foodName', 'Food Name'),
+                foodImage: this.props.navigation.getParam('foodImage', 'https://grubite-api.appspot.com/images/iceCream.jpg')
+            }
+        )
+    }
+
     render() {
+
+        const { foodName, foodImage } = this.state
+
         return (
             <View style={styles.container}>
-                <Text>FoodItemScreen</Text>
+                <FoodDetailContainer foodName={foodName} />
+                <FoodImageContainer image={foodImage} />
+                <ReviewContainer />
+                <ActionsContainer />
             </View>
         );
     }
@@ -62,8 +84,9 @@ export default withNavigation(FoodItemScreen);
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
+        backgroundColor: Colours.bgColor
+        // alignItems: 'center',
+        // justifyContent: 'center'
     },
     backButton: {
         justifyContent: 'center',

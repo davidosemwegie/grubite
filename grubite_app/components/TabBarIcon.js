@@ -10,10 +10,9 @@ export default class TabBarIcon extends React.Component {
         allowFontScaling={false}
         theme = {this.props.theme}
         name={this.props.name}
-        size={30}
+        size={27.5}
         style={{ 
-          marginBottom: -3,
-          fontWeight: 'bold'
+          marginBottom: -3
          }}
         color={this.props.focused ? Colours.tabIconSelected : Colours.tabIconDefault}
       />

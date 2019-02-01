@@ -39,22 +39,16 @@ const AuthStackNavigator = createStackNavigator({
   })
 
 const FoodScreenStackNavigator = createStackNavigator({
-  FoodScreen: {
-    screen: FoodItemScreen,
-    navigationOptions: {
-      tabBarVisible: false,
-    }
-  }
-}, {
-  tabBarOptions: {
-    visible: false
-  }
+  FoodScreen: FoodItemScreen
+}, 
+{
+  mode: 'modal'
 })
 
 const MenuStackNavigator = createStackNavigator({
   //Search: SearchScreen,
   //Menu: MenuScreen,
-  FoodItemScreen: FoodScreenStackNavigator
+  FoodScreen: FoodScreenStackNavigator
 },
   {
     headerMode: 'none',
@@ -130,12 +124,13 @@ const MainNavigation = createBottomTabNavigator({
     tabBarOptions: {
       activeTintColor: Colour.tintColour,
       allowFontScaling: false,
+      showLabel: false,
       labelStyle: {
-        fontSize: 15,
+        fontSize: 12,
         fontWeight: 'bold',
       },
       style: {
-        height: 70,
+        height: 50,
         backgroundColor: 'white',
         borderTopWidth: 0,
         shadowOffset: { width: 5, height: 3 },
