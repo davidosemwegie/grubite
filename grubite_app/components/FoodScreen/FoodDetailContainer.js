@@ -30,7 +30,7 @@ export default FoodDetailContainer;
 
 const styles = StyleSheet.create({
     container: {
-        flex: 0.5,
+        flex: 1,
         backgroundColor: 'white',
         flexDirection: 'column',
         justifyContent: 'space-around',

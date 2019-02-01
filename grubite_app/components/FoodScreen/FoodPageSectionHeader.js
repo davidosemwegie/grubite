@@ -1,25 +1,32 @@
 import React, { Component } from "react";
-import { 
+import {
     View,
     Text,
     StyleSheet
 } from "react-native";
 
-class FoodDetailSectionHeader extends Component {
-    render() {
-        return (
-            <View style={styles.container}>
-                <Text>FoodDetailSectionHeader</Text>
-            </View>
-        );
-    }
+const FoodPageSectionHeader = (props) => {
+    
+    const {container, sectionHeader} = styles
+
+    return (
+        <View style={styles.container}>
+            <Text style={sectionHeader} allowFontScaling={false}>{props.sectionHeader}</Text>
+        </View>
+    );
 }
-export default FoodDetailSectionHeader;
+export default FoodPageSectionHeader;
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
+        margin: 10,
+        //backgroundColor: 'white'
+        // flex: 1,
+        // alignItems: 'center',
+        // justifyContent: 'center'
+    },
+    sectionHeader: {
+        fontSize: 20,
+        fontWeight: 'bold',
     }
 });

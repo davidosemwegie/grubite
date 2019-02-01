@@ -11,7 +11,7 @@ import { withNavigation } from 'react-navigation';
 import Colours from '../constants/Colours'
 import BackButton from '../components/common/BackButton'
 
-
+import FoodPageSectionHeader from '../components/FoodScreen/FoodPageSectionHeader'
 import FoodImageContainer from '../components/FoodScreen/FoodImageContainer'
 import FoodDetailContainer from '../components/FoodScreen/FoodDetailContainer'
 import ReviewContainer from '../components/FoodScreen/ReviewContainer'
@@ -73,7 +73,9 @@ class FoodItemScreen extends Component {
             <View style={styles.container}>
                 <FoodDetailContainer foodName={foodName} />
                 <FoodImageContainer image={foodImage} />
+                <FoodPageSectionHeader sectionHeader="Reviews"/>
                 <ReviewContainer />
+                <FoodPageSectionHeader sectionHeader="Actions"/>
                 <ActionsContainer />
             </View>
         );
