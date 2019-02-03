@@ -10,16 +10,15 @@ import {
 const FoodImageContainer = (props) => {
     return (
         <TouchableOpacity style={styles.container}>
-            {/* <Image
+            <Image
                 style={styles.image}
                 source={{ uri: `${props.image}` }}
-            /> */}
-            <View style={{
+            />
+            {/* <View style={{
                 backgroundColor: 'salmon',
                 flex: 1
             }}>
-
-            </View>
+            </View> */}
         </TouchableOpacity>
     )
 }

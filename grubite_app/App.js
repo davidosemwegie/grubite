@@ -47,7 +47,7 @@ const FoodScreenStackNavigator = createStackNavigator({
 
 const MenuStackNavigator = createStackNavigator({
   //Search: SearchScreen,
-  //Menu: MenuScreen,
+  Menu: MenuScreen,
   FoodScreen: FoodScreenStackNavigator
 },
   {
