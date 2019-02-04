@@ -41,14 +41,14 @@ const AuthStackNavigator = createStackNavigator({
   })
 
 const FoodScreenStackNavigator = createStackNavigator({
-  //FoodScreen: FoodItemScreen,
-  //ReviewsScreen: ReviewsScreen,
+  FoodScreen: FoodItemScreen,
+  ReviewsScreen: ReviewsScreen,
   NutritionScreen: NutritionScreen
 })
 
 const MenuStackNavigator = createStackNavigator({
   //Search: SearchScreen,
-  //Menu: MenuScreen,
+  Menu: MenuScreen,
   FoodScreen: FoodScreenStackNavigator
 },
   {

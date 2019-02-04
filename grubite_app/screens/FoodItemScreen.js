@@ -25,18 +25,18 @@ class FoodItemScreen extends Component {
         super()
 
         this.state = {
+            foodId: '',
             foodName: '',
             foodImage: 'no image'
         }
     }
 
-    componentDidMount = () => {
-        console.log(this.props.navigation.getParam('image', '3'))
-    }
-
     static navigationOptions = ({ navigation }) => {
+
+        let title = navigation.getParam('foodName', 'Name of Food')
+
         return {
-            title: navigation.getParam('foodName', 'Name of Food'),
+            title,
             headerLeft: (
                 //<BackButton />
                 <TouchableOpacity
@@ -60,6 +60,7 @@ class FoodItemScreen extends Component {
     componentDidMount = () => {
         this.setState(
             {
+                foodId: this.props.navigation.getParam('foodId', 2),
                 foodName: this.props.navigation.getParam('foodName', 'Food Name'),
                 foodImage: this.props.navigation.getParam('foodImage', 'https://grubite-api.appspot.com/images/iceCream.jpg')
             }
@@ -68,20 +69,25 @@ class FoodItemScreen extends Component {
 
     render() {
 
-        const { foodName, foodImage, inner } = this.state
+        const { foodName, foodImage, foodId } = this.state
+
+        const foodData = {
+            foodName: foodName,
+            foodId: foodId
+        }
 
         return (
             <View style={styles.container}>
                 <FoodDetailContainer foodName={foodName} />
                 <FoodImageContainer image={foodImage} />
                 <FoodPageSectionHeader sectionHeader="Reviews" />
-                <ReviewContainer 
-                viewReviews={() => this.props.navigation.navigate('ReviewsScreen')}
+                <ReviewContainer
+                    viewReviews={() => this.props.navigation.navigate('ReviewsScreen', foodData)}
                 />
                 <FoodPageSectionHeader sectionHeader="Actions" />
                 <ActionsContainer
-                 showNutrition={() => this.props.navigation.navigate('NutritionScreen')}
-                 />
+                    showNutrition={() => this.props.navigation.navigate('NutritionScreen', foodData)}
+                />
             </View>
         );
     }

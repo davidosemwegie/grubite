@@ -9,10 +9,38 @@ import FoodPageSectionHeader from './FoodPageSectionHeader'
 import { withNavigation } from 'react-navigation';
 
 class ReviewContainer extends Component {
-    
+
     constructor() {
         super()
     }
+
+    // static navigationOptions = ({ navigation }) => {
+
+    //     let headerTitle = "Nutrition Facts"
+    //     let header
+    //     return {headerTitle}
+
+    //     // return {
+    //     //     title: navigation.getParam('foodName', 'Name of Food'),
+    //     //     headerLeft: (
+    //     //         //<BackButton />
+    //     //         <TouchableOpacity
+    //     //             style={{
+    //     //                 justifyContent: 'center',
+    //     //                 alignItems: 'center',
+    //     //                 width: 50,
+    //     //                 height: 50,
+    //     //             }}
+    //     //             onPress={() => navigation.navigate("Menu")}>
+    //     //             <Icon
+    //     //                 name="md-arrow-round-back"
+    //     //                 size={35}
+    //     //                 color="rgba(0,0,0,0.7)"
+    //     //             />
+    //     //         </TouchableOpacity>
+    //     //     )
+    //     // };
+    // };
 
     render() {
 
@@ -28,8 +56,8 @@ class ReviewContainer extends Component {
                     <View style={averageRatingSection}>
                         <Text>Average Rating</Text>
                     </View>
-                    <TouchableOpacity 
-                    onPress={this.props.viewReviews}
+                    <TouchableOpacity
+                        onPress={this.props.viewReviews}
                         //onPress={() => this.props.navigation.navigate('ReviewsScreen')}
                         //onPressIn={console.log("Revies PRessed")}
                         style={allReviewsButton}
