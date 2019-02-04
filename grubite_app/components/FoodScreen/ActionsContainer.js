@@ -17,7 +17,9 @@ class ActionsContainer extends Component {
 
         return (
             <View style={container}>
-                <TouchableOpacity style={viewNutritionButton}>
+                <TouchableOpacity 
+                onPress={this.props.showNutrition}
+                style={viewNutritionButton}>
                     <Text>View Nutritional Info</Text>
                 </TouchableOpacity>
                 <View style={bottomSection}>

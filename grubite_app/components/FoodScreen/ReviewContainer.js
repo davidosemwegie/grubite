@@ -6,8 +6,14 @@ import {
     TouchableOpacity
 } from "react-native";
 import FoodPageSectionHeader from './FoodPageSectionHeader'
+import { withNavigation } from 'react-navigation';
 
 class ReviewContainer extends Component {
+    
+    constructor() {
+        super()
+    }
+
     render() {
 
         const { container,
@@ -22,7 +28,12 @@ class ReviewContainer extends Component {
                     <View style={averageRatingSection}>
                         <Text>Average Rating</Text>
                     </View>
-                    <TouchableOpacity style={allReviewsButton}>
+                    <TouchableOpacity 
+                    onPress={this.props.viewReviews}
+                        //onPress={() => this.props.navigation.navigate('ReviewsScreen')}
+                        //onPressIn={console.log("Revies PRessed")}
+                        style={allReviewsButton}
+                    >
                         <Text>See all</Text>
                         <Text>Reviews</Text>
                     </TouchableOpacity>
@@ -34,7 +45,7 @@ class ReviewContainer extends Component {
         );
     }
 }
-export default ReviewContainer;
+export default withNavigation(ReviewContainer);
 
 const styles = StyleSheet.create({
     container: {

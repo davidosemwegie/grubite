@@ -16,6 +16,7 @@ import FoodImageContainer from '../components/FoodScreen/FoodImageContainer'
 import FoodDetailContainer from '../components/FoodScreen/FoodDetailContainer'
 import ReviewContainer from '../components/FoodScreen/ReviewContainer'
 import ActionsContainer from '../components/FoodScreen/ActionsContainer'
+import BottomDrawer from '../components/common/BottomDrawer'
 
 
 class FoodItemScreen extends Component {
@@ -25,7 +26,7 @@ class FoodItemScreen extends Component {
 
         this.state = {
             foodName: '',
-            foodImage: ''
+            foodImage: 'no image'
         }
     }
 
@@ -67,16 +68,20 @@ class FoodItemScreen extends Component {
 
     render() {
 
-        const { foodName, foodImage } = this.state
+        const { foodName, foodImage, inner } = this.state
 
         return (
             <View style={styles.container}>
                 <FoodDetailContainer foodName={foodName} />
                 <FoodImageContainer image={foodImage} />
-                <FoodPageSectionHeader sectionHeader="Reviews"/>
-                <ReviewContainer />
-                <FoodPageSectionHeader sectionHeader="Actions"/>
-                <ActionsContainer />
+                <FoodPageSectionHeader sectionHeader="Reviews" />
+                <ReviewContainer 
+                viewReviews={() => this.props.navigation.navigate('ReviewsScreen')}
+                />
+                <FoodPageSectionHeader sectionHeader="Actions" />
+                <ActionsContainer
+                 showNutrition={() => this.props.navigation.navigate('NutritionScreen')}
+                 />
             </View>
         );
     }
@@ -89,6 +94,9 @@ const styles = StyleSheet.create({
         backgroundColor: Colours.bgColor
         // alignItems: 'center',
         // justifyContent: 'center'
+    },
+    inner: {
+        zIndex: 1
     },
     backButton: {
         justifyContent: 'center',

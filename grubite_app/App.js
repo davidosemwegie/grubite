@@ -20,6 +20,8 @@ import SignupScreen from './screens/SignupScreen'
 import SearchScreen from './screens/SearchScreen'
 import MenuScreen from './screens/MenuScreen'
 import FoodItemScreen from './screens/FoodItemScreen'
+import ReviewsScreen from './screens/ReviewsScreen'
+import NutritionScreen from './screens/NutritionScreen'
 
 
 import Colour from './constants/Colours'
@@ -39,15 +41,14 @@ const AuthStackNavigator = createStackNavigator({
   })
 
 const FoodScreenStackNavigator = createStackNavigator({
-  FoodScreen: FoodItemScreen
-}, 
-{
-  mode: 'modal'
+  //FoodScreen: FoodItemScreen,
+  //ReviewsScreen: ReviewsScreen,
+  NutritionScreen: NutritionScreen
 })
 
 const MenuStackNavigator = createStackNavigator({
   //Search: SearchScreen,
-  Menu: MenuScreen,
+  //Menu: MenuScreen,
   FoodScreen: FoodScreenStackNavigator
 },
   {

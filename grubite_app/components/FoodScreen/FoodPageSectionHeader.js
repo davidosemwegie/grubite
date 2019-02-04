@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import {
     View,
     Text,
@@ -11,6 +12,7 @@ const FoodPageSectionHeader = (props) => {
 
     return (
         <View style={styles.container}>
+            {/* <Heading>Hello</Heading> */}
             <Text style={sectionHeader} allowFontScaling={false}>{props.sectionHeader}</Text>
         </View>
     );
