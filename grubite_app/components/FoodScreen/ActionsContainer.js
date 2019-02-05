@@ -5,6 +5,8 @@ import {
     StyleSheet,
     TouchableOpacity
 } from "react-native";
+import Colours from "../../constants/Colours";
+import Icon from 'react-native-vector-icons/AntDesign'
 
 class ActionsContainer extends Component {
     render() {
@@ -13,21 +15,23 @@ class ActionsContainer extends Component {
             viewNutritionButton,
             bottomSection,
             saveButton,
-            shareButton } = styles
+            shareButton,
+            card,
+            cardText } = styles
 
         return (
             <View style={container}>
-                <TouchableOpacity 
-                onPress={this.props.showNutrition}
-                style={viewNutritionButton}>
-                    <Text>View Nutritional Info</Text>
+                <TouchableOpacity
+                    onPress={this.props.showNutrition}
+                    style={card}>
+                    <Text style={cardText} allowFontScaling={false}>View Nutritional Info</Text>
                 </TouchableOpacity>
                 <View style={bottomSection}>
-                    <TouchableOpacity style={saveButton}>
-                        <Text>Save</Text>
+                    <TouchableOpacity style={card}>
+                        <Text style={cardText} allowFontScaling={false}>Save</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={shareButton}>
-                        <Text>Share</Text>
+                    <TouchableOpacity style={card}>
+                        <Text style={cardText} allowFontScaling={false}>Share</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -39,23 +43,37 @@ export default ActionsContainer;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'grey',
         marginBottom: 15,
     },
-    viewNutritionButton: {
+    card: {
         flex: 1,
-        backgroundColor: 'blue'
+        backgroundColor: 'white',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.2,
+        shadowRadius: 2,
+        elevation: 5,
+        margin: 2,
+        borderRadius: 2,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    cardText: {
+        fontSize: 20,
+        fontWeight: '700',
+        color: Colours.textColor
+    },
+    viewNutritionButton: {
+
     },
     bottomSection: {
         flex: 1,
         flexDirection: 'row',
     },
     saveButton: {
-        flex: 1,
-        backgroundColor: 'purple'
+
     },
     shareButton: {
-        flex: 1,
-        backgroundColor: 'pink'
+
     }
 });

@@ -105,7 +105,7 @@ export default withNavigation(FoodItemList);
 const styles = StyleSheet.create({
     container: {
         //margin: 10,
-        flex: 1,
+        flex: 2,
         alignItems: 'center',
         //justifyContent: 'center',
         // backgroundColor: 'red'

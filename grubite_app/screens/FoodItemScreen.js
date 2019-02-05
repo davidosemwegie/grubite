@@ -97,7 +97,8 @@ export default withNavigation(FoodItemScreen);
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Colours.bgColor
+        backgroundColor: Colours.bgColor,
+        //backgroundColor: 'white'
         // alignItems: 'center',
         // justifyContent: 'center'
     },

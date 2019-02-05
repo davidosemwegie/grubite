@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import './SubBar.css'
 import SubBarButton from './SubBarButton'
+import {
+    Panel,
+    Form,
+    FormGroup,
+    ControlLabel,
+    FormControl,
+    Button
+} from 'react-bootstrap'
 
 class SubBar extends Component {
 
@@ -8,16 +16,30 @@ class SubBar extends Component {
         super(props);
 
         this.state = {
-            activeIndex: 0
+            activeIndex: 0,
+            newSubCategory: ''
         }
 
         this.select = this.select.bind(this)
+        // this.handleInputChange = this.handleInputChange.bind(this)
+        // this.addSubCategory = this.addSubCategory.bind(this)
     }
 
     select(index, e) {
         ///https://stackoverflow.com/questions/44695985/toggle-class-on-menu-items-with-reactjs
         this.setState({ activeIndex: index })
     }
+
+    // handleInputChange(event) {
+    //     const target = event.target;
+    //     const value = target.type === 'checkbox' ? target.checked : target.value;
+    //     const name = target.name;
+    //     this.setState({
+    //         [name]: value
+    //     });
+    //     //console.log(this.state.newSubCategory)
+    // }
+
 
     render() {
         const { subCategories } = this.props
@@ -36,7 +58,7 @@ class SubBar extends Component {
                         subCategories.map((sub) => (
                             <li onClick={this.select.bind(this, sub.subCategoryId)} className="sub-barListItem" key={sub.subCategoryId}>
                                 <SubBarButton
-                                    subcategoryid = {sub.subCategoryId}
+                                    subcategoryid={sub.subCategoryId}
                                     className={this.state.activeIndex === sub.subCategoryId ? 'subBarButton active' : "subBarButton"}
                                     onClick={this.props.setSubCategory}>
                                     {sub.subCategoryName}
@@ -44,9 +66,12 @@ class SubBar extends Component {
                             </li>
                         ))
                     }
+                    <form></form>
+                    <li className="sub-barListItem">
+                        <input id="newSubCategoryInput" type="text" name='newSubCategory' placeholder="Type in new subcategory here" onChange={this.props.addNewSubCategoryInput} />
+                    </li>
                     <li className="menubarListItem">
-                        {/* <SubBarButton onClick={this.props.onClick}>&#43; ( Add sub-category )</SubBarButton> */}
-                        <SubBarButton onClick={this.props.onClick} className="subBarButton">Edit sub-categories</SubBarButton>
+                        <SubBarButton onClick={this.props.addNewSubCategory} className="subBarButton">Add Sub-Category</SubBarButton>
                     </li>
                 </ul>
             </div>

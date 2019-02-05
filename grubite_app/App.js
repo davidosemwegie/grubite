@@ -62,7 +62,7 @@ const MenuStackNavigator = createStackNavigator({
 // })
 
 const DiscoverStackNavigator = createStackNavigator({
-  //Discover: Discover,
+  Discover: Discover,
   Menu: MenuStackNavigator,
   //FoodScreen: FoodScreenStackNavigator,
   // FoodItemScreen: {

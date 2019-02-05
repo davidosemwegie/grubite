@@ -181,13 +181,13 @@ class MenuScreen extends Component {
         axios.get(url)
             .then(res => {
                 if (typeof (res.data.rows) !== 'undefined') {
-                    this.setState({ 
+                    this.setState({
                         subCategories: res.data.rows
-                     })
+                    })
                     console.log(this.state.subCategories)
 
                     if (this.state.subCategories.length > 0) {
-                        this.setState({showSubCategories: true})
+                        this.setState({ showSubCategories: true })
                         //console.log(this.state.subCategories.length)
                     }
                 }
@@ -205,34 +205,37 @@ class MenuScreen extends Component {
             headerContainer,
             categories,
             categoryButton,
-            activeCategory } = styles
+            activeCategory,
+            categoryButtonSmall,
+            icon } = styles
 
         const rName = navigation.getParam('RestaurantName', 'No Restaurant Name')
         // const rid = navigation.getParam('rid', '0')
 
-        let SubRows = null
+        let SubRows = () => <View></View>
 
         if (this.state.showSubCategories) {
             SubRows = () => {
                 return (
                     <FlatList
                         contentContainerStyle={{
-                            //flex: 1,
+                            flex: 1,
                             alignItems: "center",
                             flexDirection: 'row',
-                            justifyContent: 'flex-start'
+                            justifyContent: 'flex-start',
+                            backgroundColor: 'pink'
                         }}
                         // scrollEnabled={false}
-                        style={categories}
+                        // style={categories}
                         automaticallyAdjustContentInsets={true}
                         showsHorizontalScrollIndicator={false}
                         horizontal={true}
                         data={this.state.subCategories}
                         renderItem={({ item }) =>
                             <TouchableOpacity
-                                style={categoryButton}
-                                //onPress={() => this.setCategory(item.mcid)}
-                                >
+                                style={categoryButtonSmall}
+                            //onPress={() => this.setCategory(item.mcid)}
+                            >
                                 <Text
                                     allowFontScaling={false}
                                     style={this.state.selectedCategory == item.mcid ? activeCategory : category}
@@ -243,12 +246,11 @@ class MenuScreen extends Component {
                     />
                 )
             }
-        } else {
-            SubRows = () => null
         }
+
         return (
             <View style={styles.container}>
-                <MenuScreenHeader name={this.state.rName}>
+                {/* <MenuScreenHeader name={this.state.rName}>
                     <View style={textBox}>
                         <TextInput
                             //{...props}
@@ -260,20 +262,21 @@ class MenuScreen extends Component {
                     </View>
                     <FlatList
                         contentContainerStyle={{
-                            //flex: 1,
+                            flex: 1,
+                            height: 40,
                             alignItems: "center",
                             flexDirection: 'row',
-                            justifyContent: 'flex-start'
+                            justifyContent: 'space-around',
+                            backgroundColor: 'red'
                         }}
                         // scrollEnabled={false}
-                        style={categories}
                         automaticallyAdjustContentInsets={true}
                         showsHorizontalScrollIndicator={false}
                         horizontal={true}
                         data={this.categories}
                         renderItem={({ item }) =>
                             <TouchableOpacity
-                                style={categoryButton}
+                                style={category}
                                 onPress={() => this.setCategory(item.mcid)}>
                                 <Text
                                     allowFontScaling={false}
@@ -285,7 +288,94 @@ class MenuScreen extends Component {
                         keyExtractor={(item) => item.mcid.toString()}
                     />
                     <SubRows />
-                </MenuScreenHeader>
+                </MenuScreenHeader> */}
+                <SafeAreaView style={{
+                    backgroundColor: '#FFFFFF',
+                    flexDirection: 'column',
+                    justifyContent: 'space-around',
+                    marginBottom: 5,
+                    padding: 5
+                    //flex: 1,
+                }}>
+                    <View
+                        style={{
+                            flexDirection: 'row',
+                            //backgroundColor: 'blue',
+                        }}
+                    >
+                        <TouchableOpacity
+                            style={icon}
+                            onPress={() => this.props.navigation.navigate("Discover")}>
+                            <Icon
+                                name="md-arrow-round-back"
+                                size={35}
+                                color="rgba(0,0,0,0.7)"
+                            />
+                        </TouchableOpacity>
+                        <View style={{
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}>
+                            <Text
+                                style={{
+                                    fontSize: 25,
+                                    fontWeight: 'bold',
+                                    //backgroundColor: 'red',
+                                }}
+                                allowFontScaling={false}>
+                                {this.state.rName}</Text>
+                        </View>
+                    </View>
+                    <View
+                        style={{
+                            flexDirection: 'row',
+                            backgroundColor: Colours.bgColor,
+                            margin: 10,
+                            borderRadius: 10
+                        }}>
+                        <View style={icon}>
+                            <Icon
+                                name="ios-search"
+                                size={25}
+                                color="rgba(0,0,0,0.7)"
+                            />
+                        </View>
+                        <TextInput
+                            value={this.state.searchValue}
+                            style={textInput}
+                            placeholder="Search here"
+                            onChangeText={this.handleChangeText}
+                        />
+                    </View>
+                    <View>
+                        <FlatList
+                            contentContainerStyle={{
+                                flex: 1,
+                                height: 40,
+                                alignItems: "center",
+                                flexDirection: 'row',
+                                justifyContent: 'space-around',
+                            }}
+                            // scrollEnabled={false}
+                            automaticallyAdjustContentInsets={true}
+                            showsHorizontalScrollIndicator={false}
+                            horizontal={true}
+                            data={this.categories}
+                            renderItem={({ item }) =>
+                                <TouchableOpacity
+                                    style={category}
+                                    onPress={() => this.setCategory(item.mcid)}>
+                                    <Text
+                                        allowFontScaling={false}
+                                        style={this.state.selectedCategory == item.mcid ? activeCategory : category}
+                                    >
+                                        {item.categoryName}</Text>
+                                </TouchableOpacity>
+                            }
+                            keyExtractor={(item) => item.mcid.toString()}
+                        />
+                    </View>
+                </SafeAreaView>
                 <FoodItemList
                     reload={() => this.reload()}
                     data={this.state.menu}
@@ -306,6 +396,8 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: "rgba(0,0,0,0.5)",
         fontWeight: '700',
+        //marginHorizontal: 5,
+        // backgroundColor: Colours.textColor
         // padding: 10,
         // borderRadius: 20,
         // borderWidth: 1,
@@ -347,20 +439,22 @@ const styles = StyleSheet.create({
     textBox: {
         flex: 1,
         padding: 5,
-        marginHorizontal: 8,
+        margin: 10,
+        //marginHorizontal: 8,
         borderRadius: 12,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.2,
         shadowRadius: 2,
-        elevation: 5,
-        backgroundColor: 'white'
+        elevation: 5
     },
     textInput: {
         flex: 1,
         fontWeight: '800',
         fontSize: 15,
-        padding: 10
+        padding: 5,
+        margin: 0,
+        //backgroundColor: "red"
     },
     categoryButton: {
         backgroundColor: 'white',
@@ -373,6 +467,17 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         elevation: 5,
         //borderRadius: 10,
+    },
+    categoryButtonSmall: {
+        backgroundColor: 'red',
+        padding: 5,
+        borderRadius: 10,
+        marginHorizontal: 5,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.2,
+        shadowRadius: 2,
+        elevation: 5,
     },
     activeCategoryButton: {
         backgroundColor: Colours.tintColour,
@@ -389,12 +494,17 @@ const styles = StyleSheet.create({
         //backgroundColor: 'red',
         flex: 1,
         flexDirection: 'column',
-        alignItems: "center"
+        alignItems: "center",
     },
-    backButton: {
+    rowItem: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    icon: {
         justifyContent: 'center',
         alignItems: 'center',
         width: 50,
-        height: 50
+        height: 50,
+        //backgroundColor: 'pink'
     },
 });

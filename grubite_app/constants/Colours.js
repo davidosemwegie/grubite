@@ -7,6 +7,7 @@ const bgColor = "#F7F7F7";
 //const tintColour = '#fd79a8';
 //const tintColour = '#082B5A';
 const tintColour = "#000000"
+const textColor = "#2C2C2C"
 //const mainColour = '#FEA8C6'
 
 /* GREEN COLOR PALETTE */
@@ -18,6 +19,7 @@ export default {
   //mainColour,
   bgColor,
   tintColour,
+  textColor,
   tabIconDefault: '#ccc',
   tabIconSelected: tintColour,
   tabBar: '#fefefe',

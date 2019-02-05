@@ -18,6 +18,11 @@
     margin-right: 1em;
 }
 
+#newSubCategoryInput[type=text] {
+    width: 20em;
+    padding: 0.8em;
+}
+
 /* .addSubButton {
     border: none;
     text-align: center;

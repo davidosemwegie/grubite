@@ -41,11 +41,8 @@ export default withNavigation(MenuScreenHeader);
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: "column"
-        //height: 180,
-        //alignItems: 'center',
-        //backgroundColor: "#E4E4E4",
-        //backgroundColor: Colours.mainColour
+        flexDirection: "column",
+        justifyContent: 'space-around'
     },
     nameContainer: {
         //height: 50, 

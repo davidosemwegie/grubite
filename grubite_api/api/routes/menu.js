@@ -11,12 +11,12 @@ router.get('/', (req, res, next) => {
     con.query(q, (error, rows, fields) => {
         if (error) {
             //if we get an error, log the error in the console
-            return res.send(error)   
+            return res.send(error)
         } else {
             return res.json({
                 rows
             })
-        } 
+        }
     })
 })
 
@@ -25,16 +25,16 @@ router.get('/getMenuItems/:roid', (req, res, next) => {
     const roid = req.params.roid
 
     const query = "select * from FoodItem where roid = ?"
-    
+
     con.query(query, [roid], (error, rows, fields) => {
         if (error) {
             //if we get an error, log the error in the console
-            return res.send(error)   
+            return res.send(error)
         } else {
             return res.json({
                 rows
             })
-        } 
+        }
     })
 })
 
@@ -44,16 +44,16 @@ router.get('/getMenuItems/:roid/:mcid', (req, res, next) => {
     const mcid = req.params.mcid
 
     const query = "select * from FoodItem where roid = ? and mcid = ?"
-    
+
     con.query(query, [roid, mcid], (error, rows, fields) => {
         if (error) {
             //if we get an error, log the error in the console
-            return res.send(error)   
+            return res.send(error)
         } else {
             return res.json({
                 rows
             })
-        } 
+        }
     })
 })
 
@@ -67,12 +67,37 @@ router.get('/getSubCategories/:roid/:mcid/', (req, res, next) => {
     con.query(query, [roid, mcid], (error, rows, fields) => {
         if (error) {
             //if we get an error, log the error in the console
-            return res.send(error)   
+            return res.send(error)
         } else {
             return res.json({
                 rows
             })
-        } 
+        }
+    })
+})
+
+/* ADD NEW SUB CATEGORY */
+router.post('/addSubCategory', (req, res) => {
+
+    const mcid = req.body.mcid
+    const subCategoryName = req.body.subCategoryName
+    const roid = req.body.roid
+
+    //res.send(subCategoryName)
+
+    //res.send("This route works")
+
+    const query = 'insert into SubCategory (mcid, roid, subCategoryName) values (?, ?, ?)'
+
+    con.query(query, [mcid, roid, subCategoryName], (error, rows, fields) => {
+        if (error) {
+            //if we get an error, log the error in the console
+            return res.send(error)
+        } else {
+            return res.json({
+                rows
+            })
+        }
     })
 })
 
@@ -83,16 +108,16 @@ router.get('/getMenuItems/:roid/:mcid/:subCategoryId', (req, res, next) => {
     const subCategoryId = req.params.subCategoryId
 
     const query = "select * from FoodItem where roid = ? and mcid = ? and subCategoryId = ?"
-    
+
     con.query(query, [roid, mcid, subCategoryId], (error, rows, fields) => {
         if (error) {
             //if we get an error, log the error in the console
-            return res.send(error)   
+            return res.send(error)
         } else {
             return res.json({
                 rows
             })
-        } 
+        }
     })
 })
 
@@ -108,27 +133,27 @@ router.get('/search/:roid/:value', (req, res, next) => {
         con.query(query, [roid], (error, rows, fields) => {
             if (error) {
                 //if we get an error, log the error in the console
-                return res.send(error)   
+                return res.send(error)
             } else {
                 return res.json({
                     rows
                 })
-            } 
+            }
         })
     } else {
         query = "select * from FoodItem where roid = ? and foodName like ? or description like ? or price like ? "
 
-        const search = `%${value}%` 
+        const search = `%${value}%`
 
         con.query(query, [roid, search, search, search], (error, rows, fields) => {
             if (error) {
                 //if we get an error, log the error in the console
-                return res.send(error)   
+                return res.send(error)
             } else {
                 return res.json({
                     rows
                 })
-            } 
+            }
         })
     }
 })

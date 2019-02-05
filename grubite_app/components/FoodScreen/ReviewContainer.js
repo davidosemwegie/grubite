@@ -7,40 +7,9 @@ import {
 } from "react-native";
 import FoodPageSectionHeader from './FoodPageSectionHeader'
 import { withNavigation } from 'react-navigation';
+import Colours from "../../constants/Colours";
 
 class ReviewContainer extends Component {
-
-    constructor() {
-        super()
-    }
-
-    // static navigationOptions = ({ navigation }) => {
-
-    //     let headerTitle = "Nutrition Facts"
-    //     let header
-    //     return {headerTitle}
-
-    //     // return {
-    //     //     title: navigation.getParam('foodName', 'Name of Food'),
-    //     //     headerLeft: (
-    //     //         //<BackButton />
-    //     //         <TouchableOpacity
-    //     //             style={{
-    //     //                 justifyContent: 'center',
-    //     //                 alignItems: 'center',
-    //     //                 width: 50,
-    //     //                 height: 50,
-    //     //             }}
-    //     //             onPress={() => navigation.navigate("Menu")}>
-    //     //             <Icon
-    //     //                 name="md-arrow-round-back"
-    //     //                 size={35}
-    //     //                 color="rgba(0,0,0,0.7)"
-    //     //             />
-    //     //         </TouchableOpacity>
-    //     //     )
-    //     // };
-    // };
 
     render() {
 
@@ -48,26 +17,26 @@ class ReviewContainer extends Component {
             topSection,
             leaveReviewButton,
             averageRatingSection,
-            allReviewsButton } = styles
+            allReviewsButton,
+            card,
+            cardText } = styles
 
         return (
             <View style={container}>
                 <View style={topSection}>
-                    <View style={averageRatingSection}>
-                        <Text>Average Rating</Text>
+                    <View style={card}>
+                        <Text style={cardText} allowFontScaling={false}>Average Rating</Text>
                     </View>
                     <TouchableOpacity
                         onPress={this.props.viewReviews}
-                        //onPress={() => this.props.navigation.navigate('ReviewsScreen')}
-                        //onPressIn={console.log("Revies PRessed")}
-                        style={allReviewsButton}
+                        style={card}
                     >
-                        <Text>See all</Text>
-                        <Text>Reviews</Text>
+                        <Text style={cardText} allowFontScaling={false}>See all</Text>
+                        <Text style={cardText} allowFontScaling={false}>Reviews</Text>
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={leaveReviewButton}>
-                    <Text>Leave a Review</Text>
+                <TouchableOpacity style={card}>
+                    <Text style={cardText} allowFontScaling={false}>Leave a Review</Text>
                 </TouchableOpacity>
             </View>
         );
@@ -82,25 +51,33 @@ const styles = StyleSheet.create({
     },
     topSection: {
         flex: 2,
-        backgroundColor: 'pink',
         flexDirection: 'row',
     },
-    averageRatingSection: {
+    card: {
         flex: 1,
-        backgroundColor: 'blue',
+        backgroundColor: 'white',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.2,
+        shadowRadius: 2,
+        elevation: 5,
+        margin: 2,
+        borderRadius: 2,
+        justifyContent: 'center',
         alignItems: 'center',
-        justifyContent: 'center'
+    },
+    cardText: {
+        fontSize: 20,
+        fontWeight: '700',
+        color: Colours.textColor
+    },
+    averageRatingSection: {
+
     },
     allReviewsButton: {
-        flex: 1,
-        backgroundColor: 'yellow',
-        alignItems: 'center',
-        justifyContent: 'center'
+
     },
     leaveReviewButton: {
-        flex: 1,
-        backgroundColor: 'red',
-        alignItems: 'center',
-        justifyContent: 'center'
+
     }
 });

@@ -17,13 +17,14 @@ export default class MenuTable extends Component {
         super(props);
 
         this.state = {
-            selectedCategory: null,
+            //selectedCategory: null,
             Menu: JSON.parse(sessionStorage.getItem('menu')),
             mcid: null,
             showSubBar: false,
             subCategories: [],
             subCategoryId: null,
-            searchValue : ""
+            searchValue: "",
+            newSubCategory: ''
         }
 
         this.setCategory = this.setCategory.bind(this)
@@ -33,13 +34,14 @@ export default class MenuTable extends Component {
         this.handleSearchInputChange = this.handleSearchInputChange.bind(this)
         this.componentDidMount = this.componentDidMount.bind(this)
         this.setUpCategory = this.setUpCategory.bind(this)
-        this.handleChange = this.handleChange.bind(this)
+        this.handleNewSubCategoryChange = this.handleNewSubCategoryChange.bind(this)
         this.search = this.search.bind(this)
+        this.addSubCategory = this.addSubCategory.bind(this)
     }
 
     //This is the function that is going to be called when a value is changed
 
-    handleChange(event){
+    handleSearchInputChange(event) {
         const target = event.target;
         const value = target.value;
         const name = target.name;
@@ -49,10 +51,43 @@ export default class MenuTable extends Component {
         this.setState({
             searchValue: value
         }, () => {
-            const {searchValue} = this.state
+            const { searchValue } = this.state
             console.log(searchValue)
             this.search(searchValue)
         });
+
+    }
+
+    handleNewSubCategoryChange(event) {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+
+        this.setState({
+            newSubCategory: value
+        });
+    }
+
+
+    addSubCategory() {
+        const { newSubCategory, mcid } = this.state
+
+        sessionStorage.getItem("roid")
+
+        const data = {
+            mcid,
+            subCategoryName: newSubCategory,
+            roid: sessionStorage.getItem("roid")
+        }
+
+        const url = `${API_URL}/menu/addSubCategory`
+
+        axios.post(url, data)
+            .then(() => {
+                alert(`The ${newSubCategory} sub-Category has been added. This Screen will new-refresh`)
+                window.location.reload();
+            })
+
 
     }
 
@@ -60,46 +95,19 @@ export default class MenuTable extends Component {
         let url = ""
 
         if (value === null || value === "") {
-           url = `${API_URL}/menu/getMenuItems/${roid}`
-       } else {
-           url = `${API_URL}/menu/search/${roid}/${value}`
-       }
-       
-        axios.get(url)
-           .then(res => {
-               this.setState({Menu: res.data.rows})
-           })
-           .catch(function (error) {
-               console.log(error);
-           });
-
-    }
-
-    handleSearchInputChange(event) {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-        this.setState({
-            [name]: value
-        });
-
-        const {searchValue} = this.state
-         let url = ""
-         if (searchValue === null) {
             url = `${API_URL}/menu/getMenuItems/${roid}`
         } else {
-            url = `${API_URL}/menu/search/${roid}/${searchValue}`
+            url = `${API_URL}/menu/search/${roid}/${value}`
         }
-        
-         axios.get(url)
+
+        axios.get(url)
             .then(res => {
-                this.setState({Menu: res.data.rows})
+                this.setState({ Menu: res.data.rows })
             })
             .catch(function (error) {
                 console.log(error);
             });
 
-        //console.log(searchValue)
     }
 
 
@@ -183,55 +191,23 @@ export default class MenuTable extends Component {
         let subBar = null
 
         if (showSubBar && mcid !== null) {
-            subBar = <SubBar category={mcid} subCategories={subCategories} setSubCategory={this.setUpCategory} />
+            subBar = <SubBar
+                category={mcid}
+                subCategories={subCategories}
+                setSubCategory={this.setUpCategory}
+                addNewSubCategoryInput={this.handleNewSubCategoryChange}
+                addNewSubCategory={this.addSubCategory}
+            />
         }
 
         return (
             <div>
-                <MenuBar setCategory={this.setCategory} onChange={this.handleChange} />
+                <MenuBar setCategory={this.setCategory} onChange={this.handleSearchInputChange} />
                 {subBar}
                 <div className="menuTableContainer">
                     <div className='addItemButtonContainer'>
                         {/* <AddItemButton /> */}
                     </div>
-                    {/* <ReactTable
-                data={Menu}
-                columns = {[
-                    {
-                        Header: "Name",
-                        accessor: "foodName"
-                    },
-                    {
-                        Header: "Description",
-                        accessor: "description"
-                    },
-                    {
-                        Header: "Price",
-                        accessor: "price"
-                    },
-                ]}
-                defaultPageSize={10}
-                /> */}
-                    {/* <Table responsive>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                Menu.map((food) => (
-                                    <tr key={food.foodId}>
-                                        <td>{food.foodName}</td>
-                                        <td>{food.description}</td>
-                                        <td>${food.price}</td>
-                                    </tr>
-                                ))
-                            }
-                        </tbody>
-                    </Table> */}
                     <Table data={Menu} />
                 </div>
             </div>
