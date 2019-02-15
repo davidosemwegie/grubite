@@ -49,7 +49,6 @@ const FoodItemCard = (props) => {
         } catch (error) {
             alert("Something went wrong. Please try again")
         }
-
     }
 
     const { container, name, price, description, image, imageContainer, textContainer, namePriceContainer, bottomRow, imageBox } = styles
@@ -84,7 +83,7 @@ const FoodItemCard = (props) => {
                         ratingColor='#3498db'
                         ratingBackgroundColor='#c8c7c8'
                     />
-                    <TouchableOpacity
+                    {/* <TouchableOpacity
                         //onPress={() => this.saveButton(props.foodId)}
                         onPress={props.saveButton}
                     >
@@ -92,7 +91,7 @@ const FoodItemCard = (props) => {
                             name={props.saved ? 'heart' : 'hearto'}
                             size={24}
                         />
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                 </View>
             </View>
         </TouchableOpacity>

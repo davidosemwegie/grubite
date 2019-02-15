@@ -8,35 +8,33 @@ import {
 import Colours from "../../constants/Colours";
 import Icon from 'react-native-vector-icons/AntDesign'
 
-class ActionsContainer extends Component {
-    render() {
+const ActionsContainer = (props) => {
 
-        const { container,
-            viewNutritionButton,
-            bottomSection,
-            saveButton,
-            shareButton,
-            card,
-            cardText } = styles
+    const { container,
+        viewNutritionButton,
+        bottomSection,
+        saveButton,
+        shareButton,
+        card,
+        cardText } = styles
 
-        return (
-            <View style={container}>
-                <TouchableOpacity
-                    onPress={this.props.showNutrition}
-                    style={card}>
-                    <Text style={cardText} allowFontScaling={false}>View Nutritional Info</Text>
+    return (
+        <View style={container}>
+            <TouchableOpacity
+                onPress={props.showNutrition}
+                style={card}>
+                <Text style={cardText} allowFontScaling={false}>View Nutritional Info</Text>
+            </TouchableOpacity>
+            <View style={bottomSection}>
+                <TouchableOpacity style={card} onPress={props.saveAction}>
+                    <Text style={cardText} allowFontScaling={false}>Save</Text>
                 </TouchableOpacity>
-                <View style={bottomSection}>
-                    <TouchableOpacity style={card}>
-                        <Text style={cardText} allowFontScaling={false}>Save</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={card}>
-                        <Text style={cardText} allowFontScaling={false}>Share</Text>
-                    </TouchableOpacity>
-                </View>
+                <TouchableOpacity style={card}>
+                    <Text style={cardText} allowFontScaling={false}>Share</Text>
+                </TouchableOpacity>
             </View>
-        );
-    }
+        </View>
+    );
 }
 export default ActionsContainer;
 

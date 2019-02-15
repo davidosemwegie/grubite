@@ -1,50 +1,94 @@
+// import React, { Component } from "react";
+// import {
+//     View,
+//     Text,
+//     StyleSheet,
+//     Button,
+//     AsyncStorage,
+//     TextInput,
+//     ImageBackground,
+//     KeyboardAvoidingView
+// } from "react-native";
+// import { LinearGradient } from 'expo'
+// import LoginForm from '../components/Login/LoginForm'
+
+// class LoginScreen extends Component {
+
+//     render() {
+//         return (
+
+//             <ImageBackground
+//                 source={require('../assets/bg2.jpg')}
+//                 style={styles.fill}>
+//                 <KeyboardAvoidingView style={styles.loginBox} behavior="padding">
+//                     <LoginForm />
+//                 </KeyboardAvoidingView>
+
+//             </ImageBackground>
+//         );
+//     }
+// }
+// export default LoginScreen;
+
+// const styles = StyleSheet.create({
+//     fill: {
+//         flex: 1,
+//     },
+//     loginBox: {
+//         flex: 1,
+//         justifyContent: 'flex-end',
+//         marginBottom: 180,
+
+//     }
+// });
+
 import React, { Component } from "react";
 import {
     View,
     Text,
     StyleSheet,
-    Button,
-    AsyncStorage,
-    TextInput,
-    ImageBackground,
-    KeyboardAvoidingView
+    TouchableOpacity
 } from "react-native";
-import { LinearGradient } from 'expo'
-import LoginForm from '../components/Login/LoginForm'
+import AuthForm from '../components/Auth/AuthForm'
+import AuthInput from '../components/Auth/AuthInput'
+import LoginButton from '../components/Auth/LoginButton'
 
 class LoginScreen extends Component {
 
     render() {
-        return (
-            // <View style={styles.container}>
-            //     <LoginForm />
-            // </View>
-            <ImageBackground
-                source={require('../assets/bg2.jpg')}
-                style={styles.fill}>
-                {/* <LinearGradient 
-                colors={['rgba(253,121,168, 0.7)', 'rgba(0,0,0, 0.7)']}
-                style={styles.fill}>
-                    <LoginForm />
-                </LinearGradient> */}
-                <KeyboardAvoidingView style={styles.loginBox} behavior="padding">
-                    <LoginForm />
-                </KeyboardAvoidingView>
 
-            </ImageBackground>
+        const { container, forgotPasswordText, forgotPasswordButton } = styles
+
+        return (
+            <View style={container}>
+                <AuthForm formTitle="LOG IN">
+                    <AuthInput placeholder="email / username" />
+                    <AuthInput placeholder="password" />
+                    <TouchableOpacity style={forgotPasswordButton}>
+                        <Text style={forgotPasswordText} allowFontScaling={false}>FORGOT PASSWORD?</Text>
+                    </TouchableOpacity>
+                    <LoginButton />
+                </AuthForm>
+            </View>
         );
     }
 }
 export default LoginScreen;
 
 const styles = StyleSheet.create({
-    fill: {
+    container: {
         flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#F5F5F5'
     },
-    loginBox: {
-        flex: 1,
+    forgotPasswordButton: {
+        flexDirection: 'row',
         justifyContent: 'flex-end',
-        marginBottom: 180,
-    
+    },
+    forgotPasswordText: {
+        fontSize: 12,
+        fontWeight: '700',
+        marginVertical: 10,
     }
 });

@@ -107,7 +107,7 @@ router.post('/save', (req, res) => {
             return res.send(error)
         } else {
             return res.json({
-                rows
+                message: "This item as successfully been added to your saved list"
             })
         }
     })
@@ -165,7 +165,7 @@ router.get('/menu/:roid/:uid/:value', (req, res) => {
 router.get('/saved/:uid', (req, res) => {
     const uid = req.params.uid
 
-    const query = `select S.foodId, foodName, price, rName 
+    const query = `select S.foodId, image, foodName, price, rName 
                     from Saved as S, FoodItem as F, Restaurant as R
                     where S.foodId = F.foodId and F.roid = R.roid and S.uid = ?`
 

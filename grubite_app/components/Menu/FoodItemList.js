@@ -4,7 +4,8 @@ import {
     Text,
     StyleSheet,
     FlatList,
-    AsyncStorage
+    AsyncStorage,
+    ActivityIndicator
 } from "react-native";
 import FoodItemCard from './FoodItemCard'
 import { api_url } from '../../backend/functions'
@@ -23,8 +24,23 @@ class FoodItemList extends Component {
     constructor() {
         super();
         this.state = {
-            showButton: false
+            showButton: false,
+            uid: null,
+            refreshing: false
         };
+    }
+
+    componentDidMount = async () => {
+        try {
+            const userToken = await AsyncStorage.getItem('userToken');
+            if (userToken !== null) {
+                const uid = JSON.parse(userToken).uid
+
+                this.setState({uid})
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     saveButtonPressed = async (foodId) => {
@@ -82,13 +98,21 @@ class FoodItemList extends Component {
                             saved={item.saved}
                             id={item.foodId}
                             saveButton={() => this.saveButtonPressed(item.foodId)}
+                            refreshing={this.state.refreshing}
+                            onRefresh={() => {
+                                this.setState({
+                                    refreshing: true
+                                })
+                            }}
                             //onPress={() => this.showFoodItemPage(item.foodId)}
                             onPress={() => this.props.navigation.navigate('FoodScreen', {
+                                uid: this.state.uid,
                                 foodId: item.foodId,
                                 foodName: item.foodName,
                                 price: item.price,
                                 description: item.description,
-                                foodImage: `${api_url}/images/${item.image}`
+                                foodImage: `${api_url}/images/${item.image}`,
+                                //previousScreen: this.props.s
                             })}
                         //parentUpdate = {this.saveButtonPressed}
                         //saveButton = {this.saveButton}

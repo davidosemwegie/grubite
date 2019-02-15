@@ -12,6 +12,8 @@ app.use(morgan('short'))
 /*Creating the connection to SQL database with a pool to make sure that there are
 not too many connections to the database at the same time.
 */
+
+
 const pool = mysql.createPool({
     connectionLimit: 10,
     host: 'localhost',

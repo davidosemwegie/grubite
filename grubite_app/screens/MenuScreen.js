@@ -65,7 +65,6 @@ class MenuScreen extends Component {
         } else {
             /* INSERT CODE FOR WHEN SOMEONE IS NOT LOGGED IN HERE */
         }
-
     }
 
     search = (searchValue) => {

@@ -10,6 +10,8 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import { withNavigation } from 'react-navigation';
 import Colours from '../constants/Colours'
 import BackButton from '../components/common/BackButton'
+import { api_url } from '../backend/functions'
+import axios from 'axios'
 
 import FoodPageSectionHeader from '../components/FoodScreen/FoodPageSectionHeader'
 import FoodImageContainer from '../components/FoodScreen/FoodImageContainer'
@@ -25,6 +27,7 @@ class FoodItemScreen extends Component {
         super()
 
         this.state = {
+            uid: null,
             foodId: '',
             foodName: '',
             foodImage: 'no image'
@@ -60,11 +63,36 @@ class FoodItemScreen extends Component {
     componentDidMount = () => {
         this.setState(
             {
+                uid: this.props.navigation.getParam('uid', 3),
                 foodId: this.props.navigation.getParam('foodId', 2),
                 foodName: this.props.navigation.getParam('foodName', 'Food Name'),
                 foodImage: this.props.navigation.getParam('foodImage', 'https://grubite-api.appspot.com/images/iceCream.jpg')
             }
         )
+    }
+
+    saveButton = async (foodId) => {
+
+        //alert(`this food id is ${foodId} and the user id ${this.state.uid}`)
+
+        const { uid } = this.state
+
+        url = `${api_url}/mobile/user/save/`
+
+        //alert(url)
+
+        const data = {
+            uid,
+            foodId
+        }
+
+        axios.post(url, data)
+            .then(res => {
+                alert(res.data.message)
+            })
+            .catch(error => {
+                alert(error)
+            })
     }
 
     render() {
@@ -87,6 +115,7 @@ class FoodItemScreen extends Component {
                 <FoodPageSectionHeader sectionHeader="Actions" />
                 <ActionsContainer
                     showNutrition={() => this.props.navigation.navigate('NutritionScreen', foodData)}
+                    saveAction={() => this.saveButton(this.state.foodId)}
                 />
             </View>
         );
