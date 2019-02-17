@@ -47,33 +47,103 @@ import {
     View,
     Text,
     StyleSheet,
-    TouchableOpacity
+    TouchableOpacity,
+    KeyboardAvoidingView,
+    AsyncStorage
 } from "react-native";
+import axios from "axios";
+import { api_url } from '../backend/functions'
+import { withNavigation } from 'react-navigation';
 import AuthForm from '../components/Auth/AuthForm'
 import AuthInput from '../components/Auth/AuthInput'
 import LoginButton from '../components/Auth/LoginButton'
 
 class LoginScreen extends Component {
 
+    constructor() {
+        super()
+
+        //Initializing the state.
+        this.state = {
+            email: "",
+            password: "",
+            userInfo: [],
+            errorMessage: ""
+        }
+    }
+
+    signIn = async () => {
+
+        const { email, password, userInfo } = this.state
+
+        const userData = {}
+        userData.email = email
+        userData.password = password
+        // console.log(`${email} and ${password}`)
+
+        const url = `${api_url}/mobile/user/login`
+
+
+        axios.post(url, userData
+        ).then(async res => {
+            console.log(res)
+            //this.setState({ userInfo: res.data })
+
+            if (typeof (res.data) !== 'undefined') {
+
+                const id = res.data.uid
+                const username = res.data.username
+
+                if (typeof (username) !== 'undefined') {
+                    await AsyncStorage.setItem('userToken', JSON.stringify(res.data))
+
+                    // this.setState({ errorMessage: "" })
+                    this.props.navigation.navigate('App')
+                } else {
+                    this.setState({ errorMessage: "Incorrect Login Information" })
+                }
+            } else {
+                this.setState({ errorMessage: "An Unknown Error occured. Please try again" })
+            }
+        }).catch(error => {
+            console.log(error)
+        });
+
+    }
+
+    handleChangeText = (input) => {
+        this.setState({ input })
+    }
+
     render() {
 
         const { container, forgotPasswordText, forgotPasswordButton } = styles
 
         return (
-            <View style={container}>
+            <KeyboardAvoidingView style={container} behavior="padding" enabled>
                 <AuthForm formTitle="LOG IN">
-                    <AuthInput placeholder="email / username" />
-                    <AuthInput placeholder="password" />
+                    <AuthInput 
+                    value={this.state.email}
+                    placeholder="email"
+                    onChangeText={(email) => this.setState({ email })}
+                    keyboardType = "email-address"
+                    />
+                    <AuthInput 
+                    secureTextEntry
+                    value={this.state.password}
+                    placeholder="password"
+                    onChangeText={(password) => this.setState({ password })}
+                    />
                     <TouchableOpacity style={forgotPasswordButton}>
                         <Text style={forgotPasswordText} allowFontScaling={false}>FORGOT PASSWORD?</Text>
                     </TouchableOpacity>
-                    <LoginButton />
+                    <LoginButton onPress={() => this.signIn()}/>
                 </AuthForm>
-            </View>
+            </KeyboardAvoidingView>
         );
     }
 }
-export default LoginScreen;
+export default withNavigation(LoginScreen);
 
 const styles = StyleSheet.create({
     container: {

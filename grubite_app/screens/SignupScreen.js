@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { 
     View,
     Text,
-    StyleSheet
+    StyleSheet,
+    KeyboardAvoidingView
 } from "react-native";
 import AuthForm from '../components/Auth/AuthForm'
 import AuthInput from '../components/Auth/AuthInput'
@@ -11,7 +12,7 @@ import SignupButton from '../components/Auth/SignupButton'
 class SignupScreen extends Component {
     render() {
         return (
-            <View style={styles.container}>
+            <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
                 <AuthForm formTitle="SIGN UP">
                 <AuthInput placeholder="email"/>
                 <AuthInput placeholder="username"/>
@@ -19,7 +20,7 @@ class SignupScreen extends Component {
                 <AuthInput placeholder="confirm password"/>
                 <SignupButton />
                 </AuthForm>
-            </View>
+            </KeyboardAvoidingView>
         );
     }
 }

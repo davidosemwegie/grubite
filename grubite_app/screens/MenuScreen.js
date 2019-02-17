@@ -345,6 +345,7 @@ class MenuScreen extends Component {
                             placeholder="Search here"
                             onChangeText={this.handleChangeText}
                         />
+                        
                     </View>
                     <View>
                         <FlatList
@@ -388,8 +389,10 @@ export default withNavigation(MenuScreen);
 const styles = StyleSheet.create({
     container: {
         backgroundColor: Colours.bgColor,
+        //backgroundColor: "#FFFFFF",
         flex: 1,
-        flexDirection: 'column'
+        flexDirection: 'column',
+        alignContent: 'center'
     },
     category: {
         fontSize: 20,

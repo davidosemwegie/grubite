@@ -11,6 +11,9 @@ import Icon from 'react-native-vector-icons/AntDesign'
 import { Rating, AirbnbRating } from 'react-native-ratings';
 import { api_url } from '../../backend/functions'
 import axios from "axios";
+import Colours from '../../constants/Colours'
+
+const STAR_IMAGE = require('../../assets/star.png')
 
 const FoodItemCard = (props) => {
 
@@ -51,12 +54,12 @@ const FoodItemCard = (props) => {
         }
     }
 
-    const { container, name, price, description, image, imageContainer, textContainer, namePriceContainer, bottomRow, imageBox } = styles
+    const { container, name, price, description, image, imageContainer, textContainer, namePriceContainer, bottomRow, imageBox, container2 } = styles
 
     return (
         <TouchableOpacity
             onPress={props.onPress}
-            style={container}>
+            style={container2}>
             <View style={imageContainer}>
                 <Image
                     style={image}
@@ -73,14 +76,16 @@ const FoodItemCard = (props) => {
                         style={price}>${props.price}</Text>
                 </View>
                 <Text allowFontScaling={false}
+                    numberOfLines={2}
                     style={description}>{props.description}</Text>
-                <View style = {bottomRow}>
+                <View style={bottomRow}>
                     <Rating
-                        type="star"
+                        type='custom'
+                        ratingImage={STAR_IMAGE}
                         startingValue={3}
-                        imageSize={20}
+                        imageSize={25}
                         readonly={true}
-                        ratingColor='#3498db'
+                        ratingColor= {Colours.tintColour}
                         ratingBackgroundColor='#c8c7c8'
                     />
                     {/* <TouchableOpacity
@@ -101,17 +106,25 @@ export default FoodItemCard;
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         marginBottom: 10,
         borderRadius: 10,
         backgroundColor: "#FFFFFF",
         // backgroundColor: "salmon",
         flexDirection: 'row',
-        width: 400,
+        //width: 400,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 1.5 },
         shadowOpacity: 0.1,
         shadowRadius: 1,
         elevation: 2,
+    },
+    container2: {
+        flex: 1,
+        backgroundColor: "#FFFFFF",
+        flexDirection: 'row',
+        marginVertical: 2,
+        height: 100
     },
     name: {
         fontSize: 18,
@@ -124,11 +137,13 @@ const styles = StyleSheet.create({
         color: "rgba(0,0,0,0.7)"
     },
     description: {
-
+        //backgroundColor: 'salmon',
+        //height: 35
     },
     image: {
         width: 80,
-        height: 80
+        height: 80,
+        borderRadius: 5
     },
     imageContainer: {
         flex: 1,
@@ -155,7 +170,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: "space-between",
     },
-    imageBox : {
+    imageBox: {
         flex: 1,
         backgroundColor: 'pink'
     }

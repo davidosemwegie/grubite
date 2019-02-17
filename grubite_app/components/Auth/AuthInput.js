@@ -28,7 +28,7 @@ const AuthInput = (props) => {
     return (
         <View style={styles.container}>
             <TextInput
-                {...props}
+                {... props}
                 allowFontScaling={false}
                 style={styles.input}
                 placeholder={`${props.placeholder}`}

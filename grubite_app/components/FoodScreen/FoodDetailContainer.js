@@ -5,6 +5,9 @@ import {
     StyleSheet
 } from "react-native";
 import { Rating, AirbnbRating } from 'react-native-ratings';
+import Colours from '../../constants/Colours'
+
+const STAR_IMAGE = require('../../assets/star.png')
 
 const FoodDetailContainer = (props) => {
 
@@ -14,11 +17,12 @@ const FoodDetailContainer = (props) => {
         <View style={container}>
             <Text style={foodNameStyle} allowFontScaling={false}>$30</Text>
             <Rating
-                type="star"
+                type='custom'
+                ratingImage={STAR_IMAGE}
                 startingValue={3}
-                imageSize={20}
+                imageSize={25}
                 readonly={true}
-                ratingColor='#3498db'
+                ratingColor={Colours.tintColour}
                 ratingBackgroundColor='#c8c7c8'
             />
             <Text style={restaurantDetails} allowFontScaling={false}>David's Kitchen</Text>
