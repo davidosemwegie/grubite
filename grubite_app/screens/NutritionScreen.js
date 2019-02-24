@@ -27,12 +27,13 @@ const LineItem = (props) => {
                         fontWeight: '900'
                     }}>{props.text} </Text>
                     <Text>{props.subText}</Text>
-                    <Text>{props.value}</Text>
+                    {/* <Text>{props.value}</Text> */}
                 </View>
                 {/* <Text style={{
                     fontWeight: '900'
                 }}>{props.text}</Text> */}
-                <Text>{props.percentage}</Text>
+                {/* <Text>{props.percentage}</Text> */}
+                <Text>{props.value}</Text>
             </View>
         </View>
     )
@@ -45,33 +46,75 @@ const Label = (props) => {
             <Text style={header}>Nutrition Facts</Text>
             <View style={linespace}>
                 <Text>Serving Size</Text>
-                <Text>100 g</Text>
+                <Text>{props.servingSize} g</Text>
             </View>
             <View style={thickLine}></View>
             <Text>Amount Per Serving</Text>
             <View style={linespace}>
                 <Text>Calories</Text>
-                <Text>230</Text>
+                <Text>{props.calories}</Text>
             </View>
-            <LineItem text={`Total Fat`} value={`${8}g`} percentage={`${12}%`} />
-            <LineItem subText={`    Saturated Fat `} value={`${5}g`} percentage={`${5}%`} />
-            <LineItem subText={`    Trans Fat `} value={`${0}g`} />
-            <LineItem text={`Cholestorl`} value={`${0}mg`} percentage={`${0}%`} />
-            <LineItem text={`Sodium`} value={`${160}mg`} percentage={`${7}%`} />
-            <LineItem text={`Total Carbohydrate`} value={`${37}g`} percentage={`${12}%`} />
-            <LineItem subText={`    Dietary Fiber Fat `} value={`${4}g`} percentage={`${16}%`} />
-            <LineItem subText={`    Sugar `} value={`${1}g`} />
-            <LineItem text={`Protein`} value={`${3}g`} />
-            <LineItem text={`Vitamin A`} value={`${2}mg`} percentage={`${10}%`} />
-            <LineItem text={`Vitamin C`} value={`${260}mg`} percentage={`${8}%`} />
-            <LineItem text={`Calcium`} value={`${135}mg`} percentage={`${20}%`} />
-            <LineItem text={`Iron`} value={`${235}mg`} percentage={`${45}%`} />
+            <LineItem text={`Total Fat`} value={`${props.totalFat}g`} percentage={`${12}%`} />
+            <LineItem subText={`    Saturated Fat `} value={`${props.saturatedFat}g`} percentage={`${5}%`} />
+            <LineItem subText={`    Trans Fat `} value={`${props.transFat}g`} />
+            <LineItem text={`Cholesterol`} value={`${props.cholesterol}mg`} percentage={`${0}%`} />
+            <LineItem text={`Sodium`} value={`${props.sodium}mg`} percentage={`${7}%`} />
+            <LineItem text={`Total Carbohydrate`} value={`${props.totalCarbohydrates}g`} percentage={`${12}%`} />
+            <LineItem subText={`    Dietary Fiber Fat `} value={`${props.fibre}g`} percentage={`${16}%`} />
+            <LineItem subText={`    Sugar `} value={`${props.sugar}g`} />
+            <LineItem text={`Protein`} value={`${props.protein}g`} />
+            <LineItem text={`Vitamin A`} value={`${props.vitaminA}mg`} percentage={`${10}%`} />
+            <LineItem text={`Vitamin C`} value={`${props.vitaminC}mg`} percentage={`${8}%`} />
+            <LineItem text={`Calcium`} value={`${props.calcium}mg`} percentage={`${20}%`} />
+            <LineItem text={`Iron`} value={`${props.iron}mg`} percentage={`${45}%`} />
             <View style={thickLine}></View>
         </View>
     )
 }
 
 class NutritionScreen extends Component {
+
+    constructor() {
+        super()
+
+        this.state = {
+            calories: 0,
+            servingSize: 0,
+            totalFat: 0,
+            saturatedFat: 0,
+            transFat: 0,
+            cholesterol: 0,
+            sodium: 0,
+            totalCarbohydrates: 0,
+            fibre: 0,
+            sugar: 0,
+            protein: 0,
+            vitaminA: 0,
+            vitaminC: 0,
+            calcium: 0,
+            iron: 0
+        }
+    }
+
+    componentDidMount() {
+        this.setState({
+            calories: this.props.navigation.getParam('calories', 'N/A'),
+            servingSize: this.props.navigation.getParam('servingSize', 'N/A'),
+            saturatedFat: this.props.navigation.getParam('saturatedFat', 'N/A'),
+            totalFat: this.props.navigation.getParam('totalFat', 'N/A'),
+            transFat: this.props.navigation.getParam('transFat', 'N/A'),
+            cholesterol: this.props.navigation.getParam('cholesterol', 'N/A'),
+            sodium: this.props.navigation.getParam('sodium', 'N/A'),
+            totalCarbohydrates: this.props.navigation.getParam('totalCarbohydrates', 'N/A'),
+            fibre: this.props.navigation.getParam('fibre', 'N/A'),
+            sugar: this.props.navigation.getParam('sugar', 'N/A'),
+            protein: this.props.navigation.getParam('protein', 'N/A'),
+            vitaminA: this.props.navigation.getParam('vitaminA', 'N/A'),
+            vitaminC: this.props.navigation.getParam('vitaminC', 'N/A'),
+            calcium: this.props.navigation.getParam('calcium', 'N/A'),
+            iron: this.props.navigation.getParam('iron', 'N/A')
+        })
+    }
 
     static navigationOptions = ({ navigation }) => {
 
@@ -93,7 +136,7 @@ class NutritionScreen extends Component {
                         <Icon
                             name="md-arrow-round-back"
                             size={35}
-                            color= {Colours.tintColor}
+                            color={Colours.tintColor}
                         />
                     </TouchableOpacity>
                 </View>
@@ -103,9 +146,44 @@ class NutritionScreen extends Component {
 
     render() {
         const { container, border, header } = styles
+
+        const {
+            calories,
+            servingSize,
+            totalFat,
+            saturatedFat,
+            transFat,
+            cholesterol,
+            sodium,
+            totalCarbohydrates,
+            fibre,
+            sugar,
+            protein,
+            vitaminA,
+            vitaminC,
+            calcium,
+            iron
+        } = this.state
+
         return (
             <View style={container}>
-                <Label />
+                <Label
+                    calories={calories}
+                    servingSize={servingSize}
+                    totalFat={totalFat}
+                    saturatedFat={saturatedFat}
+                    transFat={transFat}
+                    cholesterol={cholesterol}
+                    sodium={sodium}
+                    totalCarbohydrates={totalCarbohydrates}
+                    fibre={fibre}
+                    sugar={sugar}
+                    protein={protein}
+                    vitaminA={vitaminA}
+                    vitaminC={vitaminC}
+                    calcium={calcium}
+                    iron={iron}
+                />
             </View>
         );
     }
@@ -122,9 +200,12 @@ const styles = StyleSheet.create({
     border: {
         //width: 375,
         // height: 600,
+        flex: 0.7,
+        justifyContent: 'space-between',
+        flexDirection: 'column',
         borderWidth: 2,
         borderColor: 'black',
-        padding: 7.5,
+        padding: 10,
         backgroundColor: 'white',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },

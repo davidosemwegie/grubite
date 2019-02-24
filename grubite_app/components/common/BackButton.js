@@ -2,6 +2,7 @@ import React from 'react';
 import { TouchableOpacity, StyleSheet } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons'
+import Colours from '../../constants/Colours';
 
 const BackButton = ({navigation}) => {
 
@@ -12,7 +13,7 @@ const BackButton = ({navigation}) => {
             <Icon
                 name="md-arrow-round-back"
                 size={35}
-                color="rgba(0,0,0,0.7)"
+                color={Colours.tintColour}
             />
         </TouchableOpacity>
     )

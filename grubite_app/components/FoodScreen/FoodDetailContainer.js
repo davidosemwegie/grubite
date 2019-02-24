@@ -15,7 +15,7 @@ const FoodDetailContainer = (props) => {
 
     return (
         <View style={container}>
-            <Text style={foodNameStyle} allowFontScaling={false}>$30</Text>
+            <Text style={foodNameStyle} allowFontScaling={false}>${props.price}</Text>
             <Rating
                 type='custom'
                 ratingImage={STAR_IMAGE}

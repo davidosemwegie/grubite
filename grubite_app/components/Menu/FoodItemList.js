@@ -163,8 +163,7 @@ class FoodItemList extends Component {
                                 foodName: item.foodName,
                                 price: item.price,
                                 description: item.description,
-                                foodImage: `${api_url}/images/${item.image}`,
-                                //previousScreen: this.props.s
+                                foodImage: `${api_url}/images/${item.image}`
                             })}
                         //parentUpdate = {this.saveButtonPressed}
                         //saveButton = {this.saveButton}

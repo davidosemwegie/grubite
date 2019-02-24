@@ -29,7 +29,7 @@ import { black } from 'ansi-colors';
 
 
 const AuthStackNavigator = createStackNavigator({
-  //Welcome: WelcomeScreen,
+  Welcome: WelcomeScreen,
   LogIn: LoginScreen,
   SignUp: SignupScreen
 },
@@ -41,7 +41,7 @@ const AuthStackNavigator = createStackNavigator({
   })
 
 const FoodScreenStackNavigator = createStackNavigator({
-  FoodScreen: FoodItemScreen,
+  //FoodScreen: FoodItemScreen,
   ReviewsScreen: ReviewsScreen,
   NutritionScreen: NutritionScreen
 })

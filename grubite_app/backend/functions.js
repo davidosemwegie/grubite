@@ -6,8 +6,8 @@
 
 //export const api_url="https://grubite-api.appspot.com"
 
-//sexport const api_url="https://grub-the-api.herokuapp.com"
+export const api_url="https://grub-the-api.herokuapp.com"
 
-export const api_url="https://96c96c3b.ngrok.io"
+//export const api_url="https://96c96c3b.ngrok.io"
 
 //export const api_url = "http://1e99a139.ngrok.io"

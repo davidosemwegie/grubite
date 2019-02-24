@@ -30,7 +30,8 @@ class FoodItemScreen extends Component {
             uid: null,
             foodId: '',
             foodName: '',
-            foodImage: 'no image'
+            foodImage: 'no image',
+            price: ''
         }
     }
 
@@ -64,9 +65,10 @@ class FoodItemScreen extends Component {
         this.setState(
             {
                 uid: this.props.navigation.getParam('uid', 3),
+                price: this.props.navigation.getParam('price', 20),
                 foodId: this.props.navigation.getParam('foodId', 2),
                 foodName: this.props.navigation.getParam('foodName', 'Food Name'),
-                foodImage: this.props.navigation.getParam('foodImage', 'https://grubite-api.appspot.com/images/iceCream.jpg')
+                foodImage: this.props.navigation.getParam('foodImage', 'https://grub-the-api.herokuapp.com/images/iceCream.jpg')
             }
         )
     }
@@ -97,16 +99,39 @@ class FoodItemScreen extends Component {
 
     render() {
 
-        const { foodName, foodImage, foodId } = this.state
+        const { foodName,
+            foodImage,
+            foodId,
+            price } = this.state
 
         const foodData = {
             foodName: foodName,
             foodId: foodId
         }
 
+        const nutritionData = {
+            foodName: foodName,
+            foodId: foodId,
+            calories: 0,
+            servingSize: 0,
+            totalFat: 0,
+            saturatedFat: 0,
+            transFat: 0,
+            cholesterol: 0,
+            sodium: 0,
+            totalCarbohydrates: 0,
+            fibre: 0,
+            sugar: 0,
+            protein: 0,
+            vitaminA: 0,
+            vitaminC: 0,
+            calcim: 0,
+            iron: 0
+        }
+
         return (
             <View style={styles.container}>
-                <FoodDetailContainer foodName={foodName} />
+                <FoodDetailContainer foodName={foodName} price={price} />
                 <FoodImageContainer image={foodImage} />
                 <FoodPageSectionHeader sectionHeader="Reviews" />
                 <ReviewContainer
@@ -114,7 +139,7 @@ class FoodItemScreen extends Component {
                 />
                 <FoodPageSectionHeader sectionHeader="Actions" />
                 <ActionsContainer
-                    showNutrition={() => this.props.navigation.navigate('NutritionScreen', foodData)}
+                    showNutrition={() => this.props.navigation.navigate('NutritionScreen', nutritionData)}
                     saveAction={() => this.saveButton(this.state.foodId)}
                 />
             </View>
