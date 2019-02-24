@@ -22,6 +22,7 @@ import MenuScreen from './screens/MenuScreen'
 import FoodItemScreen from './screens/FoodItemScreen'
 import ReviewsScreen from './screens/ReviewsScreen'
 import NutritionScreen from './screens/NutritionScreen'
+import CreateReviewScreen from './screens/CreateReviewScreen'
 
 
 import Colour from './constants/Colours'
@@ -41,14 +42,15 @@ const AuthStackNavigator = createStackNavigator({
   })
 
 const FoodScreenStackNavigator = createStackNavigator({
-  //FoodScreen: FoodItemScreen,
+  FoodScreen: FoodItemScreen,
   ReviewsScreen: ReviewsScreen,
-  NutritionScreen: NutritionScreen
+  NutritionScreen: NutritionScreen,
+  CreateReviewScreen: CreateReviewScreen
 })
 
 const MenuStackNavigator = createStackNavigator({
   //Search: SearchScreen,
-  //Menu: MenuScreen,
+  Menu: MenuScreen,
   FoodScreen: FoodScreenStackNavigator
 },
   {
@@ -62,7 +64,7 @@ const MenuStackNavigator = createStackNavigator({
 // })
 
 const DiscoverStackNavigator = createStackNavigator({
-  //Discover: Discover,
+  Discover: Discover,
   Menu: MenuStackNavigator,
   //FoodScreen: FoodScreenStackNavigator,
   // FoodItemScreen: {

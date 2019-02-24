@@ -136,6 +136,7 @@ class FoodItemScreen extends Component {
                 <FoodPageSectionHeader sectionHeader="Reviews" />
                 <ReviewContainer
                     viewReviews={() => this.props.navigation.navigate('ReviewsScreen', foodData)}
+                    createReview={() => this.props.navigation.navigate('CreateReviewScreen')}
                 />
                 <FoodPageSectionHeader sectionHeader="Actions" />
                 <ActionsContainer

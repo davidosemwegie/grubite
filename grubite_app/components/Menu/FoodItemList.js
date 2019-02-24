@@ -26,9 +26,11 @@ class FoodItemList extends Component {
         this.state = {
             showButton: false,
             uid: null,
-            refreshing: false
+            isFetching: false
         };
     }
+
+    // onRefresh() = 
 
     componentDidMount = async () => {
         try {
@@ -81,56 +83,6 @@ class FoodItemList extends Component {
 
     render() {
 
-        const menu = [
-            {
-                "foodId": 1,
-                "foodName": "Ice Cream",
-                "price": 4.69,
-                "image": "iceCream.jpg",
-                "description": "Its deadass just ice cream",
-                "saved": 1
-            },
-            {
-                "foodId": 2,
-                "foodName": "Pizza",
-                "price": 12.99,
-                "image": "pizza.jpg",
-                "description": "Any type of pizza that you want",
-                "saved": 1
-            },
-            {
-                "foodId": 3,
-                "foodName": "Spring Rolls",
-                "price": 7.99,
-                "image": "springRolls.jpg",
-                "description": "Chicken Spring Rolls",
-                "saved": 0
-            },
-            {
-                "foodId": 4,
-                "foodName": "Fountain Drink",
-                "price": 1.99,
-                "image": "juice.jpg",
-                "description": "Any type of fountain drink that you want",
-                "saved": 0
-            },
-            {
-                "foodId": 5,
-                "foodName": "Egg Salad",
-                "price": 8.99,
-                "image": "eggSalad.jpg",
-                "description": "Its just an egg salad buddy",
-                "saved": 0
-            },
-            {
-                "foodId": 6,
-                "foodName": "BBQ ribs",
-                "price": 19.89,
-                "image": "ribs.jpg",
-                "description": "Baby back ribs (also back ribs or loin ribs) are taken from the top of the rib cage between the spine and the spare ribs, below the loin muscle. These ribs are covered in sweet BBQ sauce that will have likcing your fingers!",
-                "saved": 0
-            }
-        ]
         return (
             <View style={styles.container}>
                 <FlatList
@@ -139,6 +91,7 @@ class FoodItemList extends Component {
                     style={{
                         flex: 0.7
                     }}
+                    {...this.props}
                     renderItem={({ item }) =>
                         <FoodItemCard
                             {...this.props}
@@ -150,12 +103,6 @@ class FoodItemList extends Component {
                             saved={item.saved}
                             id={item.foodId}
                             saveButton={() => this.saveButtonPressed(item.foodId)}
-                            refreshing={this.state.refreshing}
-                            onRefresh={() => {
-                                this.setState({
-                                    refreshing: true
-                                })
-                            }}
                             //onPress={() => this.showFoodItemPage(item.foodId)}
                             onPress={() => this.props.navigation.navigate('FoodScreen', {
                                 uid: this.state.uid,
@@ -186,3 +133,54 @@ const styles = StyleSheet.create({
         //backgroundColor: 'red'
     }
 });
+
+const menu = [
+    {
+        "foodId": 1,
+        "foodName": "Ice Cream",
+        "price": 4.69,
+        "image": "iceCream.jpg",
+        "description": "Its deadass just ice cream",
+        "saved": 1
+    },
+    {
+        "foodId": 2,
+        "foodName": "Pizza",
+        "price": 12.99,
+        "image": "pizza.jpg",
+        "description": "Any type of pizza that you want",
+        "saved": 1
+    },
+    {
+        "foodId": 3,
+        "foodName": "Spring Rolls",
+        "price": 7.99,
+        "image": "springRolls.jpg",
+        "description": "Chicken Spring Rolls",
+        "saved": 0
+    },
+    {
+        "foodId": 4,
+        "foodName": "Fountain Drink",
+        "price": 1.99,
+        "image": "juice.jpg",
+        "description": "Any type of fountain drink that you want",
+        "saved": 0
+    },
+    {
+        "foodId": 5,
+        "foodName": "Egg Salad",
+        "price": 8.99,
+        "image": "eggSalad.jpg",
+        "description": "Its just an egg salad buddy",
+        "saved": 0
+    },
+    {
+        "foodId": 6,
+        "foodName": "BBQ ribs",
+        "price": 19.89,
+        "image": "ribs.jpg",
+        "description": "Baby back ribs (also back ribs or loin ribs) are taken from the top of the rib cage between the spine and the spare ribs, below the loin muscle. These ribs are covered in sweet BBQ sauce that will have likcing your fingers!",
+        "saved": 0
+    }
+]

@@ -35,7 +35,7 @@ class ReviewContainer extends Component {
                         <Text style={cardText} allowFontScaling={false}>Reviews</Text>
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={card}>
+                <TouchableOpacity style={card} onPress={this.props.createReview}>
                     <Text style={cardText} allowFontScaling={false}>Leave a Review</Text>
                 </TouchableOpacity>
             </View>

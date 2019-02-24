@@ -56,6 +56,7 @@ class ReviewList extends Component {
                     style={{
                         flex: 0.7
                     }}
+                    showsVerticalScrollIndicator={false}
                     renderItem={({ item }) =>
                         <ReviewCard
                             username={item.username}

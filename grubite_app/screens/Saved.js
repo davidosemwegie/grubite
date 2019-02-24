@@ -24,17 +24,67 @@ class Saved extends Component {
         this.state = {
             savedItems: [],
             uid: null,
-            nothingSavedText: ''
+            nothingSavedText: '',
+            isFetching: false
         }
     }
 
-    compo
+    onRefresh = () => {
+        this.setState({ isFetching: true }, function () {
+            console.log('Fetching data')
+            this.setState({ isFetching: false })
+        });
+    }
 
-    
+
     componentDidMount = async () => {
 
         //const rName = this.props.navigation.getParam('RestaurantName', `David's Kitchen`)
         //const roid = this.props.navigation.getParam('rid', '181')
+        // const userToken = await AsyncStorage.getItem('userToken');
+
+        // const roid = 181
+
+        // //this.setState({ rName })
+
+        // if (userToken !== null) {
+        //     const uid = JSON.parse(userToken).uid
+        //     // alert(uid)
+        //     this.setState({ uid })
+
+        //     let url = `${api_url}/mobile/user/saved/${uid}`
+
+        //     console.log(url)
+
+        //     axios.get(url)
+        //         .then(res => {
+
+        //             if (typeof (res.data.rows) !== 'undefined') {
+        //                 this.setState({ savedItems: res.data.rows })
+        //                 //alert(this.state.savedItems)
+        //             }
+        //         })
+        //         .catch(error => { console.log(error) })
+
+        // } else {
+        //     /* INSERT CODE FOR WHEN SOMEONE IS NOT LOGGED IN HERE */
+        // }
+
+        this.loadData()
+
+
+        var lengthOfResponse = Object.keys(this.state.savedItems).length
+
+        //alert(lengthOfResponse)
+
+        if (lengthOfResponse === '0') {
+            this.setState({ nothingSavedText: "You don't have any menu items saved" })
+        } else {
+            this.setState({ nothingSavedText: "" })
+        }
+    }
+
+    loadData = async () => {
         const userToken = await AsyncStorage.getItem('userToken');
 
         const roid = 181
@@ -63,17 +113,6 @@ class Saved extends Component {
         } else {
             /* INSERT CODE FOR WHEN SOMEONE IS NOT LOGGED IN HERE */
         }
-
-
-        var lengthOfResponse = Object.keys(this.state.savedItems).length
-
-        //alert(lengthOfResponse)
-
-        if (lengthOfResponse === '0') {
-            this.setState({nothingSavedText: "You don't have any menu items saved"})
-        } else {
-            this.setState({nothingSavedText: ""})
-        }
     }
 
     render() {
@@ -89,6 +128,8 @@ class Saved extends Component {
                 <Text>{nothingSavedText}</Text>
                 <FoodItemList
                     //reload={() => this.reload()}
+                    onRefresh={() => this.loadData()}
+                    refreshing={this.state.isFetching}
                     data={this.state.savedItems}
                 />
             </View>

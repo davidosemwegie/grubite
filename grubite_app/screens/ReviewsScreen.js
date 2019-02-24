@@ -12,6 +12,7 @@ import BackButton from '../components/common/BackButton'
 import PageTitle from '../components/common/PageTitle'
 import Header from '../components/common/Header'
 import ReviewList from '../components/FoodScreen/ReviewSection/ReviewList'
+import { withNavigation } from 'react-navigation';
 
 class ReviewsScreen extends Component {
 
@@ -47,7 +48,7 @@ class ReviewsScreen extends Component {
                     </Text>
                     </View>
                     <TouchableOpacity
-                    onPress={() => alert("You are about to make a Review")}
+                    onPress={() => this.props.navigation.navigate('CreateReviewScreen')}
                         style={newReviewButton}>
                         <Icon
                             name="pluscircle"
@@ -62,7 +63,7 @@ class ReviewsScreen extends Component {
         );
     }
 }
-export default ReviewsScreen;
+export default withNavigation(ReviewsScreen);
 
 const styles = StyleSheet.create({
     container: {

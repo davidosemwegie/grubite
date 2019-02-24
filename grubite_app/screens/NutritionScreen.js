@@ -54,19 +54,19 @@ const Label = (props) => {
                 <Text>Calories</Text>
                 <Text>{props.calories}</Text>
             </View>
-            <LineItem text={`Total Fat`} value={`${props.totalFat}g`} percentage={`${12}%`} />
-            <LineItem subText={`    Saturated Fat `} value={`${props.saturatedFat}g`} percentage={`${5}%`} />
-            <LineItem subText={`    Trans Fat `} value={`${props.transFat}g`} />
-            <LineItem text={`Cholesterol`} value={`${props.cholesterol}mg`} percentage={`${0}%`} />
-            <LineItem text={`Sodium`} value={`${props.sodium}mg`} percentage={`${7}%`} />
-            <LineItem text={`Total Carbohydrate`} value={`${props.totalCarbohydrates}g`} percentage={`${12}%`} />
-            <LineItem subText={`    Dietary Fiber Fat `} value={`${props.fibre}g`} percentage={`${16}%`} />
-            <LineItem subText={`    Sugar `} value={`${props.sugar}g`} />
-            <LineItem text={`Protein`} value={`${props.protein}g`} />
-            <LineItem text={`Vitamin A`} value={`${props.vitaminA}mg`} percentage={`${10}%`} />
-            <LineItem text={`Vitamin C`} value={`${props.vitaminC}mg`} percentage={`${8}%`} />
-            <LineItem text={`Calcium`} value={`${props.calcium}mg`} percentage={`${20}%`} />
-            <LineItem text={`Iron`} value={`${props.iron}mg`} percentage={`${45}%`} />
+            <LineItem text={`Total Fat`} value={`${props.totalFat} g`} percentage={`${12}%`} />
+            <LineItem subText={`    Saturated Fat `} value={`${props.saturatedFat} g`} percentage={`${5}%`} />
+            <LineItem subText={`    Trans Fat `} value={`${props.transFat }g`} />
+            <LineItem text={`Cholesterol`} value={`${props.cholesterol} mg`} percentage={`${0}%`} />
+            <LineItem text={`Sodium`} value={`${props.sodium} mg`} percentage={`${7}%`} />
+            <LineItem text={`Total Carbohydrate`} value={`${props.totalCarbohydrates} g`} percentage={`${12}%`} />
+            <LineItem subText={`    Dietary Fiber Fat `} value={`${props.fibre} g`} percentage={`${16}%`} />
+            <LineItem subText={`    Sugar `} value={`${props.sugar} g`} />
+            <LineItem text={`Protein`} value={`${props.protein} g`} />
+            <LineItem text={`Vitamin A`} value={`${props.vitaminA} mg`} percentage={`${10}%`} />
+            <LineItem text={`Vitamin C`} value={`${props.vitaminC} mg`} percentage={`${8}%`} />
+            <LineItem text={`Calcium`} value={`${props.calcium} mg`} percentage={`${20}%`} />
+            <LineItem text={`Iron`} value={`${props.iron} mg`} percentage={`${45}%`} />
             <View style={thickLine}></View>
         </View>
     )
@@ -200,9 +200,9 @@ const styles = StyleSheet.create({
     border: {
         //width: 375,
         // height: 600,
-        flex: 0.7,
-        justifyContent: 'space-between',
-        flexDirection: 'column',
+        // flex: 0.7,
+        // justifyContent: 'space-between',
+        // flexDirection: 'column',
         borderWidth: 2,
         borderColor: 'black',
         padding: 10,
